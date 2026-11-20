@@ -502,7 +502,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
 <div class="modal" id="ed-modal" role="dialog" aria-modal="true" aria-labelledby="ed-modal-h" hidden><div class="modal-box"><h3 id="ed-modal-h"></h3><p id="ed-modal-p"></p><textarea id="ed-modal-ta" rows="5" spellcheck="false"></textarea><div id="ed-modal-opts" class="mopts" hidden></div><div class="modal-btns"><button type="button" id="ed-modal-cancel">取消</button><button type="button" id="ed-modal-ok" class="primary"></button></div></div></div>
 <div class="wrap">
   <header class="hd">
-    <nav class="sitenav" aria-label="切換頁面"><div class="ng"><span class="nl">零式</span><a href="index.html">M8S 時間軸小抄</a></div><div class="ng"><span class="nl">絕</span><span class="ns">絕亞</span><a href="tea.html" aria-current="page">時間軸小抄</a><a href="tea-guide.html">繁中攻略整合</a></div></nav>
+    <nav class="sitenav" aria-label="切換頁面"><div class="ng"><a href="index.html">⌂ 首頁</a></div><div class="ng"><span class="nl">零式</span><a href="m8s.html">M8S 時間軸小抄</a></div><div class="ng"><span class="nl">絕</span><span class="ns">絕亞</span><a href="tea.html" aria-current="page">時間軸小抄</a><a href="tea-guide.html">繁中攻略整合</a></div></nav>
     <div class="hdtools">
       <div class="thm">
         <button type="button" class="thmbtn" id="thm-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="thm-menu" title="主題顏色"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.9 1.4-2l-.3-.8c-.4-1.1.4-2.2 1.6-2.2H17a4 4 0 0 0 4-4c0-5-4-9-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="11" r="1.4" fill="currentColor"/><circle cx="10.5" cy="7" r="1.4" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.4" fill="currentColor"/></svg><span id="thm-name">跟系統</span></button>
@@ -512,8 +512,9 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
       <button type="button" class="relbtn" id="rel-btn" aria-haspopup="dialog" aria-controls="release" title="更新紀錄"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="reldot"></span></button>
     </div>
   <div class="relpop" id="release" role="dialog" aria-label="更新紀錄" hidden>
-    <div class="relhead"><b>更新紀錄</b><span>最新 v1.2・11/10</span><button type="button" class="relx" id="rel-x" aria-label="關閉">✕</button></div>
+    <div class="relhead"><b>更新紀錄</b><span>最新 v1.3・11/20</span><button type="button" class="relx" id="rel-x" aria-label="關閉">✕</button></div>
     <ol>
+      <li><b>v1.3</b><time>11/20</time><ul><li>P3 兩次死刑：第一次 ST 無敵 4 下，第二次 MT 無敵</li></ul></li>
       <li><b>v1.2</b><time>11/10</time><ul><li>選職位後顯示自己的傳毒對象和時機</li><li>P3、P4 加影片站位截圖（滑鼠指過去看）</li><li>傳毒標籤改成依職位顯示；P2、P3 誤標的集團罪改回生命計算法</li></ul></li>
       <li><b>v1.1</b><time>11/10</time><ul><li>P2～P4 改用 1 號小隊團減軸，預設隊伍改成這次組成</li><li>ST 減傷改用騎士技能名</li><li>P2 加影片標點截圖（滑鼠指過去看）</li><li>一傳／二傳／三傳／終審用紫色標籤標出</li></ul></li>
       <li><b>v1.0</b><time>11/08</time><ul><li>絕亞時間軸小抄上線：P1、P1.5、P2、P3、P4 全機制</li><li>ST 騎士減傷照攻略排好</li><li>可切換職責、編輯減傷、分享碼、筆記</li></ul></li>
@@ -598,7 +599,6 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
   <main class="tl" id="tl"></main>
 
   <p class="endnote">時間照 cactbot 的絕亞時間軸換算。打法與減傷整理自 ふうcだよ（P1）、ぬけまる（P1.5、P3 次元斷絕）、魚子醬（P2～P4）的攻略影片。技能名稱照國服翻譯轉繁體，台服可能略有不同。</p>
-  
 
 </div>
 
@@ -637,7 +637,7 @@ const data = [
   {t:"00:12",m:"最終判決（上毒）",c:[]},
   {t:"00:18",m:"系統連結",c:[],pos:"往場邊散開看飛輪位置，看到飛輪特效再原路回場中"},
   {t:"00:27",m:"飛輪",c:[],n:"開場八方站位正確的話，兩個飛輪之間的 90 度扇形是安全區"},
-  {t:"00:33",m:"光子砲",c:[],pos:"判定後 ST 把飛機拉成面向場外，其他三組先做第一次傳毒",poi:{k:"一傳",when:"光子砲判定後（ST 和 D2 等碎踢讀條）",team:"D1 找 MT、D3 找 H1、D4 找 H2（DPS 逆時針去找）；ST 和 D2 等碎踢讀條",mt:"站好不動，D1 逆時針來找你",st:"還不用傳，先把飛機拉成面向場外",h1:"站好不動，D3 逆時針來找你",h2:"站好不動，D4 逆時針來找你",d1:"逆時針去找 MT",d2:"還不用傳，到飛機身後等 ST",d3:"逆時針去找 H1",d4:"逆時針去找 H2"}},
+  {t:"00:33",m:"光子砲",c:[],pos:"判定後 ST 把飛機拉成面向場外，其他三組先做第一次傳毒",poi:{k:"一傳",when:"光子砲判定後（ST 和 D2 等碎踢讀條）",team:"D1 找 MT、D3 找 H1、D4 找 H2（DPS 逆時針去找）",mt:"站好不動，D1 逆時針來找你",h1:"站好不動，D3 逆時針來找你",h2:"站好不動，D4 逆時針來找你",d1:"逆時針去找 MT",d3:"逆時針去找 H1",d4:"逆時針去找 H2"}},
   {t:"00:44",m:"迴旋碎踢（飛機正面扇形擊退）",st:["到飛機背後找 D2 傳毒"],c:[],pos:"看到讀條立刻走到飛機背後找 D2 傳毒，傳完回飛機側面",n:"傳完避開水雷分攤，也不要靠近水龍捲",poi:{k:"一傳",when:"看到飛機讀迴旋碎踢",team:"ST 到飛機身後找 D2",st:"碎踢讀條時立刻到飛機身後找 D2，傳完回到飛機側面",d2:"在飛機身後等 ST 來找你"}},
   {t:"00:48",m:"水雷分攤 ①",c:[["D3","策動"]],st:["壁壘"],nst:"水雷分攤完馬上開個壁壘",n:"D3 策動放在水雷 1 或水雷 2"}
 ]},
@@ -662,11 +662,11 @@ const data = [
   {t:"02:46",m:"龍捲風 ③ → 02:54 龍捲風 ④",c:[["D3","武裝解除"],["D2","牽制"],["D4","昏亂"]],nst:"這段至少開一個大減傷（鐵壁或極致護衛，看哪個轉好）",n:"三龍捲讀條快結束時下，可以蓋到兩次龍捲風"},
   {t:"03:05",m:"最終判決（狂暴）",c:[]}
 ]},
-{part:"P3 至尊亞歷山大",sub:"00:00＝時停",g:"P3 時停・第一次死刑",rules:"<b>時停站位</b>（T 奶組）：近線到飛機和正義號中間、右邊 boss 正上方；沒點名到左邊 boss 上方；遠線到正左（9 點）；電（加重罪）到正義號那側貼邊。時停結束後飛機劈最近 3 人、正義號噴最近 2 人，傷害不能重疊。<br><b>死刑（ST 影片打法）</b>：第一次 ST 開神聖領域單吃，三刀劈完退避給 MT；第二次在飛機劈完三下後 ST 秒挑釁。如果你們 MT 用死鬥／行屍走肉先單吃，就改成 MT 先吃、ST 挑釁接後面三刀，開打前講好。", rows:[
+{part:"P3 至尊亞歷山大",sub:"00:00＝時停",g:"P3 時停・第一次死刑",rules:"<b>時停站位</b>（T 奶組）：近線到飛機和正義號中間、右邊 boss 正上方；沒點名到左邊 boss 上方；遠線到正左（9 點）；電（加重罪）到正義號那側貼邊。時停結束後飛機劈最近 3 人、正義號噴最近 2 人，傷害不能重疊。<br><b>死刑（1 號小隊）</b>：第一次 ST 開神聖領域單吃 4 下（懲戒射線 1＋神聖之槍 3），吃完退避還給 MT；第二次換 MT 開無敵（超火流星）單吃，ST 不用挑釁。", rows:[
   {t:"00:00",m:"時停",c:[]},
   {t:"00:03",m:"時停判定 → 阿爾法之劍 ×3＋火焰噴射 ×2",c:[]},
   {t:"00:11",m:"亞歷山大可選中",c:[],mt:["到 A 點方向挑亞歷山大"]},
-  {t:"00:21",m:"懲戒射線（第一次死刑，一仇＋魔法易傷）",c:[],st:["神聖領域（讀條到「判」字就開）","三刀劈完退避"],mt:["ST 退避後接回仇恨"],n:"另一種打法：MT 戰士死鬥／暗黑行屍走肉先單吃再退避，ST 挑釁吃後面三刀"},
+  {t:"00:21",m:"懲戒射線（第一次死刑，一仇＋魔法易傷）",c:[],st:["神聖領域（讀條到「判」字就開）","4 下吃完退避"],mt:["ST 退避後接回仇恨"],n:"ST 無敵單吃，共 4 下：懲戒射線 1 下＋神聖之槍 3 下"},
   {t:"00:24",m:"神聖之槍 ×3（00:24、00:26、00:28）",c:[]}
 ]},
 {g:"P3 一運（時空潛行）", rows:[
@@ -676,9 +676,9 @@ const data = [
   {t:"01:09",m:"火焰噴射 ×3（01:09、01:11、01:13）",c:[],pos:"真心變金色後雙 T 引導噴火：MT 站正義號面前紅點，ST 站正義號和真心那側紅點之間；對穿走離場邊約 1/4 直徑的弧線"},
   {t:"01:21",m:"結晶破碎",c:[],pos:"以真心飛走的位置為 12 點，雙 T 去左邊貼邊，和集團罪的 DPS 三人分攤"},
   {t:"01:29",m:"集團罪＋聖禮",c:[],n:"位置比較遠，等集團罪動畫判定再走"},
-  {t:"01:35",m:"阿爾法之劍 ×3",c:[],st:["壁壘","鐵壁（可選）","聖盾陣"],nst:"飛機劈完第一下就開，吃超級跳和第二次死刑"},
+  {t:"01:35",m:"阿爾法之劍 ×3",c:[],st:["壁壘","鐵壁（可選）","聖盾陣"],nst:"飛機劈完第一下就開，吃超級跳"},
   {t:"01:38",m:"超級跳（最遠的人）",c:[],pos:"ST 到 B 點方向貼邊，開減傷引導；其他人在飛機與 B 點之間，三刀後立刻遠離 B 點"},
-  {t:"01:50",m:"懲戒射線（第二次死刑）→ 神聖之槍 ×3",st:["挑釁（飛機劈完三下秒挑）"],c:[],n:"一運結束"}
+  {t:"01:50",m:"懲戒射線（第二次死刑）→ 神聖之槍 ×3",c:[],mt:["超火流星（無敵）單吃"],n:"MT 無敵單吃，同樣 4 下；ST 不用挑釁。一運結束"}
 ]},
 {g:"P3 次元斷絕（34 固定）",rules:"<b>方向</b>：亞歷山大那側為下，正義號和追擊者隨機在右上或左上，開始先在中央集合面向上方。輪鋸軌道要在場中央交叉成十字。<br><b>號碼</b>：1 號左上、2 號右上紅點，處理第一輪骰子後踩第 3 次懺悔。3、4 號固定左下／右下紅點吃超級跳。5、6 號踩第 1 次懺悔後到左上／右上處理骰子。7、8 號踩第 2 次懺悔後到左下／右下。奇數在左、偶數在右。<br><b>淨化熱線</b>：上方雙 T＋讀秒 DPS，下方雙補＋讀秒 DPS，沒讀秒的 DPS 不要進。", rows:[
   {t:"02:09",m:"次元斷絕",c:[]},
@@ -817,8 +817,10 @@ function relevant(r){if(plainMode())return true;if(r.poi&&role!=="team"&&r.poi[r
   const s=selfv==="on"?mySelf(r).length:0;return (t+s)>0}
 
 const SHORT={};
-const HINTS=[["瀑布", "水柱扇形"], ["分離之手", "MT無敵"], ["坦克強攻擊", "雙T死刑"], ["痛苦之手", "不打平硬吃"], ["藍球", "不用範圍技"], ["超級衝擊", "面朝場外"], ["J 踢", "全體傷害"], ["龍捲風", "全體傷害"], ["最終判決（上毒）", "4色毒"], ["飛輪", "90度安全區"], ["水雷分攤", "雷2・水3～4"], ["導彈齊發", "冰圈放邊"], ["地雷", "ST踩"], ["飛機無敵", "3GCD破盾"], ["螺旋槳強風", "躲冰塊後"], ["終審閉庭", "疫苗＋同色毒"], ["雙重火箭飛拳", "雙T分攤"], ["時停", "依debuff站位"], ["懲戒射線", "死刑"], ["神聖之槍", "一仇三刀"], ["審判結晶", "黃圈放結晶"], ["超級跳", "最遠的人"], ["次元斷絕", "34固定"], ["懺悔", "輪流踩"], ["淨化熱線", "分攤"], ["J 風暴", "DPS檢測"], ["神聖審判", "全體大傷害"], ["動靜", "ESC不動"], ["制導", "分散或分攤"], ["未來觀測", "看影子"], ["加重誅罰（", "雙T分攤"], ["加重誅罰 ③", "ST無敵"], ["神聖大審判", "三穿一"], ["株連", "8人分攤"], ["時間干涉", "依DPS踩籠"], ["迴旋碎踢", "一傳"], ["地雷（", "二傳"], ["第三次傳毒", "三傳"], ["螺旋槳強風", "終審排隊"]];
+const HINTS=[["瀑布", "水柱扇形"], ["分離之手", "MT無敵"], ["坦克強攻擊", "雙T死刑"], ["痛苦之手", "不打平硬吃"], ["藍球", "不用範圍技"], ["超級衝擊", "面朝場外"], ["J 踢", "全體傷害"], ["龍捲風", "全體傷害"], ["最終判決（上毒）", "4色毒"], ["飛輪", "90度安全區"], ["水雷分攤", "雷2・水3～4"], ["導彈齊發", "冰圈放邊"], ["地雷", "ST踩"], ["飛機無敵", "3GCD破盾"], ["螺旋槳強風", "躲冰塊後"], ["終審閉庭", "疫苗＋同色毒"], ["雙重火箭飛拳", "雙T分攤"], ["時停", "依debuff站位"], ["神聖之槍", "一仇三刀"], ["審判結晶", "黃圈放結晶"], ["超級跳", "最遠的人"], ["次元斷絕", "34固定"], ["懺悔", "輪流踩"], ["淨化熱線", "分攤"], ["J 風暴", "DPS檢測"], ["神聖審判", "全體大傷害"], ["動靜", "ESC不動"], ["制導", "分散或分攤"], ["未來觀測", "看影子"], ["加重誅罰（", "雙T分攤"], ["加重誅罰 ③", "ST無敵"], ["神聖大審判", "三穿一"], ["株連", "8人分攤"], ["時間干涉", "依DPS踩籠"], ["懲戒射線（第一次", "ST無敵 4下"], ["懲戒射線（第二次", "MT無敵 4下"]];
 const HINT_T={"01:48":["換T"]};
+const _hint0=hintsOf;
+hintsOf=function(r){const h=_hint0(r);if(r.poi&&(role==="team"||r.poi[role]))h.push(r.poi.k==="終審"?"終審排隊":r.poi.k);return h};
 function hintsOf(r){return HINTS.filter(([k])=>r.m.includes(k)&&!(false)).map(x=>x[1]).concat(HINT_T[r.t]||[])}
 function shortName(r){return SHORT[r.t]||r.m.replace(/（[^）]{7,}）/g,"")}
 function renderTimeline(){
@@ -845,7 +847,7 @@ function renderTimeline(){
       const row=el("div","row"+(plainMode()?" plain":(rel?" hit":" quiet"))+((zi++)%2?" alt":""));
       row.append(el("time",null,r.t));
       const b=el("div","body");
-      const mh=el("div","mech",(view==="compact"||view==="fit")?shortName(r):r.m); for(const h of hintsOf(r)) mh.append(el("span","hint"+(/^(一傳|二傳|三傳|疫苗|終審)/.test(h)?" poi":""),"#"+h)); for(const x of FIGMAP.filter(([k])=>r.m.includes(k))){const fb=el("button","figbtn",x[2]||"看圖");fb.type="button";fb.dataset.fig=x[1];fb.dataset.alt=r.m+" 的示意圖";mh.append(fb)}
+      const mh=el("div","mech",(view==="compact"||view==="fit")?shortName(r):r.m); for(const h of hintsOf(r)) mh.append(el("span","hint"+(/^(一傳|二傳|三傳|疫苗|終審)/.test(h)?" poi":""),"#"+h)); for(const x of FIGMAP.filter(x=>r.m.includes(x[0])&&(!x[3]||role==="team"||x[3].includes(role)))){const fb=el("button","figbtn",x[2]||"看圖");fb.type="button";fb.dataset.fig=x[1];fb.dataset.alt=r.m+" 的示意圖";mh.append(fb)}
       if(r.poi){const pv=role==="team"?r.poi.team:r.poi[role];if(pv){const d=el("div","poiline");d.append(el("b",null,"☍ "+r.poi.k),document.createTextNode(" "+pv));mh.append(d)}}
       if((editing||mitv==="on") && r.press && (editing||(role==="team"?r.c.length:myTeam(r).length))) mh.append(el("span","press","軸 "+r.press+" 按"));
       b.append(mh);
@@ -962,7 +964,7 @@ function tpDiv(tp){const d=el("div","tpdiv "+tp[0]);const red=tp[0]==="red";
   const ic=document.createElement("span");ic.className="tpi";ic.innerHTML=TPSVG;
   d.append(el("span","tpl"),ic,el("span","tps","傳送 "+tp[1]+"・"+tp[2]),el("span","tpl"));return d}
 const RUNSVG='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.5" cy="4" r="2.4" fill="currentColor"/><path d="M13.6 7.6 9.8 9.4 8 13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.6 7.6 12 13l3.6 2.8 1.2 5.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13l-2.2 4.2-5 1.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.6 7.6 16.4 11l3.4.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const FIGMAP=[["開怪", "s01", "爆發說明"], ["瀑布落地", "s03", "ST 拉手"], ["瀑布落地", "s04", "水柱引導"], ["瀑布落地", "s06", "其他人"], ["瀑布落地", "g1", "站位圖"], ["手出布", "s02", "MT"], ["手出布", "s05", "無預兆扇形"], ["坦克強攻擊（本體＋手）＋", "s08", "減傷範例"], ["痛苦之手", "s07", "看圖"], ["藍球", "s09", "藍球"], ["藍球", "g2", "站位圖"], ["坦克強攻擊 ②", "s10", "錯開站"], ["超級衝擊", "k1211", "1211"], ["系統連結", "p2_wheel", "飛輪安全區"], ["飛輪", "p2_8way", "回八方"], ["迴旋碎踢", "p2_pull", "拉飛機"], ["迴旋碎踢", "p2_kick", "找D2傳毒"], ["水雷分攤 ①", "p2_wl1", "水雷站位"], ["地雷（", "p2_mine", "踩地雷"], ["飛機無敵", "p2_shield", "打盾站位"], ["水雷分攤 ③", "p2_wl3", "拉飛機"], ["螺旋槳強風", "p2_line", "終審排隊"], ["雙重火箭飛拳", "p2_after", "集合位置"], ["時停判定", "p3_ts_th", "T奶站位"], ["時停判定", "p3_ts_dps", "DPS站位"], ["一運（時空潛行）", "p3_green", "綠球"], ["審判結晶", "p3_crystal", "放結晶"], ["結晶＋撞球", "p3_st_heart", "雙T位置"], ["集團罪＋聖禮", "p3_half", "一運後半"], ["超級跳（最遠的人）", "p3_half", "站位圖"], ["次元斷絕", "dim_start", "號碼站位"], ["懺悔之間", "dim_order", "懺悔順序"], ["限制切斷（發骰子）", "dim_dash", "輪盤後"], ["懺悔 ①", "dim_later", "接骰子"], ["淨化熱線", "dim_end", "分攤站位"], ["終審判決", "p4_open", "站位圖"], ["制導 ①", "p4_stack", "分攤"], ["未來觀測 α", "p4_obs1", "一測站位"], ["加重誅罰（", "p4_tb1", "死刑站位"], ["未來觀測 β", "p4_obs2_light", "大光"], ["未來觀測 β", "p4_obs2_dark", "小暗"], ["神聖大審判", "p4_fire1", "三穿一"], ["神聖大審判", "p4_fire2", "三穿一②"], ["時間干涉", "p4_cage", "籠子"]];
+const FIGMAP=[["開怪", "s01", "爆發說明"], ["瀑布落地", "s03", "ST 拉手"], ["瀑布落地", "s04", "水柱引導"], ["瀑布落地", "s06", "其他人"], ["瀑布落地", "g1", "站位圖"], ["手出布", "s02", "MT"], ["手出布", "s05", "無預兆扇形"], ["坦克強攻擊（本體＋手）＋", "s08", "減傷範例"], ["痛苦之手", "s07", "看圖"], ["藍球", "s09", "藍球"], ["藍球", "g2", "站位圖"], ["坦克強攻擊 ②", "s10", "錯開站"], ["超級衝擊", "k1211", "1211"], ["系統連結", "p2_wheel", "飛輪安全區"], ["飛輪", "p2_8way", "回八方"], ["迴旋碎踢", "p2_pull", "拉飛機"], ["迴旋碎踢", "p2_kick", "找D2傳毒", ["st", "d2"]], ["水雷分攤 ①", "p2_wl1", "水雷站位"], ["地雷（", "p2_mine", "踩地雷"], ["飛機無敵", "p2_shield", "打盾站位"], ["水雷分攤 ③", "p2_wl3", "拉飛機"], ["螺旋槳強風", "p2_line", "終審排隊"], ["雙重火箭飛拳", "p2_after", "集合位置"], ["時停判定", "p3_ts_th", "T奶站位"], ["時停判定", "p3_ts_dps", "DPS站位"], ["一運（時空潛行）", "p3_green", "綠球"], ["審判結晶", "p3_crystal", "放結晶"], ["結晶＋撞球", "p3_st_heart", "雙T位置"], ["集團罪＋聖禮", "p3_half", "一運後半"], ["超級跳（最遠的人）", "p3_half", "站位圖"], ["次元斷絕", "dim_start", "號碼站位"], ["懺悔之間", "dim_order", "懺悔順序"], ["限制切斷（發骰子）", "dim_dash", "輪盤後"], ["懺悔 ①", "dim_later", "接骰子"], ["淨化熱線", "dim_end", "分攤站位"], ["終審判決", "p4_open", "站位圖"], ["制導 ①", "p4_stack", "分攤"], ["未來觀測 α", "p4_obs1", "一測站位"], ["加重誅罰（", "p4_tb1", "死刑站位"], ["未來觀測 β", "p4_obs2_light", "大光"], ["未來觀測 β", "p4_obs2_dark", "小暗"], ["神聖大審判", "p4_fire1", "三穿一"], ["神聖大審判", "p4_fire2", "三穿一②"], ["時間干涉", "p4_cage", "籠子"]];
 const FIGCAP={"s01": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s02": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s03": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s04": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s05": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s06": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s07": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s08": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s09": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s10": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "k1211": "圖：ぬけまる 1211 式（25:01）", "g1": "示意圖：依攻略繪製", "g2": "示意圖：依攻略繪製", "p2_8way": "圖：魚子醬 P2 SEP 改詳解 4:10", "p2_wheel": "圖：魚子醬 P2 SEP 改詳解 3:50", "p2_pull": "圖：魚子醬 P2 SEP 改詳解 5:18", "p2_kick": "圖：魚子醬 P2 SEP 改詳解 5:36", "p2_wl1": "圖：魚子醬 P2 SEP 改詳解 6:02", "p2_mine": "圖：魚子醬 P2 SEP 改詳解 9:12", "p2_shield": "圖：魚子醬 P2 SEP 改詳解 12:30", "p2_wl3": "圖：魚子醬 P2 SEP 改詳解 17:50", "p2_line": "圖：魚子醬 P2 SEP 改詳解 18:55", "p2_after": "圖：魚子醬 P2 SEP 改詳解 19:30", "p3_ts_th": "圖：魚子醬 P3 詳解 2:29", "p3_ts_dps": "圖：魚子醬 P3 詳解 3:05", "p3_green": "圖：魚子醬 P3 詳解 7:29", "p3_crystal": "圖：魚子醬 P3 詳解 8:11", "p3_st_heart": "圖：魚子醬 P3 詳解 9:29", "p3_half": "圖：魚子醬 P3 詳解 12:41", "dim_order": "圖：ぬけまる 次元斷絕 11:55", "dim_start": "圖：ぬけまる 次元斷絕 12:45", "dim_dash": "圖：ぬけまる 次元斷絕 13:35", "dim_later": "圖：ぬけまる 次元斷絕 14:25", "dim_end": "圖：ぬけまる 次元斷絕 15:30", "p4_open": "圖：魚子醬 P4 詳解 2:17", "p4_stack": "圖：魚子醬 P4 詳解 4:29", "p4_obs1": "圖：魚子醬 P4 詳解 8:31", "p4_tb1": "圖：魚子醬 P4 詳解 11:05", "p4_obs2_light": "圖：魚子醬 P4 詳解 12:02", "p4_obs2_dark": "圖：魚子醬 P4 詳解 12:46", "p4_fire1": "圖：魚子醬 P4 詳解 17:10", "p4_fire2": "圖：魚子醬 P4 詳解 17:54", "p4_cage": "圖：魚子醬 P4 詳解 21:12"};
 function figOf(r){const m=FIGMAP.find(([k])=>r.m.includes(k));return m?m[1]:null}
 const figPop=document.createElement("div");figPop.className="figpop";figPop.hidden=true;
@@ -1221,7 +1223,7 @@ function fxSpawn(skin){const box=document.getElementById("fx");box.textContent="
 
 /* release notes popup */
 (function(){const b=document.getElementById("rel-btn"),pop=document.getElementById("release"),dot=b.querySelector(".reldot");
-  const VER="v1.2"; try{if(localStorage.getItem("tea-relseen")===VER)dot.hidden=true}catch(e){}
+  const VER="v1.3"; try{if(localStorage.getItem("tea-relseen")===VER)dot.hidden=true}catch(e){}
   function open(o){pop.hidden=!o;b.setAttribute("aria-expanded",o);if(o){dot.hidden=true;try{localStorage.setItem("tea-relseen",VER)}catch(e){}}}
   b.onclick=e=>{e.stopPropagation();open(pop.hidden)};
   document.getElementById("rel-x").onclick=()=>{open(false);b.focus()};
