@@ -292,6 +292,8 @@ body.compact .tpi{width:18px;height:18px}
 
 [hidden]{display:none!important}
 .figbtn{margin-left:8px;font:inherit;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid var(--p2);background:transparent;color:var(--p2);cursor:pointer;vertical-align:2px}
+.nimgbtn{margin-left:0;margin-right:6px;margin-top:4px;border-color:var(--self);color:var(--self)}
+.nimgbtn:hover,.nimgbtn:focus-visible{background:var(--self)!important}
 .figbtn:hover,.figbtn:focus-visible{background:var(--p2);color:var(--on-badge);outline:none}
 .figpop{position:fixed;z-index:30;background:#111;border-radius:12px;padding:6px;box-shadow:0 12px 32px rgba(0,0,0,.4)}
 .figpop img{display:block;width:auto;height:auto;max-width:min(560px,calc(100vw - 28px));max-height:min(62vh,520px);border-radius:8px}
@@ -301,7 +303,10 @@ body.compact .tpi{width:18px;height:18px}
 .nimg img{display:block;height:56px;width:auto;max-width:120px;object-fit:cover}
 .nimg .x{position:absolute;top:2px;right:2px;width:18px;height:18px;line-height:16px;font-size:12px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:#fff;cursor:pointer;padding:0}
 .notepics{margin:6px 0 0}
-.notepics .row3{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.notepics .row3{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}
+.nimgw{display:flex;flex-direction:column;gap:4px;width:120px}
+.nimgw .nimg img{width:120px;max-width:120px}
+.nimgname{width:100%;box-sizing:border-box;font:inherit;font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--fg)}
 .filebtn{font:inherit;font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px dashed var(--line);background:transparent;color:var(--fg);cursor:pointer}
 .mopts .filebtn{margin-top:4px}
 .figzoom{position:relative;transition:transform .3s ease}
@@ -473,6 +478,26 @@ body.compact .pos .pk svg{width:11px;height:11px}
 .mynote .mnk{flex:none;font-size:11px;font-weight:700;color:#8a6d00}
 .mynote.ed{cursor:pointer}.mynote.ed:hover,.mynote.ed:focus-visible{outline:2px solid #e8c440;outline-offset:1px}
 body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
+.strat{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:4px 0 6px;font-size:13px}
+.strat .sk{font-size:11px;font-weight:800;letter-spacing:.08em;padding:1px 8px;border-radius:4px;background:var(--p2);color:var(--on-badge)}
+.strat .sv{font-weight:600;color:var(--fg)}
+.strat .sv.empty{font-weight:400;color:var(--muted)}
+.strat .sedit{font:inherit;font-size:11px;line-height:1;padding:3px 7px;border-radius:5px;border:1px dashed var(--muted);background:transparent;color:var(--muted);cursor:pointer}
+.strat .sedit:hover,.strat .sedit:focus-visible{color:var(--fg);border-color:var(--fg);outline:none}
+.tagadd{margin-left:6px;font:inherit;font-size:11px;font-weight:700;line-height:1.4;padding:0 7px;border-radius:4px;border:1px dashed var(--muted);background:transparent;color:var(--muted);cursor:pointer;vertical-align:2px}
+.tagadd:hover,.tagadd:focus-visible{color:var(--fg);border-color:var(--fg);outline:none}
+.tagcur{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 2px}
+.tagcur .hint{margin-left:0;display:inline-flex;align-items:center;gap:4px}
+.tagcur .chipx{width:16px;height:16px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;opacity:.7;cursor:pointer;font-size:12px;line-height:1}
+.tagnone{font-size:12px;color:var(--muted)}
+.tagpre{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 8px}
+.tagpick{font:inherit;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.tagpick.on{background:var(--self-bg);border-color:var(--self);color:var(--self-fg)}
+.tagaddrow{display:flex;gap:6px;margin-bottom:6px}
+.tagin{flex:1;min-width:0;font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--fg)}
+.chipadd.posadd{border-color:var(--p2);color:var(--p2)}
+.posedit{flex:none;font:inherit;font-size:11px;line-height:1;padding:2px 6px;margin-left:2px;border-radius:5px;border:1px dashed var(--p2);background:transparent;color:var(--p2);cursor:pointer;align-self:center}
+.posedit:hover,.posedit:focus-visible{background:color-mix(in srgb,var(--p2) 15%,transparent);outline:none}
 .chipadd.noteadd{border-color:#d4a90c;color:#8a6d00}
 .chipadd.noteadd:hover{background:#fff6c4}
 .notearea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical;margin-bottom:6px}
@@ -539,7 +564,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
 <div class="modal" id="ed-modal" role="dialog" aria-modal="true" aria-labelledby="ed-modal-h" hidden><div class="modal-box"><h3 id="ed-modal-h"></h3><p id="ed-modal-p"></p><textarea id="ed-modal-ta" rows="5" spellcheck="false"></textarea><div id="ed-modal-opts" class="mopts" hidden></div><div class="modal-btns"><button type="button" id="ed-modal-cancel">取消</button><button type="button" id="ed-modal-ok" class="primary"></button></div></div></div>
 <div class="wrap">
   <header class="hd">
-    <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">零式・中重量級</span>M7S 野蠻憎惡</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html" aria-current="page">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">絕境戰</div><a href="tea.html">絕亞歷山大</a></div></details><div class="vers"><a href="m7s.html" aria-current="page">空白筆記</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
+    <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">零式・中重量級</span>M7S 野蠻憎惡</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html" aria-current="page">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">零式・重量級</div><a href="m9s.html">M9S 致命美人</a><a href="m10s.html">M10S 極限兄弟</a><a href="m11s.html">M11S 霸王</a><a href="m12s.html">M12S 林德布魯姆</a><div class="rg">絕境戰</div><a href="ucob.html">絕巴哈</a><a href="uwu.html">絕神兵</a><a href="tea.html">絕亞歷山大</a><a href="dsr.html">絕龍詩</a><a href="top.html">絕歐米茄</a><a href="fru.html">絕伊甸</a><a href="dmu.html">Dancing Mad（凱夫卡）</a></div></details><div class="vers"><a href="m7s.html" aria-current="page">空白筆記</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
     <div class="hdtools">
       <div class="thm">
         <button type="button" class="thmbtn" id="thm-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="thm-menu" title="主題顏色"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.9 1.4-2l-.3-.8c-.4-1.1.4-2.2 1.6-2.2H17a4 4 0 0 0 4-4c0-5-4-9-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="11" r="1.4" fill="currentColor"/><circle cx="10.5" cy="7" r="1.4" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.4" fill="currentColor"/></svg><span id="thm-name">跟系統</span></button>
@@ -556,6 +581,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
   </div>
     <div class="eyebrow">AAC Cruiserweight M3 Savage · 阿卡狄亞零式登天鬥技場 中重量級3 · 空白筆記</div>
     <h1>M7S 空白筆記 <span id="h-role">· 全隊</span></h1>
+    <p class="strat" id="strat"></p>
     <p class="sub">每一行是 Boss 技能的判定時間（以開怪為 00:00），圈數字是這招第幾次出現，（×N）是連續打 N 下。</p><div class="blanknote"><b>空白筆記</b>：只有 Boss 技能時間軸和機制標籤，減傷、站位都是空的。按「編輯減傷」填上你們隊伍的減傷，每一行也可以寫自己的筆記；填好後可以匯出分享碼給隊友匯入。設定只存在你自己的瀏覽器。</div><div class="setup" id="setup" aria-live="polite"></div>
   </header>
 
@@ -615,7 +641,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
   </section>
 
   <section class="edbar" id="edbar" hidden aria-label="編輯減傷">
-    <div class="edtxt"><b>編輯減傷中</b>　每一招下面按「＋ 減傷」新增，按技能旁的 × 刪除。改動只存在你自己的瀏覽器。<span id="ed-count"></span></div>
+    <div class="edtxt"><b>編輯減傷中</b>　每一招下面按「＋ 減傷」新增，按技能旁的 × 刪除；「＋ 站位」或站位後面的 ✎ 可以改站位；「＋ 標籤／✎ 標籤」可以改機制標籤。改動只存在你自己的瀏覽器。<span id="ed-count"></span></div>
     <div class="edbtns">
       <button type="button" id="ed-export">匯出分享碼</button>
       <button type="button" id="ed-import">匯入分享碼</button>
@@ -627,7 +653,8 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
 
   <main class="tl" id="tl"></main>
 
-  <p class="endnote">時間軸、技能名稱和死刑／AOE／分攤等標籤都是從 cactbot 的時間軸和觸發器自動整理的，技能名稱用 cactbot 的繁中服翻譯。實際時間會隨打速前後差幾秒。</p>
+  <p class="endnote">時間軸、技能名稱和死刑／AOE／分攤等 # 標籤都是從 cactbot 的時間軸和觸發器自動整理的，不是照特定攻略組的打法；技能名稱用 cactbot 的繁中服翻譯。實際時間會隨打速前後差幾秒。</p>
+  <p class="sitecredit" style="margin:14px 0 0;font-size:11.5px;color:var(--muted);opacity:.85">FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記，時間軸來自 cactbot（Apache-2.0）。<a href="index.html#credits" style="color:inherit;text-decoration:underline">資料來源與授權</a></p>
 
 </div>
 
@@ -802,14 +829,16 @@ const DEF_PARTY={MT:"GNB",ST:"PLD",H1:"AST",H2:"SGE",D1:"NIN",D2:"SAM",D3:"MCH",
 function skillsOf(code){const j=JOBS[code];if(!j)return [];return j.sk.concat(ROLE_SK[j.r]||[])}
 
 /* ===== 自訂資料（只存在這個瀏覽器） ===== */
-let custom={v:1,party:{},rows:{},press:{},notes:{}};
-try{const t=JSON.parse(localStorage.getItem("m7sb-custom")||"null");if(t&&t.v===1)custom={v:1,party:t.party||{},rows:t.rows||{},press:t.press||{},notes:t.notes||{}}}catch(e){}
+let custom={v:1,party:{},rows:{},press:{},notes:{},pos:{},tags:{}};
+try{const t=JSON.parse(localStorage.getItem("m7sb-custom")||"null");if(t&&t.v===1)custom={v:1,party:t.party||{},rows:t.rows||{},press:t.press||{},notes:t.notes||{},pos:t.pos||{},tags:t.tags||{}};if(typeof t.strat==="string")custom.strat=t.strat}catch(e){}
 /* 筆記圖片：存在 IndexedDB（容量比 localStorage 大） */
 const IMGK="m7sb-img";let NIMG={};
 function idb(){return new Promise((res,rej)=>{try{const q=indexedDB.open("raid-notes",1);q.onupgradeneeded=()=>q.result.createObjectStore("imgs");q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)}catch(e){rej(e)}})}
 async function imgLoad(){try{const db=await idb();const v=await new Promise(r=>{const g=db.transaction("imgs").objectStore("imgs").get(IMGK);g.onsuccess=()=>r(g.result);g.onerror=()=>r(null)});NIMG=v||{}}catch(e){NIMG={}}}
 async function imgSave(){try{const db=await idb();await new Promise((r,j)=>{const t=db.transaction("imgs","readwrite");t.objectStore("imgs").put(NIMG,IMGK);t.oncomplete=r;t.onerror=()=>j(t.error)})}catch(e){toastMsg("圖片存不進去（瀏覽器空間不足或被封鎖）",3200)}}
 function imgShrink(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const M=1400,k=Math.min(1,M/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.82))};im.onerror=rej;im.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+const NPS=x=>typeof x==="string"?x:x.s,NPL=x=>typeof x==="string"?"":(x.l||"");
+function posOf(r){return custom.pos&&r._id in custom.pos?custom.pos[r._id]:(r.pos||"")}
 function hasNote(id){return !!(custom.notes[id]||(NIMG[id]&&NIMG[id].length))}
 function saveCustom(){try{localStorage.setItem("m7sb-custom",JSON.stringify(custom))}catch(e){}}
 function jobOf(slot){return custom.party[slot]||DEF_PARTY[slot]}
@@ -860,7 +889,29 @@ const HINTS=[];
 const HINT_T={"01:30": ["狂暴"], "03:15": ["高傷AOE"], "04:18": ["高傷AOE"], "05:40": ["高傷AOE"], "05:52": ["高傷AOE"], "11:06": ["狂暴"]};
 const _hint0=hintsOf;
 hintsOf=function(r){const h=_hint0(r);if(r.poi&&(role==="team"||r.poi[role]))h.push(r.poi.k==="終審"?"終審排隊":r.poi.k);return h};
-function hintsOf(r){return HINTS.filter(([k])=>r.m.includes(k)&&!(false)).map(x=>x[1]).concat(HINT_T[r.t]||[])}
+const TAG_PRESET=["死刑","雙T死刑","換T","AOE","高傷AOE","分攤","分散","鋼鐵","月環","鋼鐵月環","半場刀","擊退","44分攤","22分攤","八方分散","踩塔","連線","背對","狂暴"];
+const sameL=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
+function tagsOf(r){return custom.tags&&r._id in custom.tags?custom.tags[r._id]:hintsOf(r)}
+function setTags(r,L){custom.tags=custom.tags||{};if(sameL(L,hintsOf(r)))delete custom.tags[r._id];else custom.tags[r._id]=L;saveCustom();render()}
+function openTags(r,anchor){partyPop.hidden=true;addPop.textContent="";
+  addPop.append(el("h4",null,"機制標籤：「"+shortName(r)+"」"+r.t));
+  let L=tagsOf(r).slice();const cur=el("div","tagcur"),pre=el("div","tagpre");
+  const used=[];for(const g of data)for(const x of g.rows)for(const t of tagsOf(x))if(!used.includes(t))used.push(t);
+  const pool=TAG_PRESET.concat(used.filter(t=>!TAG_PRESET.includes(t)&&t.length<=10).slice(0,16));
+  const draw=()=>{cur.textContent="";if(!L.length)cur.append(el("span","tagnone","（沒有標籤）"));
+    L.forEach((t,i)=>{const c=el("span","hint tagedit","#"+t);const x=el("button","chipx","×");x.type="button";x.setAttribute("aria-label","移除 "+t);x.onclick=()=>{L.splice(i,1);draw()};c.append(x);cur.append(c)});
+    pre.textContent="";for(const t of pool){const b=el("button","tagpick"+(L.includes(t)?" on":""),t);b.type="button";b.setAttribute("aria-pressed",L.includes(t));b.onclick=()=>{const k=L.indexOf(t);if(k>=0)L.splice(k,1);else if(L.length<6)L.push(t);else toastMsg("一行最多 6 個標籤",2200);draw()};pre.append(b)}};
+  const inp=document.createElement("input");inp.type="text";inp.maxLength=16;inp.className="tagin";inp.placeholder="自訂標籤，例如：T近遠奶、先北後南";inp.setAttribute("aria-label","自訂標籤");
+  const addb=el("button",null,"加入");addb.type="button";const addIt=()=>{const v=inp.value.trim().replace(/^#+/,"").replace(/\s+/g," ");if(!v)return;if(L.length>=6){toastMsg("一行最多 6 個標籤",2200);return}if(!L.includes(v))L.push(v);inp.value="";draw();inp.focus()};addb.onclick=addIt;
+  inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();inp.value.trim()?addIt():ok.click()}};
+  const row=el("div","tagaddrow");row.append(inp,addb);
+  const acts=el("div","acts");
+  if(custom.tags&&r._id in custom.tags&&hintsOf(r).length){const rb=el("button",null,"還原原本的");rb.type="button";rb.onclick=()=>{delete custom.tags[r._id];saveCustom();addPop.hidden=true;render();toastMsg("已還原標籤")};acts.append(rb)}
+  const cancel=el("button",null,"取消");cancel.type="button";cancel.onclick=()=>addPop.hidden=true;
+  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{setTags(r,L);addPop.hidden=true;toastMsg("已儲存標籤")};
+  acts.append(cancel,ok);draw();
+  addPop.append(cur,el("p","hint2","點下面的常用標籤加入或拿掉，也可以自己打。分享碼和檔案都會帶上標籤。"),pre,row,acts);placePop(addPop,anchor);addPop.hidden=false;inp.focus()}
+function hintsOf(r){return HINTS.filter(([k])=>r.m.includes(k)&&!(false)).map(x=>x[1]).concat(HINT_T[r._id]||HINT_T[r.t]||[])}
 function shortName(r){return SHORT[r.t]||r.m.replace(/（[^）]{7,}）/g,"")}
 function renderTimeline(){
   const tl=document.getElementById("tl"); tl.textContent="";
@@ -886,7 +937,7 @@ function renderTimeline(){
       const row=el("div","row"+(plainMode()?" plain":(rel?" hit":" quiet"))+((zi++)%2?" alt":""));
       row.append(el("time",null,r.t));
       const b=el("div","body");
-      const mh=el("div","mech",(view==="compact"||view==="fit")?shortName(r):r.m); for(const h of hintsOf(r)) mh.append(el("span","hint"+(/^(一傳|二傳|三傳|疫苗|終審)/.test(h)?" poi":""),"#"+h)); for(const x of FIGMAP.filter(x=>r.m.includes(x[0])&&(!x[3]||role==="team"||x[3].includes(role)))){const fb=el("button","figbtn",x[2]||"看圖");fb.type="button";fb.dataset.fig=x[1];fb.dataset.alt=r.m+" 的示意圖";mh.append(fb)}
+      const mh=el("div","mech",(view==="compact"||view==="fit")?shortName(r):r.m); for(const h of tagsOf(r)) mh.append(el("span","hint"+(/^(一傳|二傳|三傳|疫苗|終審)/.test(h)?" poi":""),"#"+h)); if(editing){const tb=el("button","tagadd",tagsOf(r).length?"✎ 標籤":"＋ 標籤");tb.type="button";tb.setAttribute("aria-label","編輯這一行的機制標籤");tb.onclick=()=>openTags(r,tb);mh.append(tb)} for(const x of FIGMAP.filter(x=>r.m.includes(x[0])&&(!x[3]||role==="team"||x[3].includes(role)))){const fb=el("button","figbtn",x[2]||"看圖");fb.type="button";fb.dataset.fig=x[1];fb.dataset.alt=r.m+" 的示意圖";mh.append(fb)}
       if(r.poi){const pv=role==="team"?r.poi.team:r.poi[role];if(pv){const d=el("div","poiline");d.append(el("b",null,"☍ "+r.poi.k),document.createTextNode(" "+pv));mh.append(d)}}
       if((editing||mitv==="on") && r.press && (editing||(role==="team"?r.c.length:myTeam(r).length))) mh.append(el("span","press","軸 "+r.press+" 按"));
       b.append(mh);
@@ -904,11 +955,13 @@ function renderTimeline(){
           ch.append(el("span","r "+x.s,x.s),document.createTextNode(x.k+(x.t==="self"?"（個人）":"")));
           const del=el("button","chipx","×");del.type="button";del.title="刪除";del.setAttribute("aria-label","刪除 "+x.s+" "+x.k);del.onclick=()=>editRemove(r,i);ch.append(del);chips.append(ch)});
         const add=el("button","chipadd","＋ 減傷");add.type="button";add.onclick=()=>openAdd(r,add);chips.append(add);
-        if(!hasNote(r._id)){const nb=el("button","chipadd noteadd","✎ 筆記");nb.type="button";nb.onclick=()=>openNote(r,nb);chips.append(nb)}}
+        if(!hasNote(r._id)){const nb=el("button","chipadd noteadd","✎ 筆記");nb.type="button";nb.onclick=()=>openNote(r,nb);chips.append(nb)}
+        if(!posOf(r)&&posv==="on"){const pb=el("button","chipadd posadd","＋ 站位");pb.type="button";pb.onclick=()=>openPos(r,pb);chips.append(pb)}}
       if(chips.children.length) b.append(chips);
-      if(r.pos){const pp=el("div","pos");const ic=el("span","pk");ic.innerHTML=RUNSVG;ic.title="站位";ic.setAttribute("role","img");ic.setAttribute("aria-label","站位");pp.append(ic,document.createTextNode(r.pos));b.append(pp)}
+      {const PV=posOf(r);if(PV){const pp=el("div","pos");const ic=el("span","pk");ic.innerHTML=RUNSVG;ic.title="站位";ic.setAttribute("role","img");ic.setAttribute("aria-label","站位");pp.append(ic,document.createTextNode(PV));
+        if(editing){const eb=el("button","posedit","✎");eb.type="button";eb.title="改站位";eb.setAttribute("aria-label","改這一行的站位");eb.onclick=()=>openPos(r,eb);pp.append(eb)}b.append(pp)}}
       if(hasNote(r._id)&&(notev==="on"||editing)){const mn=el("div","mynote");mn.append(el("span","mnk","✎ 我的筆記"),document.createTextNode(custom.notes[r._id]||""));
-        if(NIMG[r._id]&&NIMG[r._id].length){const g=el("div","nimgs");NIMG[r._id].forEach((src,i)=>{const t=el("button","nimg");t.type="button";t.title="看大圖";const im=document.createElement("img");im.src=src;im.alt="我的筆記圖片 "+(i+1);t.append(im);t.onclick=e=>{e.stopPropagation();figShowSrc(t,src,"我的筆記圖片")};g.append(t)});mn.append(g)}
+        if(NIMG[r._id]&&NIMG[r._id].length){const L=NIMG[r._id];L.forEach((x,i)=>{const nm=NPL(x)||(L.length>1?"筆記圖 "+(i+1):"筆記圖");const t=el("button","figbtn nimgbtn",nm);t.type="button";t.dataset.src=NPS(x);t.dataset.cap=NPL(x)||("我的筆記圖片"+(L.length>1?" "+(i+1)+"/"+L.length:""));t.dataset.alt=t.dataset.cap;mn.append(t)})}
         if(editing){mn.classList.add("ed");mn.tabIndex=0;mn.setAttribute("role","button");mn.title="點一下修改筆記";mn.onclick=()=>openNote(r,mn);mn.onkeydown=e=>{if(e.key==="Enter")openNote(r,mn)}}b.append(mn)}
       if(r.n) b.append(el("div","note",r.n));
       const rn=role==="st"?r.nst:role==="mt"?r.nmt:null;
@@ -963,7 +1016,19 @@ function renderLegend(){
   }
 }
 
-function render(){
+function stratOf(){return typeof custom.strat==="string"?custom.strat:STRAT}
+function drawStrat(){const p=document.getElementById("strat");if(!p)return;p.textContent="";const v=stratOf();
+  p.append(el("span","sk","打法"));p.append(v?el("span","sv",v):el("span","sv empty","還沒填，按 ✎ 寫你們照哪個攻略組的打法（例如 子言、MMW）"));
+  const b=el("button","sedit","✎");b.type="button";b.title="編輯打法";b.setAttribute("aria-label","編輯打法來源");b.onclick=()=>openStrat(b);p.append(b)}
+function openStrat(anchor){partyPop.hidden=true;addPop.textContent="";addPop.append(el("h4",null,"這份筆記用的打法"));
+  const inp=document.createElement("input");inp.type="text";inp.maxLength=80;inp.className="tagin";inp.value=stratOf();inp.placeholder="例如：子言、MMW、猫猫窝攻略组";inp.setAttribute("aria-label","打法來源");
+  const acts=el("div","acts");
+  if(typeof custom.strat==="string"&&STRAT){const rb=el("button",null,"還原原本的");rb.type="button";rb.onclick=()=>{delete custom.strat;saveCustom();addPop.hidden=true;drawStrat();toastMsg("已還原")};acts.append(rb)}
+  const cancel=el("button",null,"取消");cancel.type="button";cancel.onclick=()=>addPop.hidden=true;
+  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=inp.value.trim().replace(/\s+/g," ");if(v===STRAT)delete custom.strat;else custom.strat=v;saveCustom();addPop.hidden=true;drawStrat();toastMsg("已儲存打法")};
+  inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();ok.click()}};
+  acts.append(cancel,ok);addPop.append(inp,el("p","hint2","寫這份減傷軸、站位和標籤是照哪個攻略組或哪部影片的打法，隊友匯入時一看就知道。分享碼和檔案都會帶上。"),acts);placePop(addPop,anchor);addPop.hidden=false;inp.focus()}
+function render(){drawStrat();
   document.body.dataset.role=role;
   document.body.classList.toggle("compact",view==="compact"||view==="fit");
   document.body.classList.toggle("fit",view==="fit");
@@ -1028,7 +1093,7 @@ function figPlace(){if(!figBtn||figPop.hidden)return;const b=figBtn.getBoundingC
   let top=b.bottom+6; if(top+h>vh-8) top=b.top-h-6; if(top<8) top=Math.max(8,(vh-h)/2);
   figPop.style.top=top+"px"}
 figImg.onload=figPlace;
-function figShow(btn){figBtn=btn;figImg.src=FIG[btn.dataset.fig];{const R=role!=="team"?role.toUpperCase():"";const P=(typeof FIGPOS!=="undefined"&&FIGPOS[btn.dataset.fig])||null;figPos=P&&R&&P[R]||null;figWho.replaceChildren();if(figPos){figWho.append(el("b",null,R),document.createTextNode(" 的位置"))}figApply(figPos)}const cap=btn.dataset.fig in FIGCAP?FIGCAP[btn.dataset.fig]:"圖：猫猫窝攻略组「機制速覽」";figCap.textContent=cap;figCap.hidden=!cap;figImg.alt=btn.dataset.alt;figPop.hidden=false;figPlace()}
+function figShow(btn){figBtn=btn;if(btn.dataset.src){figImg.src=btn.dataset.src;figWho.replaceChildren();figPos=null;figApply(null);figCap.textContent=btn.dataset.cap;figCap.hidden=false;figImg.alt=btn.dataset.alt;figPop.hidden=false;figPlace();return}figImg.src=FIG[btn.dataset.fig];{const R=role!=="team"?role.toUpperCase():"";const P=(typeof FIGPOS!=="undefined"&&FIGPOS[btn.dataset.fig])||null;figPos=P&&R&&P[R]||null;figWho.replaceChildren();if(figPos){figWho.append(el("b",null,R),document.createTextNode(" 的位置"))}figApply(figPos)}const cap=btn.dataset.fig in FIGCAP?FIGCAP[btn.dataset.fig]:"圖：猫猫窝攻略组「機制速覽」";figCap.textContent=cap;figCap.hidden=!cap;figImg.alt=btn.dataset.alt;figPop.hidden=false;figPlace()}
 function figHide(){figPop.hidden=true;figPinned=null}
 function figShowSrc(btn,src,cap){figBtn=btn;figPinned=btn;figImg.src=src;figCap.textContent=cap;figCap.hidden=false;figImg.alt=cap;figPos=null;figApply(null);figPop.hidden=false;figPlace()}
 document.addEventListener("mouseover",e=>{const b=e.target.closest&&e.target.closest(".figbtn");if(b&&!figPinned)figShow(b)});
@@ -1079,21 +1144,31 @@ function openAdd(r,anchor){partyPop.hidden=true;addPop.textContent="";
     if(p)custom.press[r._id]=p;else if(r._id in custom.press&&!p)delete custom.press[r._id];
     saveCustom();applyAssign();addPop.hidden=true;render();toastMsg("已新增 "+slot.value+" "+k)};
   acts.append(cancel,ok);addPop.append(l1,l2,l3,types,l4,acts);fill();placePop(addPop,anchor);slot.focus()}
+function openPos(r,anchor){partyPop.hidden=true;addPop.textContent="";
+  addPop.append(el("h4",null,"站位：「"+shortName(r)+"」"+r.t));
+  const ta=document.createElement("textarea");ta.rows=2;ta.maxLength=120;ta.className="notearea";ta.placeholder="例如：近戰 Boss 背後、遠程 C 點";ta.value=posOf(r);ta.setAttribute("aria-label","站位內容");
+  const acts=el("div","acts");
+  if(custom.pos&&r._id in custom.pos&&r.pos){const rb=el("button",null,"還原原本的");rb.type="button";rb.onclick=()=>{delete custom.pos[r._id];saveCustom();addPop.hidden=true;render();toastMsg("已還原站位")};acts.append(rb)}
+  const cancel=el("button",null,"取消");cancel.type="button";cancel.onclick=()=>addPop.hidden=true;
+  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=ta.value.trim().replace(/\s+/g," ");custom.pos=custom.pos||{};if(v===(r.pos||""))delete custom.pos[r._id];else custom.pos[r._id]=v;saveCustom();addPop.hidden=true;render();toastMsg(v?"已儲存站位":"已清空站位")};
+  ta.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();ok.click()}};
+  acts.append(cancel,ok);addPop.append(ta,el("p","hint2","全隊共用一行站位，可以寫各職責站哪。清空後儲存就是不顯示。分享碼和檔案都會帶上站位。Enter 儲存。"),acts);placePop(addPop,anchor);addPop.hidden=false;ta.focus()}
 function openNote(r,anchor){partyPop.hidden=true;addPop.textContent="";
   addPop.append(el("h4",null,"我的筆記：「"+shortName(r)+"」"+r.t));
   const ta=document.createElement("textarea");ta.rows=4;ta.maxLength=300;ta.className="notearea";ta.placeholder="想提醒自己的事，例如：這裡記得先吃藥、站 C左 最後面";ta.value=custom.notes[r._id]||"";ta.setAttribute("aria-label","筆記內容");
-  let pics=(NIMG[r._id]||[]).slice();const pw=el("div","notepics"),prow=el("div","row3");pw.append(prow);
-  const drawPics=()=>{prow.textContent="";pics.forEach((src,i)=>{const t=el("span","nimg");const im=document.createElement("img");im.src=src;im.alt="";const x=el("button","x","×");x.type="button";x.title="移除這張";x.onclick=()=>{pics.splice(i,1);drawPics()};t.append(im,x);prow.append(t)});
+  let pics=(NIMG[r._id]||[]).map(x=>({s:NPS(x),l:NPL(x)}));const pw=el("div","notepics"),prow=el("div","row3");pw.append(prow);
+  const drawPics=()=>{prow.textContent="";pics.forEach((pc,i)=>{const w=el("span","nimgw");const t=el("span","nimg");const im=document.createElement("img");im.src=pc.s;im.alt="";const x=el("button","x","×");x.type="button";x.title="移除這張";x.onclick=()=>{pics.splice(i,1);drawPics()};t.append(im,x);
+      const nm=document.createElement("input");nm.type="text";nm.className="nimgname";nm.maxLength=12;nm.placeholder=pics.length>1?"筆記圖 "+(i+1):"筆記圖";nm.value=pc.l;nm.title="標籤名稱，例如：站位圖";nm.setAttribute("aria-label","第 "+(i+1)+" 張圖的標籤名稱");nm.oninput=()=>{pc.l=nm.value.trim()};w.append(t,nm);prow.append(w)});
     if(pics.length<4){const fb=el("button","filebtn","＋ 加圖片");fb.type="button";fb.onclick=()=>fi.click();prow.append(fb)}};
   const fi=document.createElement("input");fi.type="file";fi.accept="image/*";fi.multiple=true;fi.hidden=true;
-  const addFiles=async files=>{for(const f of files){if(pics.length>=4)break;if(!f.type.startsWith("image/"))continue;try{pics.push(await imgShrink(f))}catch(e){toastMsg("這張圖讀不出來",2400)}}drawPics()};
+  const addFiles=async files=>{for(const f of files){if(pics.length>=4)break;if(!f.type.startsWith("image/"))continue;try{pics.push({s:await imgShrink(f),l:""})}catch(e){toastMsg("這張圖讀不出來",2400)}}drawPics()};
   fi.onchange=()=>addFiles([...fi.files]);pw.append(fi);
   ta.addEventListener("paste",e=>{const fs=[...(e.clipboardData||{}).items||[]].filter(x=>x.kind==="file").map(x=>x.getAsFile()).filter(Boolean);if(fs.length){e.preventDefault();addFiles(fs)}});
   drawPics();
   const acts=el("div","acts");
   if(hasNote(r._id)){const del=el("button",null,"刪除筆記");del.type="button";del.className="danger";del.onclick=()=>{delete custom.notes[r._id];delete NIMG[r._id];saveCustom();imgSave();addPop.hidden=true;render();toastMsg("已刪除筆記")};acts.append(del)}
   const cancel=el("button",null,"取消");cancel.type="button";cancel.onclick=()=>addPop.hidden=true;
-  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=ta.value.trim();if(v)custom.notes[r._id]=v;else delete custom.notes[r._id];if(pics.length)NIMG[r._id]=pics;else delete NIMG[r._id];saveCustom();imgSave();addPop.hidden=true;render();toastMsg(v||pics.length?"已儲存筆記":"已刪除筆記")};
+  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=ta.value.trim();if(v)custom.notes[r._id]=v;else delete custom.notes[r._id];if(pics.length)NIMG[r._id]=pics.map(x=>x.l?{s:x.s,l:x.l}:x.s);else delete NIMG[r._id];saveCustom();imgSave();addPop.hidden=true;render();toastMsg(v||pics.length?"已儲存筆記":"已刪除筆記")};
   ta.onkeydown=e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))ok.click()};
   acts.append(cancel,ok);addPop.append(ta,pw,el("p","hint2","筆記只有你自己看得到。可以加最多 4 張圖（選檔案，或在文字框直接貼上截圖）。分享碼只帶文字，要連圖片一起給請用「下載成檔案」。Ctrl＋Enter 儲存。"),acts);placePop(addPop,anchor);ta.focus()}
 function editRemove(r,i){const L=assignOf(r).slice();const x=L.splice(i,1)[0];custom.rows[r._id]=L;saveCustom();applyAssign();render();toastMsg("已刪除 "+x.s+" "+x.k)}
@@ -1120,16 +1195,18 @@ function openModal(h,p,ok,val,ro,act){document.getElementById("ed-modal-h").text
 document.getElementById("ed-modal-cancel").onclick=()=>modal.hidden=true;
 modal.addEventListener("mousedown",e=>{if(e.target===modal)modal.hidden=true});
 mOk.onclick=()=>{if(modalAct)modalAct()};
-const P1="M7SB1:",P2=P1.replace(/1:$/,"2:");
+const STRAT="";
+const P1="M7SB1:",P2=P1.replace(/1:$/,"2:");const PALT=[];const PFX=[P1,...PALT];
 const b64u=u8=>{let s="";for(let i=0;i<u8.length;i+=8192)s+=String.fromCharCode.apply(null,u8.subarray(i,i+8192));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
 const u8b=t=>{t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";const s=atob(t),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
 async function enc(o){const j=JSON.stringify(o);
   if(typeof CompressionStream==="undefined")return P1+btoa(unescape(encodeURIComponent(j)));
   const u=new Uint8Array(await new Response(new Blob([j]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer());return P2+b64u(u)}
 async function dec(t){t=t.trim().replace(/\s+/g,"");let o;
-  if(t.startsWith(P2)){const j=await new Response(new Blob([u8b(t.slice(P2.length))]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();o=JSON.parse(j)}
-  else if(t.startsWith(P1))o=JSON.parse(decodeURIComponent(escape(atob(t.slice(P1.length)))));
-  else throw 0;
+  for(const a of PFX){const b=a.replace(/1:$/,"2:");
+    if(t.startsWith(b)){const j=await new Response(new Blob([u8b(t.slice(b.length))]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();o=JSON.parse(j);break}
+    if(t.startsWith(a)){o=JSON.parse(decodeURIComponent(escape(atob(t.slice(a.length)))));break}}
+  if(!o)throw 0;
   if(!o||o.v!==1)throw 0;return o}
 document.getElementById("ed-export").onclick=async()=>{const code=await enc(Object.assign({},custom,{notes:{}}));const codeN=Object.keys(custom.notes).length?await enc(custom):null;
   openModal("匯出分享碼","複製下面這段文字，貼給隊友，對方按「匯入分享碼」就會套用一樣的減傷軸和職業。","複製",code,true,async()=>{
@@ -1162,7 +1239,7 @@ document.getElementById("ed-import").onclick=()=>{impImgs=null;openModal("匯入
   const box=document.getElementById("ed-modal-opts");box.textContent="";box.hidden=false;
   const fi=document.createElement("input");fi.type="file";fi.accept=".json,application/json";fi.hidden=true;
   const fb=el("button","filebtn","📂 從檔案匯入");fb.type="button";fb.onclick=()=>fi.click();
-  fi.onchange=async()=>{const f=fi.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(j.app!=="raid-notes"||!j.data)throw 0;if(j.code&&j.code!==P1){toastMsg("這個檔案是別的副本的筆記",3000);return}impImgs=j.imgs||null;importStep(j.data)}catch(e){toastMsg("檔案格式不對",2600)}};
+  fi.onchange=async()=>{const f=fi.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(j.app!=="raid-notes"||!j.data)throw 0;if(j.code&&!PFX.includes(j.code)){toastMsg("這個檔案是別的副本的筆記",3000);return}impImgs=j.imgs||null;importStep(j.data)}catch(e){toastMsg("檔案格式不對",2600)}};
   box.append(fb,fi)};
 async function importStep(fromFile){
   let o;if(fromFile&&fromFile.v===1)o=fromFile;else{try{o=await dec(mTa.value)}catch(e){toastMsg("分享碼格式不對，請確認有完整複製（開頭是 "+P2+"）",3200);return}}
@@ -1173,14 +1250,17 @@ async function importStep(fromFile){
   const cbs=[];for(const sl of SLOTS){const lb=document.createElement("label");const cb=document.createElement("input");cb.type="checkbox";cb.value=sl;cb.checked=cnt[sl]>0||!!((o.party||{})[sl]&&o.party[sl]!==jobOf(sl));
     const j=JOBS[(o.party||{})[sl]||DEF_PARTY[sl]];lb.append(cb,document.createTextNode(sl+" "+(j?j.s:"")),el("small",null,cnt[sl]?"改了 "+cnt[sl]+" 招":"沒有改動"));
     if(!cb.checked)lb.classList.add("off");cb.onchange=()=>lb.classList.toggle("off",!cb.checked);cbs.push(cb);box.append(lb)}
-  let ncb=null;const nn=new Set([...Object.keys(o.notes||{}),...Object.keys(impImgs||{})].filter(id=>ROWBYID[id])).size;if(nn){const lb=document.createElement("label");ncb=document.createElement("input");ncb.type="checkbox";ncb.checked=false;lb.append(ncb,document.createTextNode("對方的筆記"),el("small",null,nn+" 則，會加到你的筆記"));lb.classList.add("off");ncb.onchange=()=>lb.classList.toggle("off",!ncb.checked);box.append(lb)}
+  let ncb=null;const nn=new Set([...Object.keys(o.notes||{}),...Object.keys(impImgs||{})].filter(id=>ROWBYID[id])).size;if(nn){const lb=document.createElement("label");ncb=document.createElement("input");ncb.type="checkbox";ncb.checked=true;lb.append(ncb,document.createTextNode("對方的筆記"),el("small",null,nn+" 則"+(impImgs?"（含圖片）":"")+"，會加到你的筆記"));ncb.onchange=()=>lb.classList.toggle("off",!ncb.checked);box.append(lb)}
+  let scb=null;const np=Object.keys(o.pos||{}).filter(id=>ROWBYID[id]).length;if(np){const lb=document.createElement("label");scb=document.createElement("input");scb.type="checkbox";scb.checked=true;lb.append(scb,document.createTextNode("對方的站位"),el("small",null,np+" 行"));scb.onchange=()=>lb.classList.toggle("off",!scb.checked);box.append(lb)}
+  let tcb=null;const nt=Object.keys(o.tags||{}).filter(id=>ROWBYID[id]).length;if(nt){const lb=document.createElement("label");tcb=document.createElement("input");tcb.type="checkbox";tcb.checked=true;lb.append(tcb,document.createTextNode("對方的標籤"),el("small",null,nt+" 行"));tcb.onchange=()=>lb.classList.toggle("off",!tcb.checked);box.append(lb)}
+  let ycb=null;if(typeof o.strat==="string"&&o.strat!==stratOf()){const lb=document.createElement("label");ycb=document.createElement("input");ycb.type="checkbox";ycb.checked=true;lb.append(ycb,document.createTextNode("對方的打法"),el("small",null,o.strat||"（空白）"));ycb.onchange=()=>lb.classList.toggle("off",!ycb.checked);box.append(lb)}
   let pcb=null;if(pc){const lb=document.createElement("label");pcb=document.createElement("input");pcb.type="checkbox";pcb.checked=true;lb.append(pcb,document.createTextNode("按鍵時間"),el("small",null,pc+" 招"));box.append(lb)}
   mOk.textContent="匯入勾選的";
-  modalAct=()=>{const pick=new Set(cbs.filter(c=>c.checked).map(c=>c.value));if(!pick.size&&!(pcb&&pcb.checked)&&!(ncb&&ncb.checked)){toastMsg("請至少勾選一個",2200);return}
-    mergeImport(o,pick,pcb&&pcb.checked);if(ncb&&ncb.checked){for(const [id,v] of Object.entries(o.notes||{}))if(ROWBYID[id])custom.notes[id]=custom.notes[id]&&custom.notes[id]!==v?custom.notes[id]+"\n"+v:v;
-      if(impImgs){for(const [id,L] of Object.entries(impImgs))if(ROWBYID[id])NIMG[id]=(NIMG[id]||[]).concat(L.filter(x=>!(NIMG[id]||[]).includes(x))).slice(0,8);imgSave()}}saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已匯入 "+[...pick].join("、")+(pcb&&pcb.checked?"＋按鍵時間":""),3000)}}
+  modalAct=()=>{const pick=new Set(cbs.filter(c=>c.checked).map(c=>c.value));if(!pick.size&&!(pcb&&pcb.checked)&&!(ncb&&ncb.checked)&&!(scb&&scb.checked)&&!(tcb&&tcb.checked)&&!(ycb&&ycb.checked)){toastMsg("請至少勾選一個",2200);return}
+    mergeImport(o,pick,pcb&&pcb.checked);if(ycb&&ycb.checked){if(o.strat===STRAT)delete custom.strat;else custom.strat=o.strat}if(tcb&&tcb.checked){custom.tags=custom.tags||{};for(const [id,v] of Object.entries(o.tags||{}))if(ROWBYID[id]&&Array.isArray(v)){if(sameL(v,hintsOf(ROWBYID[id])))delete custom.tags[id];else custom.tags[id]=v.slice(0,6)}}if(scb&&scb.checked){custom.pos=custom.pos||{};for(const [id,v] of Object.entries(o.pos||{}))if(ROWBYID[id]){if(v===(ROWBYID[id].pos||""))delete custom.pos[id];else custom.pos[id]=v}}if(ncb&&ncb.checked){for(const [id,v] of Object.entries(o.notes||{}))if(ROWBYID[id])custom.notes[id]=custom.notes[id]&&custom.notes[id]!==v?custom.notes[id]+"\n"+v:v;
+      if(impImgs){for(const [id,L] of Object.entries(impImgs))if(ROWBYID[id])NIMG[id]=(NIMG[id]||[]).concat(L.filter(x=>!(NIMG[id]||[]).some(y=>NPS(y)===NPS(x)))).slice(0,8);imgSave()}}saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已匯入 "+[...pick].join("、")+(pcb&&pcb.checked?"＋按鍵時間":"")+(scb&&scb.checked?"＋站位":"")+(tcb&&tcb.checked?"＋標籤":"")+(ncb&&ncb.checked?"＋筆記":""),3000)}}
 document.getElementById("ed-reset").onclick=()=>openModal("還原預設","會清掉你所有自訂的減傷、按鍵時間和隊伍職業，回到網站原本的軸。","確定還原",null,false,()=>{
-  custom={v:1,party:{},rows:{},press:{},notes:{}};NIMG={};imgSave();saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已還原預設")});
+  custom={v:1,party:{},rows:{},press:{},notes:{},pos:{},tags:{}};NIMG={};imgSave();saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已還原預設")});
 imgLoad().then(()=>{if(Object.keys(NIMG).length)render()});
 
 /* 一頁塞滿：自動選欄數＋縮放，讓時間軸塞進一個畫面 */

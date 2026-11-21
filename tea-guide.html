@@ -21,6 +21,16 @@
 .sitenav .rmenu a:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}
 .sitenav .rmenu a[aria-current="page"]{background:color-mix(in srgb,var(--st) 18%,transparent);color:var(--fg)}
 .sitenav .vers{display:flex;flex-wrap:wrap;gap:6px}
+.lbx{position:fixed;inset:0;z-index:100;background:rgba(8,9,12,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;cursor:zoom-out}
+.lbx[hidden]{display:none}
+.lbx img{width:96vw;height:84vh;object-fit:contain;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6);background:#000}
+.lbx p{margin:0;color:#ddd;font-size:.85rem;text-align:center;max-width:90vw}
+.lbx .nv{position:fixed;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font-size:28px;cursor:pointer}
+.lbx .nv:hover,.lbx .nv:focus-visible{background:rgba(255,255,255,.25);outline:none}
+.lbx .pv{left:12px}.lbx .nx{right:12px}
+.lbx .x{position:fixed;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:22px;cursor:pointer}
+.zoomable{cursor:zoom-in}
+.figpop img{cursor:zoom-in}
 </style></head><body>
 <title>絕亞 繁中攻略整合</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -170,7 +180,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=swap">
 
 <div class="wrap">
-  <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">絕境戰</span>絕亞歷山大</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">絕境戰</div><a href="tea.html" aria-current="page">絕亞歷山大</a></div></details><div class="vers"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html" aria-current="page">攻略整合</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
+  <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">絕境戰</span>絕亞歷山大</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">零式・重量級</div><a href="m9s.html">M9S 致命美人</a><a href="m10s.html">M10S 極限兄弟</a><a href="m11s.html">M11S 霸王</a><a href="m12s.html">M12S 林德布魯姆</a><div class="rg">絕境戰</div><a href="ucob.html">絕巴哈</a><a href="uwu.html">絕神兵</a><a href="tea.html" aria-current="page">絕亞歷山大</a><a href="dsr.html">絕龍詩</a><a href="top.html">絕歐米茄</a><a href="fru.html">絕伊甸</a><a href="dmu.html">Dancing Mad（凱夫卡）</a></div></details><div class="vers"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html" aria-current="page">攻略整合</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
   <header style="display:flex;flex-direction:column;gap:10px">
     <div class="eyebrow">絕亞歷山大討滅戰 · 繁中服野團打法 · ST 騎士視角</div>
     <h1>絕亞 繁中攻略整合</h1>
@@ -596,7 +606,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
   </section>
 
   <p class="src">參考影片：<a href="https://www.youtube.com/watch?v=mxy_ZYEYwlE">P1 ふうcだよ</a> · <a href="https://www.youtube.com/watch?v=AMdtMyvbPNs">P1.5 ぬけまる</a> · <a href="https://www.bilibili.com/video/BV1Hd4y1S7yg/">P2 魚子醬</a> · <a href="https://www.bilibili.com/video/BV1hT411R7RF/">P3 魚子醬</a> · <a href="https://www.youtube.com/watch?v=3wtfeXognIY">P3 ぬけまる</a> · <a href="https://www.bilibili.com/video/BV1DD4y1t7LZ/">P4 魚子醬</a> · <a href="https://www.youtube.com/watch?v=OTjXRAH-AAM">ST 騎士第一視角（含減傷軸）</a></p>
-  <p class="src">狀態圖示與影片截圖：FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 非商業的隊伍攻略用途。</p>
+  <p class="src">狀態圖示與影片截圖：FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 非商業的隊伍攻略用途。<a href="index.html#credits">資料來源與授權</a></p>
 </div>
 
 <script>
@@ -648,4 +658,29 @@ document.addEventListener('click',function(e){
 })();
 </script>
 
+<script>
+(function(){
+  var sel='main img:not(.dbimg):not(.rowic), .wrap img:not(.dbimg):not(.rowic), section img:not(.dbimg):not(.rowic)';
+  function list(){return [].slice.call(document.querySelectorAll(sel)).filter(function(i){return !i.closest('.figpop')&&!i.closest('.lbx')&&!i.closest('nav')})}
+  list().forEach(function(i){i.classList.add('zoomable');i.title=i.title||'點一下放大'});
+  var box=document.createElement('div');box.className='lbx';box.hidden=true;box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','放大圖片');
+  var im=document.createElement('img'),cap=document.createElement('p');
+  var pv=document.createElement('button');pv.className='nv pv';pv.type='button';pv.textContent='‹';pv.setAttribute('aria-label','上一張');
+  var nx=document.createElement('button');nx.className='nv nx';nx.type='button';nx.textContent='›';nx.setAttribute('aria-label','下一張');
+  var x=document.createElement('button');x.className='x';x.type='button';x.textContent='×';x.setAttribute('aria-label','關閉');
+  box.append(im,cap,pv,nx,x);document.body.appendChild(box);
+  var L=[],k=-1,last=null;
+  function show(src,alt,arr,idx){L=arr||[];k=idx==null?-1:idx;im.src=src;im.alt=alt||'';cap.textContent=alt||'';pv.hidden=nx.hidden=!(L.length>1&&k>=0);box.hidden=false;x.focus()}
+  function step(d){if(k<0||!L.length)return;k=(k+d+L.length)%L.length;show(L[k].src,L[k].alt,L,k)}
+  function close(){box.hidden=true;im.src='';if(last)try{last.focus()}catch(e){}}
+  document.addEventListener('click',function(e){
+    var t=e.target;if(!t||t.tagName!=='IMG')return;
+    if(t.closest('.lbx'))return;
+    if(t.closest('.figpop')){e.stopPropagation();last=document.activeElement;show(t.src,t.alt);return}
+    if(!t.classList.contains('zoomable'))return;
+    var arr=list();last=t;show(t.src,t.alt,arr,arr.indexOf(t))},true);
+  box.addEventListener('click',function(e){if(e.target===pv){step(-1)}else if(e.target===nx){step(1)}else close()});
+  document.addEventListener('keydown',function(e){if(box.hidden)return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')step(-1);else if(e.key==='ArrowRight')step(1)});
+})();
+</script>
 </body></html>

@@ -73,6 +73,12 @@ section{margin-top:44px}
 .links a::after{content:"→";opacity:.6;transition:transform .15s}
 .links a:hover,.links a:focus-visible{background:var(--c);border-color:var(--c);color:var(--bg);outline:none}
 .links a:hover::after{transform:translateX(2px);opacity:1}
+.credits{margin-top:48px}
+.cr{margin:8px 0 0;max-width:72ch;font-size:.86rem;line-height:1.7;color:var(--muted)}
+.cr dt{margin-top:12px;font-weight:700;color:var(--fg)}
+.cr dd{margin:2px 0 0}
+.cr a,footer a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+footer a{margin-left:6px}
 footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
 </style>
 </head>
@@ -136,20 +142,89 @@ footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
         <div class="links"><a href="m8s.html">版主筆記</a><a href="m8s-blank.html">空白筆記</a></div>
       </article>
     </div>
+    <h3 class="tier">重量級 <span>Heavyweight</span></h3>
+    <div class="cards">
+      <article class="card">
+        <h3>M9S 致命美人</h3>
+        <p class="sub">AAC Heavyweight M1 Savage · 國服譯名</p>
+        <div class="links"><a href="m9s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M10S 極限兄弟</h3>
+        <p class="sub">AAC Heavyweight M2 Savage · 國服譯名</p>
+        <div class="links"><a href="m10s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M11S 霸王</h3>
+        <p class="sub">AAC Heavyweight M3 Savage · 國服譯名</p>
+        <div class="links"><a href="m11s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M12S 林德布魯姆</h3>
+        <p class="sub">AAC Heavyweight M4 Savage · 國服譯名</p>
+        <div class="links"><a href="m12s.html">空白筆記</a></div>
+      </article>
+    </div>
   </section>
 
   <section class="ult" aria-labelledby="h-ult">
     <div class="sh"><h2 id="h-ult">絕境戰</h2><span>Ultimate</span></div>
     <div class="cards">
       <article class="card">
+        <h3>絕巴哈</h3>
+        <p class="sub">The Unending Coil of Bahamut</p>
+        <div class="links"><a href="ucob.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>絕神兵</h3>
+        <p class="sub">The Weapon's Refrain</p>
+        <div class="links"><a href="uwu.html">空白筆記</a></div>
+      </article>
+      <article class="card">
         <h3>絕亞歷山大</h3>
-        <p class="sub">The Epic of Alexander (Ultimate)</p>
+        <p class="sub">The Epic of Alexander</p>
         <div class="links"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html">繁中攻略整合</a></div>
+      </article>
+      <article class="card">
+        <h3>絕龍詩</h3>
+        <p class="sub">Dragonsong's Reprise</p>
+        <div class="links"><a href="dsr.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>絕歐米茄</h3>
+        <p class="sub">The Omega Protocol</p>
+        <div class="links"><a href="top.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>絕伊甸</h3>
+        <p class="sub">Futures Rewritten</p>
+        <div class="links"><a href="fru.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>Dancing Mad</h3>
+        <p class="sub">凱夫卡 · 國服譯名</p>
+        <div class="links"><a href="dmu.html">空白筆記</a></div>
       </article>
     </div>
   </section>
 
-  <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。</footer>
+  <section class="credits" id="credits" aria-labelledby="h-credits">
+    <div class="sh"><h2 id="h-credits">資料來源與授權</h2><span>Credits</span></div>
+    <dl class="cr">
+      <dt>時間軸</dt>
+      <dd>來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Copyright 2017-2024 cactbot contributors），依 <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權使用，授權全文見 <a href="LICENSES/cactbot-LICENSE.txt">LICENSES/cactbot-LICENSE.txt</a>。本站有修改：把 cactbot 的時間軸、觸發器和翻譯轉成網頁格式，換算時間、合併連續招式、重新分段，並從觸發器自動產生機制標籤。本站不是 cactbot 官方專案。</dd>
+      <dt>技能名稱</dt>
+      <dd>M1S～M4S、M6S、M7S 和絕巴哈、絕神兵、絕龍詩、絕歐米茄、絕伊甸用 cactbot 的繁中服翻譯；M9S～M12S 和 Dancing Mad 繁中服還沒開，用 cactbot 的國服翻譯轉繁體；M5S 對照繁中服攻略站；M8S 對照 xivstrat；絕亞照國服翻譯轉繁體。</dd>
+      <dt>遊戲素材</dt>
+      <dd>技能名稱、狀態圖示和遊戲畫面：FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 依 FINAL FANTASY XIV 素材使用授權（Materials Usage License）非商業使用。本站是玩家個人筆記，與 Square Enix 無關。</dd>
+      <dt>攻略圖片與打法</dt>
+      <dd>M8S 的打法照 MMW、蘇帕；「看圖」的站位圖：猫猫窝攻略组「機制速覽」。絕亞的打法、減傷和影片截圖：ふうcだよ、ぬけまる、魚子醬的攻略影片，影片連結見<a href="tea-guide.html">攻略整合</a>頁尾。這些圖片和內容的著作權屬於原作者，本站只作非商業的隊伍筆記引用並標明出處；作者如果不希望被引用，請到 <a href="https://github.com/LaneBlossom/raid-notes/issues">GitHub</a> 告知，會立刻移除。</dd>
+      <dt>其他</dt>
+      <dd>本站不收費、沒有廣告。你在小抄裡編輯的減傷、筆記和圖片只存在你自己的瀏覽器，不會上傳。</dd>
+    </dl>
+  </section>
+
+  <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。<a href="#credits">資料來源與授權</a></footer>
 </main>
 </body>
 </html>
