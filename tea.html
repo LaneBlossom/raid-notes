@@ -1188,7 +1188,7 @@ document.getElementById("ed-modal-cancel").onclick=()=>modal.hidden=true;
 modal.addEventListener("mousedown",e=>{if(e.target===modal)modal.hidden=true});
 mOk.onclick=()=>{if(modalAct)modalAct()};
 const STRAT="ふうcだよ（P1）・ぬけまる（P1.5、P3 次元斷絕）・魚子醬（P2～P4）";
-const P1="TEA1:",P2=P1.replace(/1:$/,"2:");const PALT=["TEAB1:"];const PFX=[P1,...PALT];
+const P1="TEA1:",P2=P1.replace(/1:$/,"2:");const PALT=[];const PFX=[P1,...PALT];
 const b64u=u8=>{let s="";for(let i=0;i<u8.length;i+=8192)s+=String.fromCharCode.apply(null,u8.subarray(i,i+8192));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
 const u8b=t=>{t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";const s=atob(t),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
 async function enc(o){const j=JSON.stringify(o);
