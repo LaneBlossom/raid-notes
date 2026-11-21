@@ -56,6 +56,9 @@ section{margin-top:44px}
 .sh h2{font-family:"Noto Serif TC",serif;font-size:1.45rem;margin:0;letter-spacing:.06em}
 .sh span{font-size:.75rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
 .savage .sh h2{color:var(--savage)}.ult .sh h2{color:var(--ult)}
+.tier{font-family:"Noto Serif TC",serif;font-size:1rem;margin:18px 0 10px;color:var(--fg);letter-spacing:.04em}
+.tier span{font-family:Cinzel,serif;font-size:.72rem;color:var(--muted);letter-spacing:.12em;margin-left:6px}
+.tier:first-of-type{margin-top:4px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:14px}
 .card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;
   backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden}
@@ -80,17 +83,57 @@ footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
   <h1>Raid Notes</h1>
   <p class="lede">繁中服豆芽玩家第一次挑戰高難本，邊打邊做的筆記，整理起來方便記憶。時間軸小抄可以切換職位看減傷和站位；有些副本另外附攻略整理。</p>
   <ul class="notes">
-    <li><b>減傷軸</b>是照作者自己隊伍的組成和打法排的，拿去用的話記得依你們的隊伍重新調整。</li>
+    <li><b>版主筆記</b>是作者自己隊伍的減傷軸、站位和打法；<b>空白筆記</b>只有 Boss 技能時間軸和機制標籤，減傷、站位留給你自己填。</li>
+    <li>版主筆記的減傷軸是照作者隊伍的組成排的，拿去用的話記得依你們的隊伍重新調整。</li>
     <li>小抄裡按「編輯減傷」就能改每個人放的技能，也能寫自己的筆記；改好的減傷軸和筆記可以<b>匯出</b>成分享碼給隊友<b>匯入</b>。</li>
   </ul>
 
   <section class="savage" aria-labelledby="h-savage">
     <div class="sh"><h2 id="h-savage">零式</h2><span>Savage</span></div>
+    <h3 class="tier">輕重量級 <span>Light-heavyweight</span></h3>
     <div class="cards">
+      <article class="card">
+        <h3>M1S 黑貓</h3>
+        <p class="sub">AAC Light-heavyweight M1 Savage</p>
+        <div class="links"><a href="m1s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M2S 蜂蜂小甜心</h3>
+        <p class="sub">AAC Light-heavyweight M2 Savage</p>
+        <div class="links"><a href="m2s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M3S 野蠻炸彈</h3>
+        <p class="sub">AAC Light-heavyweight M3 Savage</p>
+        <div class="links"><a href="m3s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M4S 狡雷</h3>
+        <p class="sub">AAC Light-heavyweight M4 Savage</p>
+        <div class="links"><a href="m4s.html">空白筆記</a></div>
+      </article>
+    </div>
+    <h3 class="tier">中重量級 <span>Cruiserweight</span></h3>
+    <div class="cards">
+      <article class="card">
+        <h3>M5S 青蛙舞者</h3>
+        <p class="sub">AAC Cruiserweight M1 Savage</p>
+        <div class="links"><a href="m5s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M6S 糖彩狂潮</h3>
+        <p class="sub">AAC Cruiserweight M2 Savage</p>
+        <div class="links"><a href="m6s.html">空白筆記</a></div>
+      </article>
+      <article class="card">
+        <h3>M7S 野蠻憎惡</h3>
+        <p class="sub">AAC Cruiserweight M3 Savage</p>
+        <div class="links"><a href="m7s.html">空白筆記</a></div>
+      </article>
       <article class="card">
         <h3>M8S 呼嘯之劍</h3>
         <p class="sub">AAC Cruiserweight M4 Savage · 門神＋本體</p>
-        <div class="links"><a href="m8s.html">時間軸小抄</a></div>
+        <div class="links"><a href="m8s.html">版主筆記</a><a href="m8s-blank.html">空白筆記</a></div>
       </article>
     </div>
   </section>
@@ -101,7 +144,7 @@ footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
       <article class="card">
         <h3>絕亞歷山大</h3>
         <p class="sub">The Epic of Alexander (Ultimate)</p>
-        <div class="links"><a href="tea.html">時間軸小抄</a><a href="tea-guide.html">繁中攻略整合</a></div>
+        <div class="links"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html">繁中攻略整合</a></div>
       </article>
     </div>
   </section>

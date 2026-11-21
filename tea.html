@@ -6,7 +6,7 @@
 <style>:root{color-scheme:light}body{margin:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>絕亞時間軸小抄 1號小隊尊爵不凡VIP專用</title>
+<title>絕亞 版主筆記</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Chakra+Petch:wght@500;600;700&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@600;900&family=Orbitron:wght@600;800&display=swap">
 <style>
@@ -295,6 +295,23 @@ body.compact .tpi{width:18px;height:18px}
 .figbtn:hover,.figbtn:focus-visible{background:var(--p2);color:var(--on-badge);outline:none}
 .figpop{position:fixed;z-index:30;background:#111;border-radius:12px;padding:6px;box-shadow:0 12px 32px rgba(0,0,0,.4)}
 .figpop img{display:block;width:auto;height:auto;max-width:min(560px,calc(100vw - 28px));max-height:min(62vh,520px);border-radius:8px}
+.figwrap{position:relative;overflow:hidden;border-radius:8px}
+.nimgs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.nimg{position:relative;display:block;padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#000;cursor:zoom-in;line-height:0}
+.nimg img{display:block;height:56px;width:auto;max-width:120px;object-fit:cover}
+.nimg .x{position:absolute;top:2px;right:2px;width:18px;height:18px;line-height:16px;font-size:12px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:#fff;cursor:pointer;padding:0}
+.notepics{margin:6px 0 0}
+.notepics .row3{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.filebtn{font:inherit;font-size:12px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px dashed var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.mopts .filebtn{margin-top:4px}
+.figzoom{position:relative;transition:transform .3s ease}
+.figring{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border:3px solid #ffd400;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.65),0 0 12px #ffd400;pointer-events:none;animation:figring 1.2s ease-in-out infinite}
+.figzoom.on .figring{width:16px;height:16px;margin:-8px 0 0 -8px;border-width:2px}
+@keyframes figring{50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion:reduce){.figring{animation:none}.figzoom{transition:none}}
+.figtools{display:flex;align-items:center;gap:8px;margin:6px 4px 0;color:#eee;font-size:12px;font-weight:700}
+.figtools b{color:#ffd400}
+.figtools button{margin-left:auto;font:inherit;font-size:11px;padding:2px 10px;border-radius:999px;border:1px solid #666;background:#222;color:#eee;cursor:pointer}
 .figcap{font-size:11px;color:#bbb;padding:4px 4px 0;text-align:right}
 .hd{position:relative;padding-right:214px}
 .hdtools{position:absolute;top:0;right:0;display:flex;gap:8px;align-items:center}
@@ -468,14 +485,21 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
 .modal-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
 .chip.edself{background:var(--self-bg);color:var(--self-fg);box-shadow:0 0 0 1.5px var(--self) inset}
 .cdwarn{color:var(--warn);font-weight:700}
-.sitenav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:10px;font-size:12px}
-.sitenav .ng{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
-.sitenav .nl{font-weight:800;padding:2px 8px;border-radius:5px;background:color-mix(in srgb,var(--fg) 12%,transparent);color:var(--fg)}
-.sitenav .ns{font-weight:700;color:var(--muted)}
-.sitenav .ns::after{content:" ›";opacity:.6}
-.sitenav a{font-weight:700;text-decoration:none;padding:3px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel,var(--surface));color:var(--muted)}
+.sitenav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;position:relative;z-index:30}
+.sitenav a,.sitenav summary{font-weight:700;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel,var(--surface));color:var(--muted);cursor:pointer}
 .sitenav a[aria-current="page"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
-.sitenav a:focus-visible{outline:2px solid var(--st);outline-offset:2px}
+.sitenav a:focus-visible,.sitenav summary:focus-visible{outline:2px solid var(--st);outline-offset:2px}
+.sitenav .rsw{position:relative}
+.sitenav summary{list-style:none;color:var(--fg);display:inline-flex;align-items:center;gap:6px}
+.sitenav summary::-webkit-details-marker{display:none}
+.sitenav summary .cat{font-size:10px;font-weight:800;padding:0 6px;border-radius:4px;background:color-mix(in srgb,var(--fg) 12%,transparent)}
+.sitenav summary::after{content:"▾";font-size:10px;opacity:.7}
+.sitenav .rmenu{position:absolute;left:0;top:calc(100% + 6px);min-width:220px;max-height:min(70vh,480px);overflow:auto;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel,var(--surface));box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sitenav .rmenu .rg{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--muted);padding:6px 8px 2px}
+.sitenav .rmenu a{display:block;border:0;border-radius:6px;padding:6px 8px;background:none;color:var(--fg)}
+.sitenav .rmenu a:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}
+.sitenav .rmenu a[aria-current="page"]{background:color-mix(in srgb,var(--st) 18%,transparent);color:var(--fg)}
+.sitenav .vers{display:flex;flex-wrap:wrap;gap:6px}
 .hint.poi{background:#7a3fc4!important;color:#fff!important;border-color:#7a3fc4!important;font-weight:800}
 .poiline{display:block;margin-top:4px;font-size:.86em;font-weight:600;line-height:1.45;color:var(--fg);background:color-mix(in srgb,#7a3fc4 14%,transparent);border-left:3px solid #7a3fc4;border-radius:4px;padding:2px 7px}
 .poiline b{color:#7a3fc4;margin-right:2px}
@@ -488,7 +512,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
   <h4>彙整全隊減傷軸的流程</h4>
   <ol class="sop">
     <li><span class="who mem">每個隊員</span><div>職責選自己 → 按 <span class="mk">編輯減傷</span>，在要按的招式下面 <span class="mk add">＋ 減傷</span> 加上自己的技能。</div></li>
-    <li><span class="who mem">每個隊員</span><div>按 <span class="mk">匯出分享碼</span> → <span class="mk pri">複製</span>，把一串 <code>TEA1:…</code> 貼到群組給整理的人。</div></li>
+    <li><span class="who mem">每個隊員</span><div>按 <span class="mk">匯出分享碼</span> → <span class="mk pri">複製</span>，把一串分享碼貼到群組給整理的人。</div></li>
     <li><span class="who lead">整理的人</span><div>按 <span class="mk">匯入分享碼</span> → 貼上 → <span class="mk pri">下一步</span>。</div></li>
     <li><span class="who lead">整理的人</span><div>只勾這個人負責的職責（例如 H1 傳來的就只勾 H1）→ <span class="mk pri">匯入勾選的</span>。沒勾的會保留原本內容，不會被蓋掉。</div>
       <div class="sopfig" aria-hidden="true"><span class="cbx on"></span>H1 占星<small>改了 5 招</small><br><span class="cbx"></span>H2 學者<small>沒有改動</small></div></li>
@@ -502,7 +526,7 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
 <div class="modal" id="ed-modal" role="dialog" aria-modal="true" aria-labelledby="ed-modal-h" hidden><div class="modal-box"><h3 id="ed-modal-h"></h3><p id="ed-modal-p"></p><textarea id="ed-modal-ta" rows="5" spellcheck="false"></textarea><div id="ed-modal-opts" class="mopts" hidden></div><div class="modal-btns"><button type="button" id="ed-modal-cancel">取消</button><button type="button" id="ed-modal-ok" class="primary"></button></div></div></div>
 <div class="wrap">
   <header class="hd">
-    <nav class="sitenav" aria-label="切換頁面"><div class="ng"><a href="index.html">⌂ 首頁</a></div><div class="ng"><span class="nl">零式</span><a href="m8s.html">M8S 時間軸小抄</a></div><div class="ng"><span class="nl">絕</span><span class="ns">絕亞</span><a href="tea.html" aria-current="page">時間軸小抄</a><a href="tea-guide.html">繁中攻略整合</a></div></nav>
+    <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">絕境戰</span>絕亞歷山大</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">絕境戰</div><a href="tea.html" aria-current="page">絕亞歷山大</a></div></details><div class="vers"><a href="tea.html" aria-current="page">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html">攻略整合</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
     <div class="hdtools">
       <div class="thm">
         <button type="button" class="thmbtn" id="thm-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="thm-menu" title="主題顏色"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.9 1.4-2l-.3-.8c-.4-1.1.4-2.2 1.6-2.2H17a4 4 0 0 0 4-4c0-5-4-9-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="11" r="1.4" fill="currentColor"/><circle cx="10.5" cy="7" r="1.4" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.4" fill="currentColor"/></svg><span id="thm-name">跟系統</span></button>
@@ -516,12 +540,12 @@ body.compact .mynote{font-size:12px;padding:2px 8px;flex-basis:100%}
     <ol>
       <li><b>v1.3</b><time>11/20</time><ul><li>P3 兩次死刑：第一次 ST 無敵 4 下，第二次 MT 無敵</li></ul></li>
       <li><b>v1.2</b><time>11/10</time><ul><li>選職位後顯示自己的傳毒對象和時機</li><li>P3、P4 加影片站位截圖（滑鼠指過去看）</li><li>傳毒標籤改成依職位顯示；P2、P3 誤標的集團罪改回生命計算法</li></ul></li>
-      <li><b>v1.1</b><time>11/10</time><ul><li>P2～P4 改用 1 號小隊團減軸，預設隊伍改成這次組成</li><li>ST 減傷改用騎士技能名</li><li>P2 加影片標點截圖（滑鼠指過去看）</li><li>一傳／二傳／三傳／終審用紫色標籤標出</li></ul></li>
+      <li><b>v1.1</b><time>11/10</time><ul><li>P2～P4 改用版主隊伍團減軸，預設隊伍改成這次組成</li><li>ST 減傷改用騎士技能名</li><li>P2 加影片標點截圖（滑鼠指過去看）</li><li>一傳／二傳／三傳／終審用紫色標籤標出</li></ul></li>
       <li><b>v1.0</b><time>11/08</time><ul><li>絕亞時間軸小抄上線：P1、P1.5、P2、P3、P4 全機制</li><li>ST 騎士減傷照攻略排好</li><li>可切換職責、編輯減傷、分享碼、筆記</li></ul></li>
     </ol>
   </div>
     <div class="eyebrow">The Epic of Alexander (Ultimate) · 絕亞歷山大討滅戰 · 繁中服野團打法</div>
-    <h1>絕亞時間軸小抄 <em class="vip">1號小隊尊爵不凡VIP專用</em> <span id="h-role">· 全隊</span></h1>
+    <h1>絕亞 版主筆記 <span id="h-role">· 全隊</span></h1>
     <p class="sub">每個階段各自從 00:00 算起：P1 從開怪、P1.5 從第一發照準、P2 從 Boss 可選中、P3 從時停、P4 從終審判決讀條。時間是技能判定時間，實際會隨打速前後差幾秒。詳細跑位看上面的「絕亞 攻略」。</p>
   </header>
 
@@ -662,7 +686,7 @@ const data = [
   {t:"02:46",m:"龍捲風 ③ → 02:54 龍捲風 ④",c:[["D3","武裝解除"],["D2","牽制"],["D4","昏亂"]],nst:"這段至少開一個大減傷（鐵壁或極致護衛，看哪個轉好）",n:"三龍捲讀條快結束時下，可以蓋到兩次龍捲風"},
   {t:"03:05",m:"最終判決（狂暴）",c:[]}
 ]},
-{part:"P3 至尊亞歷山大",sub:"00:00＝時停",g:"P3 時停・第一次死刑",rules:"<b>時停站位</b>（T 奶組）：近線到飛機和正義號中間、右邊 boss 正上方；沒點名到左邊 boss 上方；遠線到正左（9 點）；電（加重罪）到正義號那側貼邊。時停結束後飛機劈最近 3 人、正義號噴最近 2 人，傷害不能重疊。<br><b>死刑（1 號小隊）</b>：第一次 ST 開神聖領域單吃 4 下（懲戒射線 1＋神聖之槍 3），吃完退避還給 MT；第二次換 MT 開無敵（超火流星）單吃，ST 不用挑釁。", rows:[
+{part:"P3 至尊亞歷山大",sub:"00:00＝時停",g:"P3 時停・第一次死刑",rules:"<b>時停站位</b>（T 奶組）：近線到飛機和正義號中間、右邊 boss 正上方；沒點名到左邊 boss 上方；遠線到正左（9 點）；電（加重罪）到正義號那側貼邊。時停結束後飛機劈最近 3 人、正義號噴最近 2 人，傷害不能重疊。<br><b>死刑（版主隊伍）</b>：第一次 ST 開神聖領域單吃 4 下（懲戒射線 1＋神聖之槍 3），吃完退避還給 MT；第二次換 MT 開無敵（超火流星）單吃，ST 不用挑釁。", rows:[
   {t:"00:00",m:"時停",c:[]},
   {t:"00:03",m:"時停判定 → 阿爾法之劍 ×3＋火焰噴射 ×2",c:[]},
   {t:"00:11",m:"亞歷山大可選中",c:[],mt:["到 A 點方向挑亞歷山大"]},
@@ -772,6 +796,13 @@ function skillsOf(code){const j=JOBS[code];if(!j)return [];return j.sk.concat(RO
 /* ===== 自訂資料（只存在這個瀏覽器） ===== */
 let custom={v:1,party:{},rows:{},press:{},notes:{}};
 try{const t=JSON.parse(localStorage.getItem("tea-custom")||"null");if(t&&t.v===1)custom={v:1,party:t.party||{},rows:t.rows||{},press:t.press||{},notes:t.notes||{}}}catch(e){}
+/* 筆記圖片：存在 IndexedDB（容量比 localStorage 大） */
+const IMGK="tea-img";let NIMG={};
+function idb(){return new Promise((res,rej)=>{try{const q=indexedDB.open("raid-notes",1);q.onupgradeneeded=()=>q.result.createObjectStore("imgs");q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)}catch(e){rej(e)}})}
+async function imgLoad(){try{const db=await idb();const v=await new Promise(r=>{const g=db.transaction("imgs").objectStore("imgs").get(IMGK);g.onsuccess=()=>r(g.result);g.onerror=()=>r(null)});NIMG=v||{}}catch(e){NIMG={}}}
+async function imgSave(){try{const db=await idb();await new Promise((r,j)=>{const t=db.transaction("imgs","readwrite");t.objectStore("imgs").put(NIMG,IMGK);t.oncomplete=r;t.onerror=()=>j(t.error)})}catch(e){toastMsg("圖片存不進去（瀏覽器空間不足或被封鎖）",3200)}}
+function imgShrink(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const M=1400,k=Math.min(1,M/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.82))};im.onerror=rej;im.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+function hasNote(id){return !!(custom.notes[id]||(NIMG[id]&&NIMG[id].length))}
 function saveCustom(){try{localStorage.setItem("tea-custom",JSON.stringify(custom))}catch(e){}}
 function jobOf(slot){return custom.party[slot]||DEF_PARTY[slot]}
 function slotLabel(slot){const j=JOBS[jobOf(slot)];return slot+" "+(j?j.s:"")}
@@ -865,10 +896,11 @@ function renderTimeline(){
           ch.append(el("span","r "+x.s,x.s),document.createTextNode(x.k+(x.t==="self"?"（個人）":"")));
           const del=el("button","chipx","×");del.type="button";del.title="刪除";del.setAttribute("aria-label","刪除 "+x.s+" "+x.k);del.onclick=()=>editRemove(r,i);ch.append(del);chips.append(ch)});
         const add=el("button","chipadd","＋ 減傷");add.type="button";add.onclick=()=>openAdd(r,add);chips.append(add);
-        if(!custom.notes[r._id]){const nb=el("button","chipadd noteadd","✎ 筆記");nb.type="button";nb.onclick=()=>openNote(r,nb);chips.append(nb)}}
+        if(!hasNote(r._id)){const nb=el("button","chipadd noteadd","✎ 筆記");nb.type="button";nb.onclick=()=>openNote(r,nb);chips.append(nb)}}
       if(chips.children.length) b.append(chips);
       if(r.pos){const pp=el("div","pos");const ic=el("span","pk");ic.innerHTML=RUNSVG;ic.title="站位";ic.setAttribute("role","img");ic.setAttribute("aria-label","站位");pp.append(ic,document.createTextNode(r.pos));b.append(pp)}
-      if(custom.notes[r._id]&&(notev==="on"||editing)){const mn=el("div","mynote");mn.append(el("span","mnk","✎ 我的筆記"),document.createTextNode(custom.notes[r._id]));
+      if(hasNote(r._id)&&(notev==="on"||editing)){const mn=el("div","mynote");mn.append(el("span","mnk","✎ 我的筆記"),document.createTextNode(custom.notes[r._id]||""));
+        if(NIMG[r._id]&&NIMG[r._id].length){const g=el("div","nimgs");NIMG[r._id].forEach((src,i)=>{const t=el("button","nimg");t.type="button";t.title="看大圖";const im=document.createElement("img");im.src=src;im.alt="我的筆記圖片 "+(i+1);t.append(im);t.onclick=e=>{e.stopPropagation();figShowSrc(t,src,"我的筆記圖片")};g.append(t)});mn.append(g)}
         if(editing){mn.classList.add("ed");mn.tabIndex=0;mn.setAttribute("role","button");mn.title="點一下修改筆記";mn.onclick=()=>openNote(r,mn);mn.onkeydown=e=>{if(e.key==="Enter")openNote(r,mn)}}b.append(mn)}
       if(r.n) b.append(el("div","note",r.n));
       const rn=role==="st"?r.nst:role==="mt"?r.nmt:null;
@@ -965,11 +997,21 @@ function tpDiv(tp){const d=el("div","tpdiv "+tp[0]);const red=tp[0]==="red";
   d.append(el("span","tpl"),ic,el("span","tps","傳送 "+tp[1]+"・"+tp[2]),el("span","tpl"));return d}
 const RUNSVG='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.5" cy="4" r="2.4" fill="currentColor"/><path d="M13.6 7.6 9.8 9.4 8 13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.6 7.6 12 13l3.6 2.8 1.2 5.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13l-2.2 4.2-5 1.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.6 7.6 16.4 11l3.4.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const FIGMAP=[["開怪", "s01", "爆發說明"], ["瀑布落地", "s03", "ST 拉手"], ["瀑布落地", "s04", "水柱引導"], ["瀑布落地", "s06", "其他人"], ["瀑布落地", "g1", "站位圖"], ["手出布", "s02", "MT"], ["手出布", "s05", "無預兆扇形"], ["坦克強攻擊（本體＋手）＋", "s08", "減傷範例"], ["痛苦之手", "s07", "看圖"], ["藍球", "s09", "藍球"], ["藍球", "g2", "站位圖"], ["坦克強攻擊 ②", "s10", "錯開站"], ["超級衝擊", "k1211", "1211"], ["系統連結", "p2_wheel", "飛輪安全區"], ["飛輪", "p2_8way", "回八方"], ["迴旋碎踢", "p2_pull", "拉飛機"], ["迴旋碎踢", "p2_kick", "找D2傳毒", ["st", "d2"]], ["水雷分攤 ①", "p2_wl1", "水雷站位"], ["地雷（", "p2_mine", "踩地雷"], ["飛機無敵", "p2_shield", "打盾站位"], ["水雷分攤 ③", "p2_wl3", "拉飛機"], ["螺旋槳強風", "p2_line", "終審排隊"], ["雙重火箭飛拳", "p2_after", "集合位置"], ["時停判定", "p3_ts_th", "T奶站位"], ["時停判定", "p3_ts_dps", "DPS站位"], ["一運（時空潛行）", "p3_green", "綠球"], ["審判結晶", "p3_crystal", "放結晶"], ["結晶＋撞球", "p3_st_heart", "雙T位置"], ["集團罪＋聖禮", "p3_half", "一運後半"], ["超級跳（最遠的人）", "p3_half", "站位圖"], ["次元斷絕", "dim_start", "號碼站位"], ["懺悔之間", "dim_order", "懺悔順序"], ["限制切斷（發骰子）", "dim_dash", "輪盤後"], ["懺悔 ①", "dim_later", "接骰子"], ["淨化熱線", "dim_end", "分攤站位"], ["終審判決", "p4_open", "站位圖"], ["制導 ①", "p4_stack", "分攤"], ["未來觀測 α", "p4_obs1", "一測站位"], ["加重誅罰（", "p4_tb1", "死刑站位"], ["未來觀測 β", "p4_obs2_light", "大光"], ["未來觀測 β", "p4_obs2_dark", "小暗"], ["神聖大審判", "p4_fire1", "三穿一"], ["神聖大審判", "p4_fire2", "三穿一②"], ["時間干涉", "p4_cage", "籠子"]];
+const FIGPOS={"p2_8way": {"D3": [46, 43], "MT": [50, 42], "D1": [54, 43], "H1": [45.5, 51], "H2": [54.5, 51], "D2": [46, 60], "ST": [50, 59], "D4": [54, 60]}, "dim_end": {"ST": [23.5, 44], "D4": [26.8, 44], "MT": [29.5, 45], "D3": [18, 52.5], "D1": [34, 57], "H1": [23, 65.5], "D2": [25.8, 68], "H2": [28.4, 65.5]}, "p4_tb1": {"ST": [58, 36], "MT": [78, 35]}, "p2_after": {"MT": [33, 52.5], "ST": [33, 52.5]}};
 const FIGCAP={"s01": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s02": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s03": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s04": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s05": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s06": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s07": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s08": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s09": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "s10": "圖：ふうcだよ 處理法解說（中文翻譯在繁中攻略整合 P1）", "k1211": "圖：ぬけまる 1211 式（25:01）", "g1": "示意圖：依攻略繪製", "g2": "示意圖：依攻略繪製", "p2_8way": "圖：魚子醬 P2 SEP 改詳解 4:10", "p2_wheel": "圖：魚子醬 P2 SEP 改詳解 3:50", "p2_pull": "圖：魚子醬 P2 SEP 改詳解 5:18", "p2_kick": "圖：魚子醬 P2 SEP 改詳解 5:36", "p2_wl1": "圖：魚子醬 P2 SEP 改詳解 6:02", "p2_mine": "圖：魚子醬 P2 SEP 改詳解 9:12", "p2_shield": "圖：魚子醬 P2 SEP 改詳解 12:30", "p2_wl3": "圖：魚子醬 P2 SEP 改詳解 17:50", "p2_line": "圖：魚子醬 P2 SEP 改詳解 18:55", "p2_after": "圖：魚子醬 P2 SEP 改詳解 19:30", "p3_ts_th": "圖：魚子醬 P3 詳解 2:29", "p3_ts_dps": "圖：魚子醬 P3 詳解 3:05", "p3_green": "圖：魚子醬 P3 詳解 7:29", "p3_crystal": "圖：魚子醬 P3 詳解 8:11", "p3_st_heart": "圖：魚子醬 P3 詳解 9:29", "p3_half": "圖：魚子醬 P3 詳解 12:41", "dim_order": "圖：ぬけまる 次元斷絕 11:55", "dim_start": "圖：ぬけまる 次元斷絕 12:45", "dim_dash": "圖：ぬけまる 次元斷絕 13:35", "dim_later": "圖：ぬけまる 次元斷絕 14:25", "dim_end": "圖：ぬけまる 次元斷絕 15:30", "p4_open": "圖：魚子醬 P4 詳解 2:17", "p4_stack": "圖：魚子醬 P4 詳解 4:29", "p4_obs1": "圖：魚子醬 P4 詳解 8:31", "p4_tb1": "圖：魚子醬 P4 詳解 11:05", "p4_obs2_light": "圖：魚子醬 P4 詳解 12:02", "p4_obs2_dark": "圖：魚子醬 P4 詳解 12:46", "p4_fire1": "圖：魚子醬 P4 詳解 17:10", "p4_fire2": "圖：魚子醬 P4 詳解 17:54", "p4_cage": "圖：魚子醬 P4 詳解 21:12"};
 function figOf(r){const m=FIGMAP.find(([k])=>r.m.includes(k));return m?m[1]:null}
 const figPop=document.createElement("div");figPop.className="figpop";figPop.hidden=true;
 const figImg=document.createElement("img");figImg.alt="";const figCap=el("div","figcap","圖：猫猫窝攻略组「機制速覽」");
-figPop.append(figImg,figCap);document.body.append(figPop);
+const figWrap=el("div","figwrap"),figZoom=el("div","figzoom"),figRing=el("div","figring"),figTools=el("div","figtools");
+const figWho=el("span"),figTog=el("button",null,"看全圖");figTog.type="button";figTools.append(figWho,figTog);
+figZoom.append(figImg,figRing);figWrap.append(figZoom);figPop.append(figWrap,figTools,figCap);document.body.append(figPop);
+let figZoomOn=true;
+function figApply(pos){if(!pos){figRing.hidden=true;figTools.hidden=true;figZoom.classList.remove("on");figZoom.style.transform="";return}
+  figRing.hidden=false;figTools.hidden=false;figRing.style.left=pos[0]+"%";figRing.style.top=pos[1]+"%";
+  figZoom.style.transformOrigin=pos[0]+"% "+pos[1]+"%";figZoom.classList.toggle("on",figZoomOn);figZoom.style.transform=figZoomOn?"scale(2.2)":"";
+  figTog.textContent=figZoomOn?"看全圖":"放大我的位置"}
+let figPos=null;
+figTog.onclick=e=>{e.stopPropagation();figZoomOn=!figZoomOn;figApply(figPos)};
 let figPinned=null;
 let figBtn=null;
 function figPlace(){if(!figBtn||figPop.hidden)return;const b=figBtn.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
@@ -978,8 +1020,9 @@ function figPlace(){if(!figBtn||figPop.hidden)return;const b=figBtn.getBoundingC
   let top=b.bottom+6; if(top+h>vh-8) top=b.top-h-6; if(top<8) top=Math.max(8,(vh-h)/2);
   figPop.style.top=top+"px"}
 figImg.onload=figPlace;
-function figShow(btn){figBtn=btn;figImg.src=FIG[btn.dataset.fig];const cap=btn.dataset.fig in FIGCAP?FIGCAP[btn.dataset.fig]:"圖：猫猫窝攻略组「機制速覽」";figCap.textContent=cap;figCap.hidden=!cap;figImg.alt=btn.dataset.alt;figPop.hidden=false;figPlace()}
+function figShow(btn){figBtn=btn;figImg.src=FIG[btn.dataset.fig];{const R=role!=="team"?role.toUpperCase():"";const P=(typeof FIGPOS!=="undefined"&&FIGPOS[btn.dataset.fig])||null;figPos=P&&R&&P[R]||null;figWho.replaceChildren();if(figPos){figWho.append(el("b",null,R),document.createTextNode(" 的位置"))}figApply(figPos)}const cap=btn.dataset.fig in FIGCAP?FIGCAP[btn.dataset.fig]:"圖：猫猫窝攻略组「機制速覽」";figCap.textContent=cap;figCap.hidden=!cap;figImg.alt=btn.dataset.alt;figPop.hidden=false;figPlace()}
 function figHide(){figPop.hidden=true;figPinned=null}
+function figShowSrc(btn,src,cap){figBtn=btn;figPinned=btn;figImg.src=src;figCap.textContent=cap;figCap.hidden=false;figImg.alt=cap;figPos=null;figApply(null);figPop.hidden=false;figPlace()}
 document.addEventListener("mouseover",e=>{const b=e.target.closest&&e.target.closest(".figbtn");if(b&&!figPinned)figShow(b)});
 document.addEventListener("mouseout",e=>{const b=e.target.closest&&e.target.closest(".figbtn");if(b&&!figPinned&&!(e.relatedTarget&&b.contains(e.relatedTarget)))figPop.hidden=true});
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".figbtn");if(b){if(figPinned===b){figHide()}else{figPinned=b;figShow(b)}return}if(!figPop.contains(e.target))figHide()});
@@ -1031,12 +1074,20 @@ function openAdd(r,anchor){partyPop.hidden=true;addPop.textContent="";
 function openNote(r,anchor){partyPop.hidden=true;addPop.textContent="";
   addPop.append(el("h4",null,"我的筆記：「"+shortName(r)+"」"+r.t));
   const ta=document.createElement("textarea");ta.rows=4;ta.maxLength=300;ta.className="notearea";ta.placeholder="想提醒自己的事，例如：這裡記得先吃藥、站 C左 最後面";ta.value=custom.notes[r._id]||"";ta.setAttribute("aria-label","筆記內容");
+  let pics=(NIMG[r._id]||[]).slice();const pw=el("div","notepics"),prow=el("div","row3");pw.append(prow);
+  const drawPics=()=>{prow.textContent="";pics.forEach((src,i)=>{const t=el("span","nimg");const im=document.createElement("img");im.src=src;im.alt="";const x=el("button","x","×");x.type="button";x.title="移除這張";x.onclick=()=>{pics.splice(i,1);drawPics()};t.append(im,x);prow.append(t)});
+    if(pics.length<4){const fb=el("button","filebtn","＋ 加圖片");fb.type="button";fb.onclick=()=>fi.click();prow.append(fb)}};
+  const fi=document.createElement("input");fi.type="file";fi.accept="image/*";fi.multiple=true;fi.hidden=true;
+  const addFiles=async files=>{for(const f of files){if(pics.length>=4)break;if(!f.type.startsWith("image/"))continue;try{pics.push(await imgShrink(f))}catch(e){toastMsg("這張圖讀不出來",2400)}}drawPics()};
+  fi.onchange=()=>addFiles([...fi.files]);pw.append(fi);
+  ta.addEventListener("paste",e=>{const fs=[...(e.clipboardData||{}).items||[]].filter(x=>x.kind==="file").map(x=>x.getAsFile()).filter(Boolean);if(fs.length){e.preventDefault();addFiles(fs)}});
+  drawPics();
   const acts=el("div","acts");
-  if(custom.notes[r._id]){const del=el("button",null,"刪除筆記");del.type="button";del.className="danger";del.onclick=()=>{delete custom.notes[r._id];saveCustom();addPop.hidden=true;render();toastMsg("已刪除筆記")};acts.append(del)}
+  if(hasNote(r._id)){const del=el("button",null,"刪除筆記");del.type="button";del.className="danger";del.onclick=()=>{delete custom.notes[r._id];delete NIMG[r._id];saveCustom();imgSave();addPop.hidden=true;render();toastMsg("已刪除筆記")};acts.append(del)}
   const cancel=el("button",null,"取消");cancel.type="button";cancel.onclick=()=>addPop.hidden=true;
-  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=ta.value.trim();if(v)custom.notes[r._id]=v;else delete custom.notes[r._id];saveCustom();addPop.hidden=true;render();toastMsg(v?"已儲存筆記":"已刪除筆記")};
+  const ok=el("button","primary","儲存");ok.type="button";ok.onclick=()=>{const v=ta.value.trim();if(v)custom.notes[r._id]=v;else delete custom.notes[r._id];if(pics.length)NIMG[r._id]=pics;else delete NIMG[r._id];saveCustom();imgSave();addPop.hidden=true;render();toastMsg(v||pics.length?"已儲存筆記":"已刪除筆記")};
   ta.onkeydown=e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))ok.click()};
-  acts.append(cancel,ok);addPop.append(ta,el("p","hint2","筆記只有你自己看得到，匯出分享碼時可以選擇要不要一起帶。Ctrl＋Enter 儲存。"),acts);placePop(addPop,anchor);ta.focus()}
+  acts.append(cancel,ok);addPop.append(ta,pw,el("p","hint2","筆記只有你自己看得到。可以加最多 4 張圖（選檔案，或在文字框直接貼上截圖）。分享碼只帶文字，要連圖片一起給請用「下載成檔案」。Ctrl＋Enter 儲存。"),acts);placePop(addPop,anchor);ta.focus()}
 function editRemove(r,i){const L=assignOf(r).slice();const x=L.splice(i,1)[0];custom.rows[r._id]=L;saveCustom();applyAssign();render();toastMsg("已刪除 "+x.s+" "+x.k)}
 
 (function(){const q=document.getElementById("sop-q"),pop=document.getElementById("sop-pop");let pin=false;
@@ -1061,14 +1112,30 @@ function openModal(h,p,ok,val,ro,act){document.getElementById("ed-modal-h").text
 document.getElementById("ed-modal-cancel").onclick=()=>modal.hidden=true;
 modal.addEventListener("mousedown",e=>{if(e.target===modal)modal.hidden=true});
 mOk.onclick=()=>{if(modalAct)modalAct()};
-const enc=o=>"TEA1:"+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
-const dec=t=>{t=t.trim();if(!t.startsWith("TEA1:"))throw 0;const o=JSON.parse(decodeURIComponent(escape(atob(t.slice(5)))));if(!o||o.v!==1)throw 0;return o};
-document.getElementById("ed-export").onclick=()=>{const code=enc(Object.assign({},custom,{notes:{}}));const codeN=Object.keys(custom.notes).length?enc(custom):null;
+const P1="TEA1:",P2=P1.replace(/1:$/,"2:");
+const b64u=u8=>{let s="";for(let i=0;i<u8.length;i+=8192)s+=String.fromCharCode.apply(null,u8.subarray(i,i+8192));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
+const u8b=t=>{t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";const s=atob(t),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
+async function enc(o){const j=JSON.stringify(o);
+  if(typeof CompressionStream==="undefined")return P1+btoa(unescape(encodeURIComponent(j)));
+  const u=new Uint8Array(await new Response(new Blob([j]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer());return P2+b64u(u)}
+async function dec(t){t=t.trim().replace(/\s+/g,"");let o;
+  if(t.startsWith(P2)){const j=await new Response(new Blob([u8b(t.slice(P2.length))]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();o=JSON.parse(j)}
+  else if(t.startsWith(P1))o=JSON.parse(decodeURIComponent(escape(atob(t.slice(P1.length)))));
+  else throw 0;
+  if(!o||o.v!==1)throw 0;return o}
+document.getElementById("ed-export").onclick=async()=>{const code=await enc(Object.assign({},custom,{notes:{}}));const codeN=Object.keys(custom.notes).length?await enc(custom):null;
   openModal("匯出分享碼","複製下面這段文字，貼給隊友，對方按「匯入分享碼」就會套用一樣的減傷軸和職業。","複製",code,true,async()=>{
     const cur=mTa.value;try{await navigator.clipboard.writeText(cur);toastMsg("已複製分享碼")}catch(e){mTa.select();toastMsg("請按 Ctrl+C 複製",2600)}});
   if(codeN){const box=document.getElementById("ed-modal-opts");box.textContent="";box.hidden=false;const lb=document.createElement("label");const cb=document.createElement("input");cb.type="checkbox";
     lb.append(cb,document.createTextNode("一起帶上我的筆記"),el("small",null,Object.keys(custom.notes).length+" 則"));lb.classList.add("off");
-    cb.onchange=()=>{lb.classList.toggle("off",!cb.checked);mTa.value=cb.checked?codeN:code;mTa.select()};box.append(lb)}};
+    cb.onchange=()=>{lb.classList.toggle("off",!cb.checked);mTa.value=cb.checked?codeN:code;mTa.select()};box.append(lb)}
+  {const box=document.getElementById("ed-modal-opts");if(box.hidden){box.textContent="";box.hidden=false}
+   const ni=Object.values(NIMG).reduce((a,b)=>a+b.length,0);
+   const fb=el("button","filebtn","⬇ 下載成檔案（減傷軸＋筆記"+(ni?"＋"+ni+" 張圖":"")+"）");fb.type="button";
+   fb.onclick=()=>{const d=new Date(),pad=n=>String(n).padStart(2,"0");const obj={app:"raid-notes",code:P1,v:1,data:custom,imgs:NIMG};
+     const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj)],{type:"application/json"}));
+     a.download=document.title.replace(/\s+/g,"")+"_"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".json";document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);toastMsg("已下載檔案")};
+   box.append(fb)}};
 const keyL=L=>JSON.stringify(L.map(x=>x.s+"|"+x.t+"|"+x.k).sort());
 function diffSlots(o){const cnt={};for(const sl of SLOTS)cnt[sl]=0;
   for(const [id,L] of Object.entries(o.rows||{})){const r=ROWBYID[id];if(!r)continue;
@@ -1082,8 +1149,15 @@ function mergeImport(o,pick,takePress){
     if(keyL(L)===keyL(r._def))delete custom.rows[id];else custom.rows[id]=L}
   for(const sl of pick){const j=(o.party||{})[sl];if(j&&j!==DEF_PARTY[sl])custom.party[sl]=j;else delete custom.party[sl]}
   if(takePress)for(const [id,v] of Object.entries(o.press||{}))if(ROWBYID[id])custom.press[id]=v}
-document.getElementById("ed-import").onclick=()=>openModal("匯入分享碼","把隊友給你的分享碼貼在下面，下一步可以選要匯入哪些職責。","下一步","",false,()=>{
-  let o;try{o=dec(mTa.value)}catch(e){toastMsg("分享碼格式不對，請確認有完整複製（開頭是 TEA1:）",3200);return}
+let impImgs=null;
+document.getElementById("ed-import").onclick=()=>{impImgs=null;openModal("匯入分享碼","把隊友給你的分享碼貼在下面，或選擇隊友給你的檔案。下一步可以選要匯入哪些職責。","下一步","",false,importStep);
+  const box=document.getElementById("ed-modal-opts");box.textContent="";box.hidden=false;
+  const fi=document.createElement("input");fi.type="file";fi.accept=".json,application/json";fi.hidden=true;
+  const fb=el("button","filebtn","📂 從檔案匯入");fb.type="button";fb.onclick=()=>fi.click();
+  fi.onchange=async()=>{const f=fi.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(j.app!=="raid-notes"||!j.data)throw 0;if(j.code&&j.code!==P1){toastMsg("這個檔案是別的副本的筆記",3000);return}impImgs=j.imgs||null;importStep(j.data)}catch(e){toastMsg("檔案格式不對",2600)}};
+  box.append(fb,fi)};
+async function importStep(fromFile){
+  let o;if(fromFile&&fromFile.v===1)o=fromFile;else{try{o=await dec(mTa.value)}catch(e){toastMsg("分享碼格式不對，請確認有完整複製（開頭是 "+P2+"）",3200);return}}
   const {cnt,pc}=diffSlots(o);const box=document.getElementById("ed-modal-opts");box.textContent="";
   document.getElementById("ed-modal-h").textContent="選擇要匯入的職責";
   document.getElementById("ed-modal-p").textContent="只有勾選的職責會被換成分享碼裡的內容，沒勾的保留你目前的版本。預設勾選分享碼裡有改過的職責。";
@@ -1091,13 +1165,15 @@ document.getElementById("ed-import").onclick=()=>openModal("匯入分享碼","�
   const cbs=[];for(const sl of SLOTS){const lb=document.createElement("label");const cb=document.createElement("input");cb.type="checkbox";cb.value=sl;cb.checked=cnt[sl]>0||!!((o.party||{})[sl]&&o.party[sl]!==jobOf(sl));
     const j=JOBS[(o.party||{})[sl]||DEF_PARTY[sl]];lb.append(cb,document.createTextNode(sl+" "+(j?j.s:"")),el("small",null,cnt[sl]?"改了 "+cnt[sl]+" 招":"沒有改動"));
     if(!cb.checked)lb.classList.add("off");cb.onchange=()=>lb.classList.toggle("off",!cb.checked);cbs.push(cb);box.append(lb)}
-  let ncb=null;const nn=Object.keys(o.notes||{}).filter(id=>ROWBYID[id]).length;if(nn){const lb=document.createElement("label");ncb=document.createElement("input");ncb.type="checkbox";ncb.checked=false;lb.append(ncb,document.createTextNode("對方的筆記"),el("small",null,nn+" 則，會加到你的筆記"));lb.classList.add("off");ncb.onchange=()=>lb.classList.toggle("off",!ncb.checked);box.append(lb)}
+  let ncb=null;const nn=new Set([...Object.keys(o.notes||{}),...Object.keys(impImgs||{})].filter(id=>ROWBYID[id])).size;if(nn){const lb=document.createElement("label");ncb=document.createElement("input");ncb.type="checkbox";ncb.checked=false;lb.append(ncb,document.createTextNode("對方的筆記"),el("small",null,nn+" 則，會加到你的筆記"));lb.classList.add("off");ncb.onchange=()=>lb.classList.toggle("off",!ncb.checked);box.append(lb)}
   let pcb=null;if(pc){const lb=document.createElement("label");pcb=document.createElement("input");pcb.type="checkbox";pcb.checked=true;lb.append(pcb,document.createTextNode("按鍵時間"),el("small",null,pc+" 招"));box.append(lb)}
   mOk.textContent="匯入勾選的";
   modalAct=()=>{const pick=new Set(cbs.filter(c=>c.checked).map(c=>c.value));if(!pick.size&&!(pcb&&pcb.checked)&&!(ncb&&ncb.checked)){toastMsg("請至少勾選一個",2200);return}
-    mergeImport(o,pick,pcb&&pcb.checked);if(ncb&&ncb.checked)for(const [id,v] of Object.entries(o.notes||{}))if(ROWBYID[id])custom.notes[id]=custom.notes[id]&&custom.notes[id]!==v?custom.notes[id]+"\n"+v:v;saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已匯入 "+[...pick].join("、")+(pcb&&pcb.checked?"＋按鍵時間":""),3000)}});
+    mergeImport(o,pick,pcb&&pcb.checked);if(ncb&&ncb.checked){for(const [id,v] of Object.entries(o.notes||{}))if(ROWBYID[id])custom.notes[id]=custom.notes[id]&&custom.notes[id]!==v?custom.notes[id]+"\n"+v:v;
+      if(impImgs){for(const [id,L] of Object.entries(impImgs))if(ROWBYID[id])NIMG[id]=(NIMG[id]||[]).concat(L.filter(x=>!(NIMG[id]||[]).includes(x))).slice(0,8);imgSave()}}saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已匯入 "+[...pick].join("、")+(pcb&&pcb.checked?"＋按鍵時間":""),3000)}}
 document.getElementById("ed-reset").onclick=()=>openModal("還原預設","會清掉你所有自訂的減傷、按鍵時間和隊伍職業，回到網站原本的軸。","確定還原",null,false,()=>{
-  custom={v:1,party:{},rows:{},press:{},notes:{}};saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已還原預設")});
+  custom={v:1,party:{},rows:{},press:{},notes:{}};NIMG={};imgSave();saveCustom();applyAssign();modal.hidden=true;render();toastMsg("已還原預設")});
+imgLoad().then(()=>{if(Object.keys(NIMG).length)render()});
 
 /* 一頁塞滿：自動選欄數＋縮放，讓時間軸塞進一個畫面 */
 function fitTl(){const tl=document.getElementById("tl");
@@ -1231,6 +1307,3 @@ function fxSpawn(skin){const box=document.getElementById("fx");box.textContent="
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!pop.hidden){open(false);b.focus()}});
 })();
 </script>
-
-</body>
-</html>

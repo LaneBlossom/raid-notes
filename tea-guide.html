@@ -1,11 +1,26 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sitenav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:10px;font-size:12px}
-.sitenav .ng{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
-.sitenav .nl{font-weight:800;padding:2px 8px;border-radius:5px;background:color-mix(in srgb,var(--fg) 12%,transparent);color:var(--fg)}
-.sitenav .ns{font-weight:700;color:var(--muted)}
-.sitenav .ns::after{content:" ›";opacity:.6}
-.sitenav a{font-weight:700;text-decoration:none;padding:3px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel,var(--surface));color:var(--muted)}
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}[hidden]{display:none!important}</style>
+</head>
+<body>
+<!doctype html><html lang="zh-Hant"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sitenav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;position:relative;z-index:30}
+.sitenav a,.sitenav summary{font-weight:700;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel,var(--surface));color:var(--muted);cursor:pointer}
 .sitenav a[aria-current="page"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
-.sitenav a:focus-visible{outline:2px solid var(--st);outline-offset:2px}
+.sitenav a:focus-visible,.sitenav summary:focus-visible{outline:2px solid var(--st);outline-offset:2px}
+.sitenav .rsw{position:relative}
+.sitenav summary{list-style:none;color:var(--fg);display:inline-flex;align-items:center;gap:6px}
+.sitenav summary::-webkit-details-marker{display:none}
+.sitenav summary .cat{font-size:10px;font-weight:800;padding:0 6px;border-radius:4px;background:color-mix(in srgb,var(--fg) 12%,transparent)}
+.sitenav summary::after{content:"▾";font-size:10px;opacity:.7}
+.sitenav .rmenu{position:absolute;left:0;top:calc(100% + 6px);min-width:220px;max-height:min(70vh,480px);overflow:auto;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel,var(--surface));box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sitenav .rmenu .rg{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--muted);padding:6px 8px 2px}
+.sitenav .rmenu a{display:block;border:0;border-radius:6px;padding:6px 8px;background:none;color:var(--fg)}
+.sitenav .rmenu a:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}
+.sitenav .rmenu a[aria-current="page"]{background:color-mix(in srgb,var(--st) 18%,transparent);color:var(--fg)}
+.sitenav .vers{display:flex;flex-wrap:wrap;gap:6px}
 </style></head><body>
 <title>絕亞 繁中攻略整合</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -155,12 +170,12 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=swap">
 
 <div class="wrap">
-  <nav class="sitenav" aria-label="切換頁面"><div class="ng"><a href="index.html">⌂ 首頁</a></div><div class="ng"><span class="nl">零式</span><a href="m8s.html">M8S 時間軸小抄</a></div><div class="ng"><span class="nl">絕</span><span class="ns">絕亞</span><a href="tea.html">時間軸小抄</a><a href="tea-guide.html" aria-current="page">繁中攻略整合</a></div></nav>
+  <nav class="sitenav" aria-label="切換頁面"><a href="index.html">⌂ 首頁</a><details class="rsw"><summary aria-label="切換副本"><span class="cat">絕境戰</span>絕亞歷山大</summary><div class="rmenu"><div class="rg">零式・輕重量級</div><a href="m1s.html">M1S 黑貓</a><a href="m2s.html">M2S 蜂蜂小甜心</a><a href="m3s.html">M3S 野蠻炸彈</a><a href="m4s.html">M4S 狡雷</a><div class="rg">零式・中重量級</div><a href="m5s.html">M5S 青蛙舞者</a><a href="m6s.html">M6S 糖彩狂潮</a><a href="m7s.html">M7S 野蠻憎惡</a><a href="m8s.html">M8S 呼嘯之劍</a><div class="rg">絕境戰</div><a href="tea.html" aria-current="page">絕亞歷山大</a></div></details><div class="vers"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html" aria-current="page">攻略整合</a></div><script>document.addEventListener("click",function(e){document.querySelectorAll("details.rsw[open]").forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll("details.rsw[open]").forEach(function(d){d.open=false})})</script></nav>
   <header style="display:flex;flex-direction:column;gap:10px">
     <div class="eyebrow">絕亞歷山大討滅戰 · 繁中服野團打法 · ST 騎士視角</div>
     <h1>絕亞 繁中攻略整合</h1>
     <p class="lede">每個階段分成三塊：<b>機制說明</b>（這招在做什麼）、<b>繁中服解法說明</b>（我們怎麼處理）、<b>時間軸</b>（時間、標籤、站位、技能、減傷、爆發）。以 ST 騎士視角整理。內容整理自各階段的參考影片；技能名稱是我依騎士技能自行對應的，原始素材有些用的是槍刃或戰士的圖示。ST 的減傷軸照繁中服 <a href="https://www.youtube.com/watch?v=OTjXRAH-AAM">ST 騎士第一視角影片</a>的解說調整。</p>
-    <p class="skill"><b>隊伍組成</b>：MT 絕槍、ST 騎士、H1 占星、H2 賢者、D1 忍者、D2 武士、D3 機工、D4 繪靈法師。團減照 1 號小隊的團減軸。</p>
+    <p class="skill"><b>隊伍組成</b>：MT 絕槍、ST 騎士、H1 占星、H2 賢者、D1 忍者、D2 武士、D3 機工、D4 繪靈法師。團減照版主隊伍的團減軸。</p>
   </header>
 
   <nav class="tabs" aria-label="階段">
@@ -407,7 +422,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
       <div>
         <h3 class="sh">團減軸（P2）</h3>
         <div class="tbl"><table>
-          <thead><tr><th>時機</th><th>團減（1 號小隊）</th><th>ST 自己</th></tr></thead>
+          <thead><tr><th>時機</th><th>團減（版主隊伍）</th><th>ST 自己</th></tr></thead>
           <tbody><tr><td>龍捲風 1</td><td>MT 雪仇</td><td>讀條前看好飛機位置</td></tr><tr><td>水雷 1 或水雷 2</td><td>D3 策動</td><td>水雷 1 後開壁壘</td></tr><tr><td>踩地雷</td><td>—</td><td>全下所有減（雪仇除外）＋衝刺</td></tr><tr><td>龍捲風 2（蓋到水雷 3）</td><td>MT 光之心、<b>ST</b> 聖光幕簾、D2 牽制（打盾後下）</td><td>干預只有 MT 快死時才給</td></tr><tr><td>雙重火箭飛拳</td><td>D1 牽制、MT 雪仇、<b>ST</b> 武裝戍衛</td><td>光子砲後秒開壁壘＋聖盾陣</td></tr><tr><td>龍捲風 3、4</td><td>D3 武裝解除、D2 牽制、D4 昏亂（三龍捲讀條快結束時下，蓋兩次）</td><td>至少開一個大減傷（鐵壁或極致護衛，看哪個轉好）</td></tr></tbody></table></div>
         <p class="src" style="margin-top:8px">團減表的作者提醒：P2 壓力主要在雙 T 身上，補師要特別關注雙 T 的血量。</p>
       </div>
@@ -460,7 +475,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
         <h3 class="sh">第一次死刑（時停後）</h3>
         <ul>
           <li>時停結束，亞歷山大可選中後打死刑：<b>懲戒射線</b>對一仇一次（附魔法易傷），接著<b>神聖之槍</b>對當下的一仇三次扇形。</li>
-          <li><b>1 號小隊打法</b>：<span class="key k-st">ST</span> 讀條到「判」字就開<b>神聖領域</b>單吃，<b>共 4 下</b>（懲戒射線 1 下＋神聖之槍 3 下），吃完<b>退避</b>，仇恨交回 <span class="key k-mt">MT</span>。</li>
+          <li><b>版主隊伍打法</b>：<span class="key k-st">ST</span> 讀條到「判」字就開<b>神聖領域</b>單吃，<b>共 4 下</b>（懲戒射線 1 下＋神聖之槍 3 下），吃完<b>退避</b>，仇恨交回 <span class="key k-mt">MT</span>。</li>
           <li><b>第二次死刑</b>（一運最後）：換 <span class="key k-mt">MT</span> 開<b>無敵（超火流星）</b>單吃，同樣 4 下，ST 不用挑釁。</li>
         </ul>
       </div>
@@ -498,7 +513,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
       <div>
         <h3 class="sh">團減軸（P3）</h3>
         <div class="tbl"><table>
-          <thead><tr><th>時機</th><th>團減（1 號小隊）</th><th>ST 自己</th></tr></thead>
+          <thead><tr><th>時機</th><th>團減（版主隊伍）</th><th>ST 自己</th></tr></thead>
           <tbody><tr><td>第一次死刑</td><td>—</td><td>讀條到「判」字開神聖領域，4 下吃完退避</td></tr><tr><td>一運撞球</td><td>D3 策動</td><td>等綠球時開聖盾陣</td></tr><tr><td>超級跳</td><td>—</td><td>飛機劈第一下開壁壘＋鐵壁（可選）＋聖盾陣</td></tr><tr><td>第二次死刑</td><td>—</td><td>MT 無敵（超火流星）單吃，ST 不用挑釁</td></tr><tr><td>二運結束分攤</td><td>MT 光之心、<b>ST</b> 聖光幕簾</td><td></td></tr><tr><td>百萬神聖</td><td><b>ST</b> 武裝戍衛（第一個百萬）、D4 昏亂、D1 牽制、D3 武裝解除、MT 雪仇</td><td></td></tr><tr><td>火龍捲</td><td><b>ST</b> 雪仇、D2 牽制、D3 策動</td><td>策動在火龍捲開始轉就下；10 秒目標減等飛機死後再下</td></tr><tr><td>神聖審判</td><td>—</td><td>剩約 4 秒開鐵壁＋聖盾陣</td></tr></tbody></table></div>
         <p class="src" style="margin-top:8px">次元斷絕之後的 3 體 DPS 檢測：從正義號大約疊到 7 層開始，就要加強減傷、多用能力技。</p>
       </div>
@@ -572,7 +587,7 @@ table.poitbl tr.on th{box-shadow:inset 4px 0 0 #7a3fc4}
       <div>
         <h3 class="sh">團減軸（P4）</h3>
         <div class="tbl"><table>
-          <thead><tr><th>時機</th><th>團減（1 號小隊）</th><th>ST 自己</th></tr></thead>
+          <thead><tr><th>時機</th><th>團減（版主隊伍）</th><th>ST 自己</th></tr></thead>
           <tbody><tr><td>制導</td><td>MT 光之心、D3 策動</td><td></td></tr><tr><td>一測後死刑（加重誅罰）</td><td><b>ST</b> 雪仇、D4 昏亂</td><td>極致護衛＋鐵壁＋聖盾陣，雙 T 分攤</td></tr><tr><td>二測中間分攤／分散</td><td><b>ST</b> 聖光幕簾</td><td></td></tr><tr><td>一地火＋株連 1</td><td>MT 光之心、<b>ST</b> 雪仇、D1 牽制、D4 昏亂、D3 策動</td><td>株連讀條快一半挑釁，背後發光開神聖領域，之後退避</td></tr><tr><td>二地火＋株連 2</td><td><b>ST</b> 聖光幕簾（蓋株連）、MT 雪仇、D3 武裝解除、D2 牽制</td><td></td></tr><tr><td>二地火站定位後</td><td><b>ST</b> 武裝戍衛（株連讀條結束前）</td><td></td></tr></tbody></table></div><p class="src" style="margin-top:8px">場地減（光之心、策動）在「神聖大審判」讀條後就能下；目標減（雪仇、牽制、昏亂）要在「株連」讀條結束前下，確保蓋到株連。</p>
         <p class="src" style="margin-top:8px">兩次地火的減傷，野團時最好和隊友喊一下分配，避免撞在一起。</p>
       </div>
