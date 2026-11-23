@@ -20,6 +20,7 @@
 | 零式・重量級 | M10S 極限兄弟 | [空白筆記](https://laneblossom.github.io/raid-notes/m10s.html) |
 | 零式・重量級 | M11S 霸王 | [空白筆記](https://laneblossom.github.io/raid-notes/m11s.html) |
 | 零式・重量級 | M12S 林德布魯姆 | [空白筆記](https://laneblossom.github.io/raid-notes/m12s.html) |
+| 極神 | 極永恆黑暗 | [時間軸小抄](https://laneblossom.github.io/raid-notes/necronx.html)・[攻略整合](https://laneblossom.github.io/raid-notes/necronx-guide.html) |
 | 絕境戰 | 絕巴哈 | [空白筆記](https://laneblossom.github.io/raid-notes/ucob.html) |
 | 絕境戰 | 絕神兵 | [空白筆記](https://laneblossom.github.io/raid-notes/uwu.html) |
 | 絕境戰 | 絕亞歷山大 | [版主筆記](https://laneblossom.github.io/raid-notes/tea.html)・[空白筆記](https://laneblossom.github.io/raid-notes/tea-blank.html)・[繁中攻略整合](https://laneblossom.github.io/raid-notes/tea-guide.html) |

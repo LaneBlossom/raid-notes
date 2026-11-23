@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
+<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}var R=document.documentElement;
+if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}})();</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Raid Notes</title>
@@ -27,7 +30,7 @@
   --ult:#6747c2;--ult-glow:rgba(103,71,194,.12);
 }
 *{box-sizing:border-box}
-html{background:var(--bg)}
+html{background:var(--bg);font-size:clamp(16px,calc(10px + .5vw),19px)}
 body{margin:0;min-height:100vh;color:var(--fg);background:
   radial-gradient(1100px 600px at 85% -10%,var(--ult-glow),transparent 60%),
   radial-gradient(900px 500px at -10% 30%,var(--savage-glow),transparent 60%),
@@ -40,13 +43,13 @@ body{margin:0;min-height:100vh;color:var(--fg);background:
   radial-gradient(1px 1px at 92% 86%,#fff6,transparent),radial-gradient(1px 1px at 6% 92%,#fff5,transparent)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stars{display:none}}
 :root[data-theme="light"] .stars{display:none}
-.wrap{position:relative;max-width:900px;margin:0 auto;padding:64px 16px 56px}
+.wrap{position:relative;max-width:1240px;margin:0 auto;padding:64px clamp(16px,3vw,40px) 56px}
 .crest{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:.78rem;letter-spacing:.32em;font-weight:700}
 .crest::before,.crest::after{content:"";height:1px;flex:0 0 40px;background:linear-gradient(90deg,transparent,var(--gold))}
 .crest::after{background:linear-gradient(90deg,var(--gold),transparent)}
 h1{font-family:"Cinzel","Noto Serif TC",serif;font-weight:700;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.15;margin:.35em 0 .35em;letter-spacing:.04em;text-wrap:balance}
-.lede{color:var(--muted);margin:0;max-width:56ch}
-.notes{list-style:none;margin:18px 0 0;padding:12px 16px;max-width:62ch;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;background:var(--panel);font-size:.9rem;color:var(--muted)}
+.lede{color:var(--muted);margin:0;max-width:64ch}
+.notes{list-style:none;margin:18px 0 0;padding:12px 16px;max-width:70ch;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;background:var(--panel);font-size:.9rem;color:var(--muted)}
 .notes li{position:relative;padding-left:16px}
 .notes li+li{margin-top:4px}
 .notes li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6rem;color:var(--gold)}
@@ -59,11 +62,11 @@ section{margin-top:44px}
 .tier{font-family:"Noto Serif TC",serif;font-size:1rem;margin:18px 0 10px;color:var(--fg);letter-spacing:.04em}
 .tier span{font-family:Cinzel,serif;font-size:.72rem;color:var(--muted);letter-spacing:.12em;margin-left:6px}
 .tier:first-of-type{margin-top:4px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:16px}
 .card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;
   backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
-.savage .card{--c:var(--savage);--g:var(--savage-glow)}.ult .card{--c:var(--ult);--g:var(--ult-glow)}
+.savage .card{--c:var(--savage);--g:var(--savage-glow)}.ex .card{--c:#3fb7a8;--g:rgba(63,183,168,.16)}.ex .sh h2{color:#3fb7a8}.ult .card{--c:var(--ult);--g:var(--ult-glow)}
 .card:hover{border-color:var(--c);transform:translateY(-2px);box-shadow:0 10px 30px var(--g)}
 .card h3{font-family:"Noto Serif TC",serif;margin:0;font-size:1.25rem;letter-spacing:.03em}
 .card .sub{color:var(--muted);font-size:.82rem;margin:2px 0 16px}
@@ -73,13 +76,48 @@ section{margin-top:44px}
 .links a::after{content:"→";opacity:.6;transition:transform .15s}
 .links a:hover,.links a:focus-visible{background:var(--c);border-color:var(--c);color:var(--bg);outline:none}
 .links a:hover::after{transform:translateX(2px);opacity:1}
-.credits{margin-top:48px}
+.credits{margin-top:48px;max-width:72ch;font-size:.82rem;line-height:1.7;color:var(--muted)}
+.credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .cr{margin:8px 0 0;max-width:72ch;font-size:.86rem;line-height:1.7;color:var(--muted)}
 .cr dt{margin-top:12px;font-weight:700;color:var(--fg)}
 .cr dd{margin:2px 0 0}
 .cr a,footer a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 footer a{margin-left:6px}
 footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
+
+/* ===== 手帳風 ===== */
+:root{--dot:rgba(217,180,106,.13);--hole:#070914;--holeEdge:rgba(217,180,106,.25);--margin:rgba(255,122,107,.28);
+  --card:rgba(22,26,51,.82);--rule:rgba(217,180,106,.07);--hl:rgba(217,180,106,.22);--sticky:rgba(217,180,106,.09);--grain:.05}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--dot:rgba(120,96,60,.2);--hole:#d8cfbb;--holeEdge:rgba(120,96,60,.35);--margin:rgba(196,72,60,.35);
+  --card:#fffdf6;--rule:rgba(90,120,170,.07);--hl:rgba(255,214,90,.55);--sticky:#fff3bf;--grain:.08}}
+:root[data-theme="light"]{--dot:rgba(120,96,60,.2);--hole:#d8cfbb;--holeEdge:rgba(120,96,60,.35);--margin:rgba(196,72,60,.35);
+  --card:#fffdf6;--rule:rgba(90,120,170,.07);--hl:rgba(255,214,90,.55);--sticky:#fff3bf;--grain:.08}
+.stars{display:none}
+body{background:
+  radial-gradient(circle,var(--dot) 1.1px,transparent 1.5px) 0 0/24px 24px,
+  radial-gradient(1100px 600px at 85% -10%,var(--ult-glow),transparent 60%),
+  radial-gradient(900px 500px at -10% 30%,var(--savage-glow),transparent 60%),
+  linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media (min-width:1000px){
+  body::after{content:"";position:fixed;left:0;top:0;bottom:0;width:46px;pointer-events:none;z-index:1;
+    background:radial-gradient(circle at 23px 32px,var(--hole) 0 7px,var(--holeEdge) 7px 8.5px,transparent 9px) 0 0/46px 64px repeat-y;
+    border-right:1px dashed var(--line)}
+}
+.wrap{z-index:2}
+.wrap::before{content:"";position:absolute;top:0;bottom:0;left:max(4px,calc(clamp(16px,3vw,40px) - 16px));width:2px;background:var(--margin);border-radius:2px}
+.sh h2{background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,transparent 92%);padding:0 .15em}
+.notes{position:relative;background:var(--sticky);border:0;border-radius:3px;box-shadow:0 8px 18px rgba(0,0,0,.12);transform:rotate(-.4deg);padding:16px 18px 14px}
+.notes::before{content:"";position:absolute;top:-10px;left:28px;width:90px;height:20px;transform:rotate(-4deg);
+  background:repeating-linear-gradient(45deg,rgba(217,180,106,.55) 0 6px,rgba(217,180,106,.32) 6px 12px);border-radius:2px}
+.card{background:var(--card);overflow:visible;border-radius:6px;
+  background-image:repeating-linear-gradient(180deg,transparent 0 27px,var(--rule) 27px 28px);background-position:0 46px;
+  box-shadow:0 1px 0 var(--line),0 8px 18px rgba(0,0,0,.08)}
+.card::before{inset:auto;top:-9px;left:50%;width:78px;height:19px;transform:translateX(-50%) rotate(-3deg);border-radius:2px;opacity:.9;
+  background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--c) 55%,transparent) 0 6px,color-mix(in srgb,var(--c) 30%,transparent) 6px 12px)}
+.cards .card:nth-child(even)::before{transform:translateX(-50%) rotate(2.5deg)}
+.cards .card:nth-child(3n)::before{left:30%}
 </style>
 </head>
 <body>
@@ -167,6 +205,17 @@ footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
     </div>
   </section>
 
+    <section class="ex" aria-labelledby="h-ex">
+    <div class="sh"><h2 id="h-ex">極神</h2><span>Extreme</span></div>
+    <div class="cards">
+      <article class="card">
+        <h3>極永恆黑暗</h3>
+        <p class="sub">7.3 · Necron's Embrace</p>
+        <div class="links"><a href="necronx.html">時間軸小抄</a><a href="necronx-guide.html">攻略整合</a></div>
+      </article>
+    </div>
+  </section>
+
   <section class="ult" aria-labelledby="h-ult">
     <div class="sh"><h2 id="h-ult">絕境戰</h2><span>Ultimate</span></div>
     <div class="cards">
@@ -208,23 +257,36 @@ footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
     </div>
   </section>
 
-  <section class="credits" id="credits" aria-labelledby="h-credits">
-    <div class="sh"><h2 id="h-credits">資料來源與授權</h2><span>Credits</span></div>
-    <dl class="cr">
-      <dt>時間軸</dt>
-      <dd>來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Copyright 2017-2024 cactbot contributors），依 <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 授權使用，授權全文見 <a href="LICENSES/cactbot-LICENSE.txt">LICENSES/cactbot-LICENSE.txt</a>。本站有修改：把 cactbot 的時間軸、觸發器和翻譯轉成網頁格式，換算時間、合併連續招式、重新分段，並從觸發器自動產生機制標籤。本站不是 cactbot 官方專案。</dd>
-      <dt>技能名稱</dt>
-      <dd>M1S～M4S、M6S、M7S 和絕巴哈、絕神兵、絕龍詩、絕歐米茄、絕伊甸用 cactbot 的繁中服翻譯；M9S～M12S 和 Dancing Mad 繁中服還沒開，用 cactbot 的國服翻譯轉繁體；M5S 對照繁中服攻略站；M8S 對照 xivstrat；絕亞照國服翻譯轉繁體。</dd>
-      <dt>遊戲素材</dt>
-      <dd>技能名稱、狀態圖示和遊戲畫面：FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 依 FINAL FANTASY XIV 素材使用授權（Materials Usage License）非商業使用。本站是玩家個人筆記，與 Square Enix 無關。</dd>
-      <dt>攻略圖片與打法</dt>
-      <dd>M8S 的打法照 MMW、蘇帕；「看圖」的站位圖：猫猫窝攻略组「機制速覽」。絕亞的打法、減傷和影片截圖：ふうcだよ、ぬけまる、魚子醬的攻略影片，影片連結見<a href="tea-guide.html">攻略整合</a>頁尾。這些圖片和內容的著作權屬於原作者，本站只作非商業的隊伍筆記引用並標明出處；作者如果不希望被引用，請到 <a href="https://github.com/LaneBlossom/raid-notes/issues">GitHub</a> 告知，會立刻移除。</dd>
-      <dt>其他</dt>
-      <dd>本站不收費、沒有廣告。你在小抄裡編輯的減傷、筆記和圖片只存在你自己的瀏覽器，不會上傳。</dd>
-    </dl>
-  </section>
+  <p class="credits" id="credits">時間軸來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Apache License 2.0，<a href="LICENSES/cactbot-LICENSE.txt">授權全文</a>），本站有轉換格式與重新整理。各頁的技能名稱、打法和圖片來源，寫在該頁最下面的「資料來源與授權」。本站不收費、沒有廣告，你編輯的內容只存在自己的瀏覽器。</p>
 
-  <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。<a href="#credits">資料來源與授權</a></footer>
+  <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。</footer>
 </main>
+<style>
+.rn-thm{position:fixed;top:12px;right:12px;z-index:60;font:13px/1.4 "Noto Sans TC",system-ui,sans-serif}
+.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit}
+.rn-thm>button:hover,.rn-thm>button:focus-visible{border-color:currentColor;outline:none}
+.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:150px;max-height:70vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.rn-thm ul[hidden]{display:none}
+.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.rn-thm li button:hover,.rn-thm li button:focus-visible{background:rgba(127,127,127,.15);outline:none}
+.rn-thm li button[aria-checked="true"]{font-weight:700}
+.rn-thm li button[aria-checked="true"]::after{content:"✓";margin-left:auto}
+.rn-thm .sw{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid rgba(128,128,128,.4)}
+.rn-thm small{display:block;padding:6px 8px 2px;opacity:.7;font-size:11px}
+</style>
+<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu">🎨 <span id="rn-thm-name">跟系統</span></button>
+<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li><button type="button" role="menuitemradio" data-thm="sakura" aria-checked="false"><span class="sw" style="background:#fbf1f3;box-shadow:inset -9px 0 0 #c0567f"></span>櫻花</button></li><li><button type="button" role="menuitemradio" data-thm="matcha" aria-checked="false"><span class="sw" style="background:#f1f4ea;box-shadow:inset -9px 0 0 #4f8a2a"></span>抹茶</button></li><li><button type="button" role="menuitemradio" data-thm="deepsea" aria-checked="false"><span class="sw" style="background:#0b1726;box-shadow:inset -9px 0 0 #5cc8ff"></span>深海</button></li><li><button type="button" role="menuitemradio" data-thm="fluffy" aria-checked="false"><span class="sw" style="background:linear-gradient(#cfe6ff,#fdeef6);box-shadow:inset -9px 0 0 #ff7fa3"></span>睡覺數羊</button></li><li><button type="button" role="menuitemradio" data-thm="journal" aria-checked="false"><span class="sw" style="background:#f6f1e6;box-shadow:inset -9px 0 0 #b8642f"></span>手帳</button></li><li><button type="button" role="menuitemradio" data-thm="island" aria-checked="false"><span class="sw" style="background:linear-gradient(#bfe6f7,#c9efe9 60%,#f6ecd6);box-shadow:inset -9px 0 0 #d9622c"></span>海島</button></li><li><button type="button" role="menuitemradio" data-thm="rgb" aria-checked="false"><span class="sw" style="background:linear-gradient(90deg,#ff0040,#ffe600,#00ff6a,#00c8ff,#ff00c8)"></span>電競 RGB</button></li><li><button type="button" role="menuitemradio" data-thm="ink" aria-checked="false"><span class="sw" style="background:#f3efe4;box-shadow:inset -9px 0 0 #1e1e1e"></span>水墨</button></li><li><button type="button" role="menuitemradio" data-thm="bushido" aria-checked="false"><span class="sw" style="background:#0b1224;box-shadow:inset -9px 0 0 #e2bb5e"></span>武士道</button></li><li><button type="button" role="menuitemradio" data-thm="cyber" aria-checked="false"><span class="sw" style="background:#07060d;box-shadow:inset -9px 0 0 #ff2bd6"></span>CyberPunk</button></li><li><button type="button" role="menuitemradio" data-thm="contrast" aria-checked="false"><span class="sw" style="background:#000000;box-shadow:inset -9px 0 0 #ffd400"></span>高對比</button></li><li role="presentation"><small>全站共用；特別版的完整配色在時間軸小抄頁</small></li></ul></div>
+<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},R=document.documentElement,btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),items=[].slice.call(menu.querySelectorAll("[data-thm]"));
+function set(t,save){if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
+if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}
+items.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});nm.textContent=menu.querySelector('[data-thm="'+t+'"]').textContent;
+if(save)try{localStorage.setItem("raid-notes-theme",t)}catch(e){}}
+function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o)}
+btn.onclick=function(e){e.stopPropagation();open(menu.hidden)};
+items.forEach(function(b){b.onclick=function(){set(b.dataset.thm,true);open(false);btn.focus()}});
+document.addEventListener("click",function(e){if(!menu.hidden&&!menu.contains(e.target))open(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!menu.hidden){open(false);btn.focus()}});
+window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")set(e.newValue||"auto",false)});
+var t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}set(t,false)})();</script>
 </body>
 </html>
