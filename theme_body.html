@@ -1,27 +1,51 @@
 <style>
 .rn-thm{position:fixed;top:12px;right:12px;z-index:60;font:13px/1.4 "Noto Sans TC",system-ui,sans-serif}
-.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit}
+.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit;min-height:32px}
 .rn-thm>button:hover,.rn-thm>button:focus-visible{border-color:currentColor;outline:none}
-.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:150px;max-height:70vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:190px;max-height:75vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .rn-thm ul[hidden]{display:none}
-.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:7px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
 .rn-thm li button:hover,.rn-thm li button:focus-visible{background:rgba(127,127,127,.15);outline:none}
 .rn-thm li button[aria-checked="true"]{font-weight:700}
 .rn-thm li button[aria-checked="true"]::after{content:"✓";margin-left:auto}
 .rn-thm .sw{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid rgba(128,128,128,.4)}
-.rn-thm small{display:block;padding:6px 8px 2px;opacity:.7;font-size:11px}
+.rn-thm small{display:block;padding:8px 8px 2px;opacity:.7;font-size:11px}
+.rn-thm li.sep{height:1px;margin:6px 4px;background:rgba(128,128,128,.25)}
+@media (max-width:520px){.rn-thm #rn-thm-name{display:none}}
 </style>
-<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu">🎨 <span id="rn-thm-name">跟系統</span></button>
-<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li role="presentation"><small>全站共用</small></li></ul></div>
-<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},R=document.documentElement,btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),items=[].slice.call(menu.querySelectorAll("[data-thm]"));
-function set(t,save){if(B[t])t=B[t];if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
-if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}
-items.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});nm.textContent=menu.querySelector('[data-thm="'+t+'"]').textContent;
-if(save)try{localStorage.setItem("raid-notes-theme",t)}catch(e){}}
-function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o)}
+<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu" aria-label="風格與明暗">🎨 <span id="rn-thm-name">標準</span></button>
+<ul id="rn-thm-menu" role="menu" aria-label="風格與明暗" hidden>
+<li role="presentation"><small>風格（全站）</small></li>
+<li><button type="button" role="menuitemradio" data-skin="std" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>標準</button></li>
+<li><button type="button" role="menuitemradio" data-skin="future" aria-checked="false"><span class="sw" style="background:#05070d;box-shadow:inset -9px 0 0 #5ee7ff,inset -12px 0 0 #ff4fd8"></span>未來科技</button></li>
+<li><button type="button" role="menuitemradio" data-skin="pixel" aria-checked="false"><span class="sw" style="background:repeating-conic-gradient(#0a0a0a 0 25%,#f4f4f0 0 50%) 0 0/8px 8px"></span>像素 Y2K</button></li>
+<li><button type="button" role="menuitemradio" data-skin="crystal" aria-checked="false"><span class="sw" style="background:linear-gradient(135deg,#8ea6ff,#b9a3ff 55%,#f5a8d6)"></span>冰藍羽翼</button></li>
+<li class="sep" role="separator"></li>
+<li role="presentation"><small>明暗</small></li>
+<li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:linear-gradient(90deg,#f3f4f8 50%,#1b1e29 50%)"></span>跟系統</button></li>
+<li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f6f7fb"></span>淺色</button></li>
+<li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#15171f"></span>深色</button></li>
+</ul></div>
+<script>(function(){var R=document.documentElement,home=R.hasAttribute("data-home"),btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),
+ts=[].slice.call(menu.querySelectorAll("[data-thm]")),ss=[].slice.call(menu.querySelectorAll("[data-skin]")),
+F={future:"Orbitron:wght@500;700;800",pixel:"DotGothic16&family=Press+Start+2P",crystal:"Cinzel:wght@500;700&family=Noto+Serif+TC:wght@600;700"},
+HP={std:"index.html",future:"index.html",pixel:"index-b.html",crystal:"index-c.html"},cur={t:"auto",k:"std"};
+function get(n,d){try{return localStorage.getItem(n)||d}catch(e){return d}}
+function put(n,v){try{localStorage.setItem(n,v)}catch(e){}}
+function label(){var a=menu.querySelector('[data-skin="'+cur.k+'"]').textContent,b=menu.querySelector('[data-thm="'+cur.t+'"]').textContent;nm.textContent=cur.t==="auto"?a:a+"・"+b}
+function setT(t,save){if(t!=="light"&&t!=="dark")t="auto";cur.t=t;if(t==="auto")R.removeAttribute("data-theme");else R.setAttribute("data-theme",t);
+ts.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});label();if(save)put("raid-notes-theme",t)}
+function setK(k,save){if(!HP[k])k="std";cur.k=k;ss.forEach(function(b){b.setAttribute("aria-checked",b.dataset.skin===k)});label();
+if(save)put("raid-notes-skin",k);
+if(home){var want=HP[k],here=(location.pathname.split("/").pop()||"index.html");if(save&&want!==here)location.href=want;return}
+if(k==="std")R.removeAttribute("data-skin");else{R.setAttribute("data-skin",k);if(!document.getElementById("rn-f-"+k)){var l=document.createElement("link");l.id="rn-f-"+k;l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family="+F[k]+"&display=swap";document.head.appendChild(l)}}}
+function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){var c=menu.querySelector('[aria-checked="true"]');if(c)c.focus()}}
 btn.onclick=function(e){e.stopPropagation();open(menu.hidden)};
-items.forEach(function(b){b.onclick=function(){set(b.dataset.thm,true);open(false);btn.focus()}});
+ts.forEach(function(b){b.onclick=function(){setT(b.dataset.thm,true);open(false);btn.focus()}});
+ss.forEach(function(b){b.onclick=function(){setK(b.dataset.skin,true);open(false);btn.focus()}});
+menu.addEventListener("keydown",function(e){var all=ts.length?ss.concat(ts):ss,i=all.indexOf(document.activeElement);if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();all[(i+(e.key==="ArrowDown"?1:-1)+all.length)%all.length].focus()}});
 document.addEventListener("click",function(e){if(!menu.hidden&&!menu.contains(e.target))open(false)});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!menu.hidden){open(false);btn.focus()}});
-window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")set(e.newValue||"auto",false)});
-var t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}set(t,false)})();</script>
+window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")setT(e.newValue,false);if(e.key==="raid-notes-skin"&&!home)setK(e.newValue,false)});
+var k=get("raid-notes-skin","");if(!k)k={a:"future",b:"pixel",c:"crystal"}[get("raid-notes-home","")]||"std";
+setT(get("raid-notes-theme","auto"),false);setK(k,false)})();</script>

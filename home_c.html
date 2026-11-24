@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-home="c">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Raid Notes · FFXIV 高難筆記</title>
-<script>(function(){var p={"a": "index.html", "b": "index-b.html", "c": "index-c.html"},s;try{s=localStorage.getItem("raid-notes-home")}catch(e){}if(s&&s!=="c"&&p[s]&&!/[?&]keep/.test(location.search))location.replace(p[s]+location.hash)})()</script>
+<script>(function(){var P={std:"a",future:"a",pixel:"b",crystal:"c"},F={a:"index.html",b:"index-b.html",c:"index-c.html"},k;try{k=localStorage.getItem("raid-notes-skin");if(!k)k={a:"future",b:"pixel",c:"crystal"}[localStorage.getItem("raid-notes-home")]}catch(e){}var w=P[k];if(w&&w!=="c"&&!/[?&]keep/.test(location.search))location.replace(F[w]+location.hash)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700;800&display=swap">
 <link rel="preload" as="image" href="img/home/banner.webp">
@@ -241,7 +241,6 @@ footer{text-align:center;font-size:.72rem;color:var(--muted);padding:20px 14px 4
   <p class="credits" id="credits">時間軸來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Apache License 2.0，<a href="LICENSES/cactbot-LICENSE.txt">授權全文</a>），本站有轉換格式與重新整理。各頁的技能名稱、打法和圖片來源，寫在該頁最下面的「資料來源與授權」。本站不收費、沒有廣告，你編輯的內容只存在自己的瀏覽器。</p>
 </main>
 <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。角色插圖為版主原創素材。</footer>
-<nav class="sty" aria-label="首頁風格"><span>首頁風格</span><a href="index.html?keep" data-k="a"><b>A</b>未來科技</a><a href="index-b.html?keep" data-k="b"><b>B</b>像素 Y2K</a><a href="index-c.html?keep" data-k="c" aria-current="page"><b>C</b>冰藍羽翼</a></nav><script>document.querySelectorAll(".sty a").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("raid-notes-home",a.dataset.k)}catch(e){}})})</script>
 <script>
 (function(){
   var items=[].slice.call(document.querySelectorAll('.ni')),hover=matchMedia('(hover:hover)').matches,t=null;

@@ -1,4 +1,6 @@
-import shutil, os
+import shutil, os, sys
+sys.path.insert(0,'/home/claude/work')
+import gnav
 W='/home/claude/work/'; R='/home/claude/raid-notes/'
 head=open('/tmp/head.txt',encoding='utf8').read() if os.path.exists('/tmp/head.txt') else None
 head=open(W+'page_head.txt',encoding='utf8').read()
@@ -30,6 +32,19 @@ def credit(f):
             '<summary style="cursor:pointer;opacity:.85">FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記 · <u>資料來源與授權</u></summary>'
             '<ul style="margin:6px 0 0;padding-left:1.2em;line-height:1.7">'+items+'</ul></details>')
 
+
+# ===== 小抄頁：把模板內建的主題選單換成新版（風格＋明暗），並加上全站風格樣式與網站圖示 =====
+_TB=open(W+'theme_body.html',encoding='utf8').read()
+_ITEMS=_TB[_TB.index('hidden>',_TB.index('<ul id="rn-thm-menu"'))+7:_TB.index('</ul></div>')]
+_JS=_TB[_TB.rindex('<script>')+8:_TB.rindex('</script>')].replace('rn-thm-btn','thm-btn').replace('rn-thm-menu','thm-menu').replace('rn-thm-name','thm-name')
+_CSS='<style>.thm-menu small{display:block;padding:8px 8px 2px;opacity:.7;font-size:11px}.thm-menu li.sep{height:1px;margin:6px 4px;background:var(--line)}.thm-menu{min-width:190px}</style>'
+def reskin(s):
+    a=s.index('<ul class="thm-menu" id="thm-menu"'); a=s.index('hidden>',a)+7; b=s.index('</ul>',a)
+    s=s[:a]+_ITEMS+s[b:]
+    a=s.index('/* theme switch */'); b=s.index('/* 一頁塞滿說明 */',a)
+    s=s[:a]+'/* theme switch（風格＋明暗，見 theme_body.html） */\n'+_JS+'\n\n'+s[b:]
+    return open(W+'theme_head.html',encoding='utf8').read()+_CSS+s
+
 SE=' FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. <a href="index.html#credits">資料來源與授權</a>'
 for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea-blank','tea-guide','m9s','m10s','m11s','m12s','ucob','uwu','dsr','top','fru','dmu','necronx','necronx-guide']:
     s=open(W+f+'.html',encoding='utf8').read()
@@ -44,6 +59,8 @@ for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea
             i2=s.rindex('</body>'); s=s[:i2]+open(W+'theme_body.html',encoding='utf8').read()+s[i2:]
         i=s.index('<p class="endnote">'); j=s.index('</p>',i)+4
         s=s[:j]+'\n  '+credit(f)+s[j:]
+        if f!='necronx-guide': s=reskin(s)
+    s=gnav.bar(s,f+'.html',guide=f.endswith('-guide'))
     open(R+f+'.html','w',encoding='utf8').write(head+s)
 TH=open(W+'theme_head.html',encoding='utf8').read(); TB=open(W+'theme_body.html',encoding='utf8').read()
 for src_,dst in [('home.html','index.html'),('home_b.html','index-b.html'),('home_c.html','index-c.html')]:

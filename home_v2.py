@@ -33,9 +33,10 @@ NOTES = '''<li><b>版主筆記</b>是作者自己隊伍的減傷軸、站位和�
 
 
 def redirect(cur):
-    # 依記住的首頁風格導向；?keep 可強制看目前這版
-    return ('<script>(function(){var p=' + str(PAGES).replace("'", '"') + ',s;try{s=localStorage.getItem("raid-notes-home")}catch(e){}'
-            f'if(s&&s!=="{cur}"&&p[s]&&!/[?&]keep/.test(location.search))location.replace(p[s]+location.hash)}})()</script>')
+    # 依右上角選的「風格」（raid-notes-skin）顯示對應首頁；標準＝A 版。?keep 可強制看目前這版
+    return ('<script>(function(){var P={std:"a",future:"a",pixel:"b",crystal:"c"},F={a:"index.html",b:"index-b.html",c:"index-c.html"},k;'
+            'try{k=localStorage.getItem("raid-notes-skin");if(!k)k={a:"future",b:"pixel",c:"crystal"}[localStorage.getItem("raid-notes-home")]}catch(e){}'
+            f'var w=P[k];if(w&&w!=="{cur}"&&!/[?&]keep/.test(location.search))location.replace(F[w]+location.hash)}})()</script>')
 
 
 def switcher(cur):
@@ -138,7 +139,7 @@ CP_BASE = r'''
 
 def head(title_font_css, css, cur):
     return f'''<!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-home="{cur}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -247,7 +248,6 @@ def page_a():
   {credits}
 </main>
 {FOOT}
-{switcher('a')}
 {JS}
 {PANEL_JS}
 </body>
@@ -332,7 +332,6 @@ def page_b():
   {credits}
 </main>
 {FOOT}
-{switcher('b')}
 {JS}
 {PANEL_JS}
 </body>
@@ -518,7 +517,6 @@ def page_c():
   {credits}
 </main>
 {FOOT}
-{switcher('c')}
 {JS}
 {PANEL_JS}
 </body>
