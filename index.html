@@ -2,265 +2,291 @@
 <html lang="zh-Hant">
 <head>
 <script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}var R=document.documentElement;
-if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}})();</script>
+if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t])}})();</script>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Raid Notes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0d1020;--bg2:#161a33;--fg:#ece8dc;--muted:#a3a2b4;--line:rgba(212,183,120,.22);
-  --gold:#d9b46a;--panel:rgba(255,255,255,.035);
-  --savage:#ff7a6b;--savage-glow:rgba(255,122,107,.18);
-  --ult:#b79bff;--ult-glow:rgba(183,155,255,.2);
-}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#f3eee3;--bg2:#e7e0cf;--fg:#26221c;--muted:#6f685c;--line:rgba(140,108,50,.25);
-  --gold:#9a7329;--panel:rgba(255,255,255,.6);
-  --savage:#b8382c;--savage-glow:rgba(184,56,44,.12);
-  --ult:#6747c2;--ult-glow:rgba(103,71,194,.12);
-}}
-:root[data-theme="light"]{
-  --bg:#f3eee3;--bg2:#e7e0cf;--fg:#26221c;--muted:#6f685c;--line:rgba(140,108,50,.25);
-  --gold:#9a7329;--panel:rgba(255,255,255,.6);
-  --savage:#b8382c;--savage-glow:rgba(184,56,44,.12);
-  --ult:#6747c2;--ult-glow:rgba(103,71,194,.12);
-}
-*{box-sizing:border-box}
-html{background:var(--bg);font-size:clamp(16px,calc(10px + .5vw),19px)}
-body{margin:0;min-height:100vh;color:var(--fg);background:
-  radial-gradient(1100px 600px at 85% -10%,var(--ult-glow),transparent 60%),
-  radial-gradient(900px 500px at -10% 30%,var(--savage-glow),transparent 60%),
-  linear-gradient(180deg,var(--bg),var(--bg2));
-  font:16px/1.7 "Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif}
-.stars{position:fixed;inset:0;pointer-events:none;opacity:.55;background-image:
-  radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 12%,#fff9,transparent),
-  radial-gradient(1.5px 1.5px at 40% 32%,#fff7,transparent),radial-gradient(1px 1px at 88% 44%,#fff8,transparent),
-  radial-gradient(1px 1px at 22% 66%,#fff6,transparent),radial-gradient(1.5px 1.5px at 60% 78%,#fff7,transparent),
-  radial-gradient(1px 1px at 92% 86%,#fff6,transparent),radial-gradient(1px 1px at 6% 92%,#fff5,transparent)}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stars{display:none}}
-:root[data-theme="light"] .stars{display:none}
-.wrap{position:relative;max-width:1240px;margin:0 auto;padding:64px clamp(16px,3vw,40px) 56px}
-.crest{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:.78rem;letter-spacing:.32em;font-weight:700}
-.crest::before,.crest::after{content:"";height:1px;flex:0 0 40px;background:linear-gradient(90deg,transparent,var(--gold))}
-.crest::after{background:linear-gradient(90deg,var(--gold),transparent)}
-h1{font-family:"Cinzel","Noto Serif TC",serif;font-weight:700;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.15;margin:.35em 0 .35em;letter-spacing:.04em;text-wrap:balance}
-.lede{color:var(--muted);margin:0;max-width:64ch}
-.notes{list-style:none;margin:18px 0 0;padding:12px 16px;max-width:70ch;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;background:var(--panel);font-size:.9rem;color:var(--muted)}
-.notes li{position:relative;padding-left:16px}
-.notes li+li{margin-top:4px}
-.notes li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6rem;color:var(--gold)}
-.notes b{color:var(--fg)}
-section{margin-top:44px}
-.sh{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;border-bottom:1px solid var(--line);padding-bottom:8px}
-.sh h2{font-family:"Noto Serif TC",serif;font-size:1.45rem;margin:0;letter-spacing:.06em}
-.sh span{font-size:.75rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
-.savage .sh h2{color:var(--savage)}.ult .sh h2{color:var(--ult)}
-.tier{font-family:"Noto Serif TC",serif;font-size:1rem;margin:18px 0 10px;color:var(--fg);letter-spacing:.04em}
-.tier span{font-family:Cinzel,serif;font-size:.72rem;color:var(--muted);letter-spacing:.12em;margin-left:6px}
-.tier:first-of-type{margin-top:4px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:16px}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;
-  backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,box-shadow .2s;overflow:hidden}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
-.savage .card{--c:var(--savage);--g:var(--savage-glow)}.ex .card{--c:#3fb7a8;--g:rgba(63,183,168,.16)}.ex .sh h2{color:#3fb7a8}.ult .card{--c:var(--ult);--g:var(--ult-glow)}
-.card:hover{border-color:var(--c);transform:translateY(-2px);box-shadow:0 10px 30px var(--g)}
-.card h3{font-family:"Noto Serif TC",serif;margin:0;font-size:1.25rem;letter-spacing:.03em}
-.card .sub{color:var(--muted);font-size:.82rem;margin:2px 0 16px}
-.links{display:flex;flex-wrap:wrap;gap:8px}
-.links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:.9rem;
-  padding:7px 14px;border-radius:999px;border:1px solid var(--line);color:var(--fg);background:transparent;transition:background .15s,color .15s,border-color .15s}
-.links a::after{content:"→";opacity:.6;transition:transform .15s}
-.links a:hover,.links a:focus-visible{background:var(--c);border-color:var(--c);color:var(--bg);outline:none}
-.links a:hover::after{transform:translateX(2px);opacity:1}
-.credits{margin-top:48px;max-width:72ch;font-size:.82rem;line-height:1.7;color:var(--muted)}
-.credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}
-.cr{margin:8px 0 0;max-width:72ch;font-size:.86rem;line-height:1.7;color:var(--muted)}
-.cr dt{margin-top:12px;font-weight:700;color:var(--fg)}
-.cr dd{margin:2px 0 0}
-.cr a,footer a{color:inherit;text-decoration:underline;text-underline-offset:2px}
-footer a{margin-left:6px}
-footer{margin-top:64px;color:var(--muted);font-size:.75rem;opacity:.8}
+<title>Raid Notes · FFXIV 高難筆記</title>
+<script>(function(){var p={"a": "index.html", "b": "index-b.html", "c": "index-c.html"},s;try{s=localStorage.getItem("raid-notes-home")}catch(e){}if(s&&s!=="a"&&p[s]&&!/[?&]keep/.test(location.search))location.replace(p[s]+location.hash)})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
 
-/* ===== 手帳風 ===== */
-:root{--dot:rgba(217,180,106,.13);--hole:#070914;--holeEdge:rgba(217,180,106,.25);--margin:rgba(255,122,107,.28);
-  --card:rgba(22,26,51,.82);--rule:rgba(217,180,106,.07);--hl:rgba(217,180,106,.22);--sticky:rgba(217,180,106,.09);--grain:.05}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--dot:rgba(120,96,60,.2);--hole:#d8cfbb;--holeEdge:rgba(120,96,60,.35);--margin:rgba(196,72,60,.35);
-  --card:#fffdf6;--rule:rgba(90,120,170,.07);--hl:rgba(255,214,90,.55);--sticky:#fff3bf;--grain:.08}}
-:root[data-theme="light"]{--dot:rgba(120,96,60,.2);--hole:#d8cfbb;--holeEdge:rgba(120,96,60,.35);--margin:rgba(196,72,60,.35);
-  --card:#fffdf6;--rule:rgba(90,120,170,.07);--hl:rgba(255,214,90,.55);--sticky:#fff3bf;--grain:.08}
-.stars{display:none}
-body{background:
-  radial-gradient(circle,var(--dot) 1.1px,transparent 1.5px) 0 0/24px 24px,
-  radial-gradient(1100px 600px at 85% -10%,var(--ult-glow),transparent 60%),
-  radial-gradient(900px 500px at -10% 30%,var(--savage-glow),transparent 60%),
-  linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--grain);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-@media (min-width:1000px){
-  body::after{content:"";position:fixed;left:0;top:0;bottom:0;width:46px;pointer-events:none;z-index:1;
-    background:radial-gradient(circle at 23px 32px,var(--hole) 0 7px,var(--holeEdge) 7px 8.5px,transparent 9px) 0 0/46px 64px repeat-y;
-    border-right:1px dashed var(--line)}
-}
-.wrap{z-index:2}
-.wrap::before{content:"";position:absolute;top:0;bottom:0;left:max(4px,calc(clamp(16px,3vw,40px) - 16px));width:2px;background:var(--margin);border-radius:2px}
-.sh h2{background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,transparent 92%);padding:0 .15em}
-.notes{position:relative;background:var(--sticky);border:0;border-radius:3px;box-shadow:0 8px 18px rgba(0,0,0,.12);transform:rotate(-.4deg);padding:16px 18px 14px}
-.notes::before{content:"";position:absolute;top:-10px;left:28px;width:90px;height:20px;transform:rotate(-4deg);
-  background:repeating-linear-gradient(45deg,rgba(217,180,106,.55) 0 6px,rgba(217,180,106,.32) 6px 12px);border-radius:2px}
-.card{background:var(--card);overflow:visible;border-radius:6px;
-  background-image:repeating-linear-gradient(180deg,transparent 0 27px,var(--rule) 27px 28px);background-position:0 46px;
-  box-shadow:0 1px 0 var(--line),0 8px 18px rgba(0,0,0,.08)}
-.card::before{inset:auto;top:-9px;left:50%;width:78px;height:19px;transform:translateX(-50%) rotate(-3deg);border-radius:2px;opacity:.9;
-  background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--c) 55%,transparent) 0 6px,color-mix(in srgb,var(--c) 30%,transparent) 6px 12px)}
-.cards .card:nth-child(even)::before{transform:translateX(-50%) rotate(2.5deg)}
-.cards .card:nth-child(3n)::before{left:30%}
+<style>
+:root{--bg:#05070d;--bg2:#0a0f1c;--panel:rgba(12,20,38,.72);--line:rgba(110,231,255,.16);--fg:#e8f3ff;--muted:#8aa0bf;
+  --cy:#5ee7ff;--mg:#ff4fd8;--sv:#ff6b8b;--ex:#3ee8c0;--ul:#b58cff;--glow:0 0 18px rgba(94,231,255,.35);color-scheme:dark}
+:root[data-theme="light"]{--bg:#eef3fa;--bg2:#e3ebf6;--panel:rgba(255,255,255,.82);--line:rgba(20,80,140,.16);--fg:#0b1626;--muted:#4b5d78;
+  --cy:#0891b2;--mg:#c026d3;--sv:#e11d48;--ex:#0d9488;--ul:#7c3aed;--glow:0 0 14px rgba(8,145,178,.25);color-scheme:light}
+@media (prefers-color-scheme:light){:root:not([data-theme]){--bg:#eef3fa;--bg2:#e3ebf6;--panel:rgba(255,255,255,.82);--line:rgba(20,80,140,.16);--fg:#0b1626;--muted:#4b5d78;
+  --cy:#0891b2;--mg:#c026d3;--sv:#e11d48;--ex:#0d9488;--ul:#7c3aed;--glow:0 0 14px rgba(8,145,178,.25);color-scheme:light}}
+*{box-sizing:border-box}
+html{font-size:clamp(15px,calc(10px + .45vw),18px)}
+body{margin:0;min-height:100vh;color:var(--fg);font-family:"Noto Sans TC",system-ui,sans-serif;
+  background:radial-gradient(1200px 700px at 80% -10%,rgba(94,231,255,.12),transparent 60%),radial-gradient(900px 600px at -10% 40%,rgba(255,79,216,.08),transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 80%);opacity:.55}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+a{color:inherit}
+.mono{font-family:"Orbitron","Rajdhani",ui-monospace,monospace}
+/* ---- top bar ---- */
+.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(1.3);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.bar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--cy),var(--mg),transparent);opacity:.7}
+.bari{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:0 clamp(14px,3vw,36px);height:64px;padding-right:150px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.18em;font-size:1rem}
+.logo i{width:26px;height:26px;border:2px solid var(--cy);transform:rotate(45deg);box-shadow:var(--glow);position:relative}
+.logo i::after{content:"";position:absolute;inset:5px;background:var(--mg);box-shadow:0 0 12px var(--mg)}
+.nav{display:flex;gap:4px;list-style:none;margin:0;padding:0;height:100%}
+.ni{position:static;height:100%;display:flex;align-items:center}
+.nb{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;padding:0 14px;height:100%;position:relative}
+.nb .nzh{font-weight:800;font-size:1rem}
+.nb .nen{font-family:Orbitron,sans-serif;font-size:.6rem;letter-spacing:.2em;color:var(--muted)}
+.car{width:6px;height:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);align-self:center;transition:transform .25s}
+.nb::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:2px;background:var(--c,var(--cy));transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 10px var(--c,var(--cy))}
+.ni[data-cat="savage"]{--c:var(--sv)}.ni[data-cat="ex"]{--c:var(--ex)}.ni[data-cat="ult"]{--c:var(--ul)}
+.ni.open .nb::after,.nb:hover::after,.nb:focus-visible::after{transform:scaleX(1)}
+.ni.open .car{transform:rotate(225deg)}
+.nb:focus-visible{outline:2px solid var(--cy);outline-offset:-4px}
+/* mega menu */
+.mm{position:absolute;left:0;right:0;top:100%;visibility:hidden;opacity:0;transform:translateY(-10px);clip-path:inset(0 0 100% 0);
+  transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1),clip-path .4s cubic-bezier(.2,.8,.2,1),visibility 0s .4s}
+.ni.open .mm{visibility:visible;opacity:1;transform:none;clip-path:inset(0 0 -40px 0);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1),clip-path .45s cubic-bezier(.2,.8,.2,1)}
+.mmi{max-width:1280px;margin:0 auto;padding:22px clamp(14px,3vw,36px) 26px;background:var(--bg2);backdrop-filter:blur(18px);
+  border:1px solid var(--line);border-top:0;border-radius:0 0 18px 18px;box-shadow:0 30px 60px rgba(0,0,0,.35);position:relative}
+.mmi::before{content:"";position:absolute;left:0;top:0;width:3px;bottom:0;background:var(--c);box-shadow:0 0 14px var(--c);border-radius:0 0 0 18px}
+.mmh{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+.mmh b{font-size:1.4rem;color:var(--c)}
+.hud{font-family:Orbitron,sans-serif;font-size:.68rem;letter-spacing:.25em;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.colh{display:flex;align-items:baseline;gap:8px;padding-bottom:8px;margin-bottom:6px;border-bottom:1px dashed var(--line)}
+.colh small,.dgh small{font-family:Orbitron,sans-serif;font-size:.58rem;letter-spacing:.18em;color:var(--muted)}
+.col ul{list-style:none;margin:0;padding:0}
+.col li,.dr{display:grid;grid-template-columns:54px 1fr;gap:2px 10px;align-items:center;padding:7px 8px;border-radius:10px;
+  opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .35s,background .2s}
+.ni.open .col li{opacity:1;transform:none}
+.ni.open .col li:nth-child(2){transition-delay:.04s}.ni.open .col li:nth-child(3){transition-delay:.08s}.ni.open .col li:nth-child(4){transition-delay:.12s}
+.col li:hover{background:color-mix(in srgb,var(--c) 10%,transparent)}
+.code{font-family:Orbitron,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--c,var(--cy));grid-row:span 2}
+.nm{font-weight:700}
+.lk{display:flex;gap:6px;flex-wrap:wrap}
+.lk a{font-size:.75rem;text-decoration:none;padding:1px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted);transition:all .2s}
+.lk a.own{border-color:color-mix(in srgb,var(--c,var(--cy)) 55%,transparent);color:var(--fg)}
+.lk a:hover,.lk a:focus-visible{background:var(--c,var(--cy));color:#05070d;border-color:transparent;box-shadow:0 0 12px var(--c,var(--cy));outline:none}
+/* mobile drawer */
+.burger{all:unset;display:none;cursor:pointer;margin-left:auto;width:40px;height:40px;place-items:center;border:1px solid var(--line);border-radius:10px}
+.burger span{display:block;width:18px;height:2px;background:var(--fg);box-shadow:0 6px 0 var(--fg),0 -6px 0 var(--fg)}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(88vw,380px);z-index:70;background:var(--bg2);border-left:1px solid var(--line);transform:translateX(102%);transition:transform .4s cubic-bezier(.2,.8,.2,1);overflow:auto;padding:70px 16px 30px}
+.drawer.open{transform:none;box-shadow:-30px 0 60px rgba(0,0,0,.4)}
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:auto}
+.dc{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--panel)}
+.dc.savage{--c:var(--sv)}.dc.ex{--c:var(--ex)}.dc.ult{--c:var(--ul)}
+.dc summary{list-style:none;padding:12px 14px;cursor:pointer;display:flex;gap:8px;align-items:baseline}
+.dc summary .nzh{font-weight:800;color:var(--c)}.dc summary .nen{font-family:Orbitron,sans-serif;font-size:.6rem;letter-spacing:.2em;color:var(--muted)}
+.dg{padding:0 10px 10px}.dgh{font-size:.8rem;font-weight:700;color:var(--muted);margin:6px 4px}
+.dr{opacity:1;transform:none}
+@media (max-width:860px){.nav{display:none}.bar .burger{display:grid}.bari{padding-right:130px}}
+/* hero */
+main{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:clamp(30px,6vw,70px) clamp(14px,3vw,36px) 50px}
+.tag{font-family:Orbitron,sans-serif;font-size:.7rem;letter-spacing:.35em;color:var(--cy)}
+.tag::before{content:"";display:inline-block;width:28px;height:1px;background:var(--cy);vertical-align:middle;margin-right:10px;box-shadow:var(--glow)}
+h1{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(2.6rem,7vw,5.2rem);letter-spacing:.06em;margin:.15em 0 .2em;line-height:1;
+  background:linear-gradient(90deg,var(--fg) 0%,var(--cy) 55%,var(--mg) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(94,231,255,.25))}
+.lede{max-width:62ch;color:var(--muted);font-size:1.02rem;line-height:1.85;margin:0}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+.stat{position:relative;padding:10px 16px 10px 14px;border:1px solid var(--line);background:var(--panel);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.stat b{font-family:Orbitron,sans-serif;font-size:1.3rem;color:var(--cy);display:block;line-height:1.1}
+.stat span{font-size:.75rem;color:var(--muted)}
+.stat.sv b{color:var(--sv)}.stat.ex b{color:var(--ex)}.stat.ul b{color:var(--ul)}
+.hint{margin-top:14px;font-size:.8rem;color:var(--muted)}
+.hint kbd{font-family:Orbitron,sans-serif;font-size:.7rem;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+h2.sec{display:flex;align-items:baseline;gap:12px;margin:46px 0 14px;font-size:1.2rem}
+h2.sec small{font-family:Orbitron,sans-serif;font-size:.62rem;letter-spacing:.3em;color:var(--muted)}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.ft{position:relative;display:block;text-decoration:none;padding:18px 18px 20px;border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));transition:transform .3s,border-color .3s,box-shadow .3s}
+.ft.savage{--c:var(--sv)}.ft.ex{--c:var(--ex)}.ft.ult{--c:var(--ul)}
+.ft::before{content:"";position:absolute;left:0;top:0;width:40%;height:2px;background:var(--c);box-shadow:0 0 12px var(--c);transition:width .4s}
+.ft:hover,.ft:focus-visible{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 60%,transparent);outline:none}
+.ft:hover::before,.ft:focus-visible::before{width:100%}
+.fk{font-family:Orbitron,sans-serif;font-size:.6rem;letter-spacing:.25em;color:var(--c)}
+.fc{float:right;font-family:Orbitron,sans-serif;font-weight:800;font-size:.8rem;color:var(--muted)}
+.ft b{display:block;font-size:1.25rem;margin:8px 0 2px}
+.fv{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:5px;background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--c)}
+.ft p{margin:10px 0 0;color:var(--muted);font-size:.86rem;line-height:1.6}
+.go{position:absolute;right:16px;bottom:12px;font-family:Orbitron,sans-serif;color:var(--c);transition:transform .3s}
+.ft:hover .go{transform:translateX(4px)}
+.notes{margin:0;padding:16px 18px 16px 34px;border:1px solid var(--line);background:var(--panel);border-radius:4px;color:var(--muted);line-height:1.8;font-size:.9rem}
+.notes b{color:var(--fg)}
+.credits{margin-top:34px;max-width:80ch;font-size:.8rem;line-height:1.7;color:var(--muted)}
+footer{position:relative;z-index:1;text-align:center;font-size:.72rem;color:var(--muted);padding:20px 0 40px;font-family:Orbitron,"Noto Sans TC",sans-serif;letter-spacing:.06em}
+.rn-thm{top:14px!important;right:16px!important;z-index:80!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.sty{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:4px;padding:5px;font:12px/1.2 "Noto Sans TC",system-ui,sans-serif}
+.sty span{padding:0 8px;opacity:.75}
+.sty a{display:flex;gap:5px;align-items:center;text-decoration:none;padding:6px 10px;color:inherit;white-space:nowrap}
+.sty a b{font-weight:800}
+@media (max-width:520px){.sty span{display:none}.sty a{padding:6px 8px}}
+main{padding-bottom:90px!important}
+main{overflow-x:clip}
+.party{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+.pm{position:relative;display:grid;grid-template-columns:38px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:10px 12px}
+.pm img{grid-row:span 2;width:38px;height:38px}
+.pm .sl{font-size:.7rem;letter-spacing:.12em;opacity:.75}
+.pm .jb{font-weight:700}
+.pm em{position:absolute;top:-9px;right:8px;font-style:normal;font-size:.68rem;font-weight:700;padding:1px 7px}
+.stk{position:absolute;pointer-events:none;user-select:none}
+
+.cp{position:relative;display:grid;gap:10px;padding:18px}
+.cph{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
+.cph b{font-size:1.05rem}.cph small{font-size:.62rem;letter-spacing:.2em;opacity:.7}
+.cpl{font-size:.82rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.cpn{font-size:.72rem;font-weight:400;opacity:.7}
+.roles{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px}
+.roles button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:9px 0;min-height:40px;font-size:.78rem;font-weight:700;display:grid;place-items:center}
+.roles button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+@media (max-width:520px){.roles{grid-template-columns:repeat(5,minmax(0,1fr))}.roles button:first-child{grid-column:span 1}}
+.srch{display:grid;gap:4px}
+.srch input{font:inherit;font-size:16px;width:100%;padding:10px 12px;min-height:44px;color:inherit;background:transparent}
+.srch input:focus{outline:none}
+.res{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.res:empty{display:none}
+.res li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:2px 10px;align-items:center;padding:7px 10px}
+.res .rc{grid-row:span 2;font-size:.74rem;font-weight:800}
+.res .rn{font-weight:700}
+.res .rl{display:flex;gap:6px;flex-wrap:wrap}
+.res .rl a{font-size:.74rem;text-decoration:none;padding:2px 9px}
+.res .none{display:block;font-size:.82rem;opacity:.75}
+.rst{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.rst div{display:flex;flex-direction:column;gap:2px;padding:10px 12px}
+.rst span{font-size:.74rem;display:flex;gap:6px;align-items:baseline}.rst small{opacity:.65;font-size:.66rem}
+.rst b{font-variant-numeric:tabular-nums;font-size:1.25rem;white-space:nowrap}
+
+:root{--tank:#5aa8ff;--heal:#3ee89a;--dps:#ff5e7a}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(20px,4vw,60px);align-items:center}
+@media (max-width:860px){.hero{grid-template-columns:1fr}}
+.pfw{position:relative;justify-self:end;width:min(100%,460px)}
+.cp{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));box-shadow:inset 0 0 40px rgba(94,231,255,.08)}
+.cp::before{content:"";position:absolute;left:0;top:0;width:44px;height:2px;background:var(--cy);box-shadow:0 0 10px var(--cy)}
+.cph b{font-family:Orbitron,"Noto Sans TC",sans-serif;letter-spacing:.08em}.cph small{font-family:Orbitron,sans-serif;color:var(--cy)}
+.roles button{border:1px solid var(--line);color:var(--fg);font-family:Orbitron,"Noto Sans TC",sans-serif;transition:all .2s}
+.roles .tank{--r:var(--tank)}.roles .heal{--r:var(--heal)}.roles .dps{--r:var(--dps)}.roles button:first-child{--r:var(--cy)}
+.roles button:hover{border-color:var(--r);color:var(--r)}
+.roles button[aria-checked=true]{background:var(--r);border-color:var(--r);color:#05070d;box-shadow:0 0 14px color-mix(in srgb,var(--r) 60%,transparent)}
+.srch input{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.srch input:focus{border-color:var(--cy);box-shadow:0 0 0 3px color-mix(in srgb,var(--cy) 25%,transparent)}
+.res li{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 50%,transparent)}
+.res .savage{--c:var(--sv)}.res .ex{--c:var(--ex)}.res .ult{--c:var(--ul)}
+.res .rc{font-family:Orbitron,sans-serif;color:var(--c)}
+.res .rl a{border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--fg)}
+.res .rl a:hover,.res .rl a:focus-visible{background:var(--c);color:#05070d;outline:none}
+.rst div{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 50%,transparent)}
+.rst b{font-family:Orbitron,sans-serif;color:var(--cy);text-shadow:0 0 12px color-mix(in srgb,var(--cy) 50%,transparent)}
+@media (max-width:860px){.pfw{justify-self:stretch;width:100%;margin-top:10px}.stk.neon{display:none}}
+.stk.neon{filter:drop-shadow(0 0 10px rgba(255,79,216,.6));animation:float 6s ease-in-out infinite}
+.sec .ico{width:22px;height:auto;filter:drop-shadow(0 0 6px var(--cy))}
+.party .pm{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);transition:transform .25s,border-color .25s}
+.party .pm::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--r);box-shadow:0 0 10px var(--r)}
+.party .tank{--r:var(--tank)}.party .heal{--r:var(--heal)}.party .dps{--r:var(--dps)}
+.party .pm:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--r) 60%,transparent)}
+.party .sl{font-family:Orbitron,sans-serif;color:var(--r)}
+.party .me{border-color:color-mix(in srgb,var(--cy) 70%,transparent);box-shadow:inset 0 0 22px rgba(94,231,255,.15);clip-path:none}
+.party .me em{background:var(--cy);color:#05070d;box-shadow:0 0 10px var(--cy)}
+.sty{border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 85%,transparent);backdrop-filter:blur(12px);border-radius:999px;color:var(--fg)}
+.sty a{border-radius:999px}.sty a b{font-family:Orbitron,sans-serif;color:var(--cy)}
+.sty a:hover{background:color-mix(in srgb,var(--cy) 14%,transparent)}
+.sty a[aria-current]{background:var(--cy);color:#05070d}.sty a[aria-current] b{color:#05070d}
 </style>
 </head>
 <body>
-<div class="stars" aria-hidden="true"></div>
-<main class="wrap">
-  <div class="crest">FINAL FANTASY XIV</div>
-  <h1>Raid Notes</h1>
-  <p class="lede">繁中服豆芽玩家第一次挑戰高難本，邊打邊做的筆記，整理起來方便記憶。時間軸小抄可以切換職位看減傷和站位；有些副本另外附攻略整理。</p>
+<header class="bar"><div class="bari">
+  <a class="logo" href="index.html" aria-label="Raid Notes 首頁"><i aria-hidden="true"></i>RAID NOTES</a>
+  <ul class="nav" aria-label="副本分類"><li class="ni" data-cat="savage"><button type="button" class="nb" aria-expanded="false" aria-controls="mm-savage"><span class="nzh">零式</span><span class="nen">SAVAGE</span><span class="car" aria-hidden="true"></span></button><div class="mm" id="mm-savage" role="region" aria-label="零式"><div class="mmi"><div class="mmh"><span class="hud">// SAVAGE</span><b>零式</b></div><div class="cols"><div class="col"><div class="colh"><b>輕重量級</b><small>LIGHT-HEAVYWEIGHT</small></div><ul><li><span class="code">M1S</span><span class="nm">黑貓</span><span class="lk"><a href="m1s.html" class="">空白筆記</a></span></li><li><span class="code">M2S</span><span class="nm">蜂蜂小甜心</span><span class="lk"><a href="m2s.html" class="">空白筆記</a></span></li><li><span class="code">M3S</span><span class="nm">野蠻炸彈</span><span class="lk"><a href="m3s.html" class="">空白筆記</a></span></li><li><span class="code">M4S</span><span class="nm">狡雷</span><span class="lk"><a href="m4s.html" class="">空白筆記</a></span></li></ul></div><div class="col"><div class="colh"><b>中重量級</b><small>CRUISERWEIGHT</small></div><ul><li><span class="code">M5S</span><span class="nm">青蛙舞者</span><span class="lk"><a href="m5s.html" class="">空白筆記</a></span></li><li><span class="code">M6S</span><span class="nm">糖彩狂潮</span><span class="lk"><a href="m6s.html" class="">空白筆記</a></span></li><li><span class="code">M7S</span><span class="nm">野蠻憎惡</span><span class="lk"><a href="m7s.html" class="">空白筆記</a></span></li><li><span class="code">M8S</span><span class="nm">呼嘯之劍</span><span class="lk"><a href="m8s.html" class="own">版主筆記</a><a href="m8s-blank.html" class="">空白筆記</a></span></li></ul></div><div class="col"><div class="colh"><b>重量級</b><small>HEAVYWEIGHT</small></div><ul><li><span class="code">M9S</span><span class="nm">致命美人</span><span class="lk"><a href="m9s.html" class="">空白筆記</a></span></li><li><span class="code">M10S</span><span class="nm">極限兄弟</span><span class="lk"><a href="m10s.html" class="">空白筆記</a></span></li><li><span class="code">M11S</span><span class="nm">霸王</span><span class="lk"><a href="m11s.html" class="">空白筆記</a></span></li><li><span class="code">M12S</span><span class="nm">林德布魯姆</span><span class="lk"><a href="m12s.html" class="">空白筆記</a></span></li></ul></div></div></div></div></li><li class="ni" data-cat="ex"><button type="button" class="nb" aria-expanded="false" aria-controls="mm-ex"><span class="nzh">極神</span><span class="nen">EXTREME</span><span class="car" aria-hidden="true"></span></button><div class="mm" id="mm-ex" role="region" aria-label="極神"><div class="mmi"><div class="mmh"><span class="hud">// EXTREME</span><b>極神</b></div><div class="cols"><div class="col"><div class="colh"><b>7.3</b><small>DAWNTRAIL</small></div><ul><li><span class="code">EX</span><span class="nm">極永恆黑暗</span><span class="lk"><a href="necronx.html" class="">時間軸小抄</a><a href="necronx-guide.html" class="own">攻略整合</a></span></li></ul></div></div></div></div></li><li class="ni" data-cat="ult"><button type="button" class="nb" aria-expanded="false" aria-controls="mm-ult"><span class="nzh">絕境戰</span><span class="nen">ULTIMATE</span><span class="car" aria-hidden="true"></span></button><div class="mm" id="mm-ult" role="region" aria-label="絕境戰"><div class="mmi"><div class="mmh"><span class="hud">// ULTIMATE</span><b>絕境戰</b></div><div class="cols"><div class="col"><div class="colh"><b>紅蓮・漆黑</b><small>SB / ShB</small></div><ul><li><span class="code">UCOB</span><span class="nm">絕巴哈</span><span class="lk"><a href="ucob.html" class="">空白筆記</a></span></li><li><span class="code">UWU</span><span class="nm">絕神兵</span><span class="lk"><a href="uwu.html" class="">空白筆記</a></span></li><li><span class="code">TEA</span><span class="nm">絕亞歷山大</span><span class="lk"><a href="tea.html" class="own">版主筆記</a><a href="tea-blank.html" class="">空白筆記</a><a href="tea-guide.html" class="own">攻略整合</a></span></li></ul></div><div class="col"><div class="colh"><b>曉月・金曦</b><small>EW / DT</small></div><ul><li><span class="code">DSR</span><span class="nm">絕龍詩</span><span class="lk"><a href="dsr.html" class="">空白筆記</a></span></li><li><span class="code">TOP</span><span class="nm">絕歐米茄</span><span class="lk"><a href="top.html" class="">空白筆記</a></span></li><li><span class="code">FRU</span><span class="nm">絕伊甸</span><span class="lk"><a href="fru.html" class="">空白筆記</a></span></li><li><span class="code">DMU</span><span class="nm">Dancing Mad</span><span class="lk"><a href="dmu.html" class="">空白筆記</a></span></li></ul></div></div></div></div></li></ul>
+  <button type="button" class="burger" aria-label="開啟副本選單" aria-expanded="false" aria-controls="drawer"><span></span></button>
+</div></header>
+<div class="scrim" aria-hidden="true"></div>
+<nav class="drawer" id="drawer" aria-label="副本選單"><button type="button" class="dclose burger" style="display:grid;position:absolute;top:14px;right:14px" aria-label="關閉選單">✕</button><details class="dc savage"><summary><span class="nzh">零式</span><span class="nen">SAVAGE</span></summary><div class="dg"><div class="dgh">輕重量級<small>LIGHT-HEAVYWEIGHT</small></div><div class="dr"><span class="code">M1S</span><span class="nm">黑貓</span><span class="lk"><a href="m1s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M2S</span><span class="nm">蜂蜂小甜心</span><span class="lk"><a href="m2s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M3S</span><span class="nm">野蠻炸彈</span><span class="lk"><a href="m3s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M4S</span><span class="nm">狡雷</span><span class="lk"><a href="m4s.html" class="">空白筆記</a></span></div></div><div class="dg"><div class="dgh">中重量級<small>CRUISERWEIGHT</small></div><div class="dr"><span class="code">M5S</span><span class="nm">青蛙舞者</span><span class="lk"><a href="m5s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M6S</span><span class="nm">糖彩狂潮</span><span class="lk"><a href="m6s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M7S</span><span class="nm">野蠻憎惡</span><span class="lk"><a href="m7s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M8S</span><span class="nm">呼嘯之劍</span><span class="lk"><a href="m8s.html" class="own">版主筆記</a><a href="m8s-blank.html" class="">空白筆記</a></span></div></div><div class="dg"><div class="dgh">重量級<small>HEAVYWEIGHT</small></div><div class="dr"><span class="code">M9S</span><span class="nm">致命美人</span><span class="lk"><a href="m9s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M10S</span><span class="nm">極限兄弟</span><span class="lk"><a href="m10s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M11S</span><span class="nm">霸王</span><span class="lk"><a href="m11s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M12S</span><span class="nm">林德布魯姆</span><span class="lk"><a href="m12s.html" class="">空白筆記</a></span></div></div></details><details class="dc ex"><summary><span class="nzh">極神</span><span class="nen">EXTREME</span></summary><div class="dg"><div class="dgh">7.3<small>DAWNTRAIL</small></div><div class="dr"><span class="code">EX</span><span class="nm">極永恆黑暗</span><span class="lk"><a href="necronx.html" class="">時間軸小抄</a><a href="necronx-guide.html" class="own">攻略整合</a></span></div></div></details><details class="dc ult"><summary><span class="nzh">絕境戰</span><span class="nen">ULTIMATE</span></summary><div class="dg"><div class="dgh">紅蓮・漆黑<small>SB / ShB</small></div><div class="dr"><span class="code">UCOB</span><span class="nm">絕巴哈</span><span class="lk"><a href="ucob.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">UWU</span><span class="nm">絕神兵</span><span class="lk"><a href="uwu.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">TEA</span><span class="nm">絕亞歷山大</span><span class="lk"><a href="tea.html" class="own">版主筆記</a><a href="tea-blank.html" class="">空白筆記</a><a href="tea-guide.html" class="own">攻略整合</a></span></div></div><div class="dg"><div class="dgh">曉月・金曦<small>EW / DT</small></div><div class="dr"><span class="code">DSR</span><span class="nm">絕龍詩</span><span class="lk"><a href="dsr.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">TOP</span><span class="nm">絕歐米茄</span><span class="lk"><a href="top.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">FRU</span><span class="nm">絕伊甸</span><span class="lk"><a href="fru.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">DMU</span><span class="nm">Dancing Mad</span><span class="lk"><a href="dmu.html" class="">空白筆記</a></span></div></div></details></nav>
+<main>
+  <div class="hero">
+    <div>
+      <div class="tag">FINAL FANTASY XIV · HIGH-END DUTY NOTES</div>
+      <h1>RAID NOTES</h1>
+      <p class="lede">繁中服豆芽玩家第一次挑戰高難本，邊打邊做的筆記，整理起來方便記憶。時間軸小抄可以切換職位看減傷和站位；有些副本另外附攻略整理。從上方選單挑副本。</p>
+      <div class="stats"><div class="stat sv"><b>12</b><span>零式</span></div><div class="stat ex"><b>1</b><span>極神</span></div><div class="stat ul"><b>7</b><span>絕境戰</span></div><div class="stat "><b>20</b><span>副本總數</span></div></div>
+    </div>
+    <div class="pfw"><img class="stk neon" src="img/home/neon1.webp" alt="" aria-hidden="true" style="left:-46px;top:-40px;width:92px;animation-delay:-2s"><img class="stk neon" src="img/home/neon3.webp" alt="" aria-hidden="true" style="right:-34px;top:38%;width:72px;animation-delay:-4s"><img class="stk neon" src="img/home/neon2.webp" alt="" aria-hidden="true" style="left:-30px;bottom:-30px;width:64px"><section class="cp" aria-label="快速入口">
+  <div class="cph"><b>快速入口</b><small>QUICK START</small></div>
+  <div class="cpl">我的位置<span class="cpn">選好後，點進小抄會直接切到你的位置</span></div>
+  <div class="roles" role="radiogroup" aria-label="我的位置"><button type="button" role="radio" aria-checked="false" data-r="team" class="">全隊</button><button type="button" role="radio" aria-checked="false" data-r="mt" class="tank">MT</button><button type="button" role="radio" aria-checked="false" data-r="st" class="tank">ST</button><button type="button" role="radio" aria-checked="false" data-r="h1" class="heal">H1</button><button type="button" role="radio" aria-checked="false" data-r="h2" class="heal">H2</button><button type="button" role="radio" aria-checked="false" data-r="d1" class="dps">D1</button><button type="button" role="radio" aria-checked="false" data-r="d2" class="dps">D2</button><button type="button" role="radio" aria-checked="false" data-r="d3" class="dps">D3</button><button type="button" role="radio" aria-checked="false" data-r="d4" class="dps">D4</button></div>
+  <div class="cpl"><label for="q">找副本</label></div>
+  <div class="srch"><input id="q" type="search" autocomplete="off" placeholder="M8S、絕亞、TEA…" aria-controls="res" aria-describedby="qh"><span id="qh" class="cpn">按 Enter 開第一個結果</span></div>
+  <ul class="res" id="res" aria-live="polite"></ul>
+  <div class="rst">
+    <div><span>每日重置<small>每天 23:00</small></span><b data-cd="d">--:--:--</b></div>
+    <div><span>每週重置<small>週二 16:00</small></span><b data-cd="w">--</b></div>
+  </div>
+</section></div>
+  </div>
+  <h2 class="sec">版主整理<small>FEATURED</small></h2>
+  <div class="feat"><a class="ft ult" href="tea-guide.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">攻略整合</span><p>每 P 的 ST 一圖流、機制卡、示意圖與時間軸</p><span class="go" aria-hidden="true">→</span></a><a class="ft savage" href="m8s.html"><span class="fk">SAVAGE</span><span class="fc">M8S</span><b>呼嘯之劍</b><span class="fv">版主筆記</span><p>隊伍的減傷軸、站位與打法（MMW、蘇帕）</p><span class="go" aria-hidden="true">→</span></a><a class="ft ex" href="necronx-guide.html"><span class="fk">EXTREME</span><span class="fc">EX</span><b>極永恆黑暗</b><span class="fv">攻略整合</span><p>7.3 極神：日服 L 團式，ST 一圖流＋全隊站位圖</p><span class="go" aria-hidden="true">→</span></a><a class="ft ult" href="tea.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">版主筆記</span><p>隊伍的時間軸、傳毒標記與減傷</p><span class="go" aria-hidden="true">→</span></a></div>
+  <h2 class="sec">使用說明<small>HOW TO USE</small></h2>
   <ul class="notes">
     <li><b>版主筆記</b>是作者自己隊伍的減傷軸、站位和打法；<b>空白筆記</b>只有 Boss 技能時間軸和機制標籤，減傷、站位留給你自己填。</li>
     <li>版主筆記的減傷軸是照作者隊伍的組成排的，拿去用的話記得依你們的隊伍重新調整。</li>
-    <li>小抄裡按「編輯減傷」就能改每個人放的技能，也能寫自己的筆記；改好的減傷軸和筆記可以<b>匯出</b>成分享碼給隊友<b>匯入</b>。</li>
+    <li>小抄裡按「編輯減傷」就能改每個人放的技能，也能寫筆記、貼圖；改好的內容可以<b>匯出</b>成分享碼或檔案給隊友<b>匯入</b>。</li>
   </ul>
-
-  <section class="savage" aria-labelledby="h-savage">
-    <div class="sh"><h2 id="h-savage">零式</h2><span>Savage</span></div>
-    <h3 class="tier">輕重量級 <span>Light-heavyweight</span></h3>
-    <div class="cards">
-      <article class="card">
-        <h3>M1S 黑貓</h3>
-        <p class="sub">AAC Light-heavyweight M1 Savage</p>
-        <div class="links"><a href="m1s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M2S 蜂蜂小甜心</h3>
-        <p class="sub">AAC Light-heavyweight M2 Savage</p>
-        <div class="links"><a href="m2s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M3S 野蠻炸彈</h3>
-        <p class="sub">AAC Light-heavyweight M3 Savage</p>
-        <div class="links"><a href="m3s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M4S 狡雷</h3>
-        <p class="sub">AAC Light-heavyweight M4 Savage</p>
-        <div class="links"><a href="m4s.html">空白筆記</a></div>
-      </article>
-    </div>
-    <h3 class="tier">中重量級 <span>Cruiserweight</span></h3>
-    <div class="cards">
-      <article class="card">
-        <h3>M5S 青蛙舞者</h3>
-        <p class="sub">AAC Cruiserweight M1 Savage</p>
-        <div class="links"><a href="m5s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M6S 糖彩狂潮</h3>
-        <p class="sub">AAC Cruiserweight M2 Savage</p>
-        <div class="links"><a href="m6s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M7S 野蠻憎惡</h3>
-        <p class="sub">AAC Cruiserweight M3 Savage</p>
-        <div class="links"><a href="m7s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M8S 呼嘯之劍</h3>
-        <p class="sub">AAC Cruiserweight M4 Savage · 門神＋本體</p>
-        <div class="links"><a href="m8s.html">版主筆記</a><a href="m8s-blank.html">空白筆記</a></div>
-      </article>
-    </div>
-    <h3 class="tier">重量級 <span>Heavyweight</span></h3>
-    <div class="cards">
-      <article class="card">
-        <h3>M9S 致命美人</h3>
-        <p class="sub">AAC Heavyweight M1 Savage · 國服譯名</p>
-        <div class="links"><a href="m9s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M10S 極限兄弟</h3>
-        <p class="sub">AAC Heavyweight M2 Savage · 國服譯名</p>
-        <div class="links"><a href="m10s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M11S 霸王</h3>
-        <p class="sub">AAC Heavyweight M3 Savage · 國服譯名</p>
-        <div class="links"><a href="m11s.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>M12S 林德布魯姆</h3>
-        <p class="sub">AAC Heavyweight M4 Savage · 國服譯名</p>
-        <div class="links"><a href="m12s.html">空白筆記</a></div>
-      </article>
-    </div>
-  </section>
-
-    <section class="ex" aria-labelledby="h-ex">
-    <div class="sh"><h2 id="h-ex">極神</h2><span>Extreme</span></div>
-    <div class="cards">
-      <article class="card">
-        <h3>極永恆黑暗</h3>
-        <p class="sub">7.3 · Necron's Embrace</p>
-        <div class="links"><a href="necronx.html">時間軸小抄</a><a href="necronx-guide.html">攻略整合</a></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="ult" aria-labelledby="h-ult">
-    <div class="sh"><h2 id="h-ult">絕境戰</h2><span>Ultimate</span></div>
-    <div class="cards">
-      <article class="card">
-        <h3>絕巴哈</h3>
-        <p class="sub">The Unending Coil of Bahamut</p>
-        <div class="links"><a href="ucob.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>絕神兵</h3>
-        <p class="sub">The Weapon's Refrain</p>
-        <div class="links"><a href="uwu.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>絕亞歷山大</h3>
-        <p class="sub">The Epic of Alexander</p>
-        <div class="links"><a href="tea.html">版主筆記</a><a href="tea-blank.html">空白筆記</a><a href="tea-guide.html">繁中攻略整合</a></div>
-      </article>
-      <article class="card">
-        <h3>絕龍詩</h3>
-        <p class="sub">Dragonsong's Reprise</p>
-        <div class="links"><a href="dsr.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>絕歐米茄</h3>
-        <p class="sub">The Omega Protocol</p>
-        <div class="links"><a href="top.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>絕伊甸</h3>
-        <p class="sub">Futures Rewritten</p>
-        <div class="links"><a href="fru.html">空白筆記</a></div>
-      </article>
-      <article class="card">
-        <h3>Dancing Mad</h3>
-        <p class="sub">凱夫卡 · 國服譯名</p>
-        <div class="links"><a href="dmu.html">空白筆記</a></div>
-      </article>
-    </div>
-  </section>
-
   <p class="credits" id="credits">時間軸來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Apache License 2.0，<a href="LICENSES/cactbot-LICENSE.txt">授權全文</a>），本站有轉換格式與重新整理。各頁的技能名稱、打法和圖片來源，寫在該頁最下面的「資料來源與授權」。本站不收費、沒有廣告，你編輯的內容只存在自己的瀏覽器。</p>
-
-  <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。</footer>
 </main>
+<footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。角色插圖為版主原創素材。</footer>
+<nav class="sty" aria-label="首頁風格"><span>首頁風格</span><a href="index.html?keep" data-k="a" aria-current="page"><b>A</b>未來科技</a><a href="index-b.html?keep" data-k="b"><b>B</b>像素 Y2K</a><a href="index-c.html?keep" data-k="c"><b>C</b>冰藍羽翼</a></nav><script>document.querySelectorAll(".sty a").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("raid-notes-home",a.dataset.k)}catch(e){}})})</script>
+<script>
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.ni')),hover=matchMedia('(hover:hover)').matches,t=null;
+  function close(except){items.forEach(function(n){if(n!==except){n.classList.remove('open');n.querySelector('.nb').setAttribute('aria-expanded','false')}})}
+  function open(n){close(n);n.classList.add('open');n.querySelector('.nb').setAttribute('aria-expanded','true')}
+  items.forEach(function(n){var b=n.querySelector('.nb');
+    if(hover){n.addEventListener('mouseenter',function(){clearTimeout(t);open(n)});n.addEventListener('mouseleave',function(){t=setTimeout(function(){n.classList.remove('open');b.setAttribute('aria-expanded','false')},180)})}
+    b.addEventListener('click',function(){n.classList.contains('open')?close():open(n)});
+    n.addEventListener('focusout',function(e){if(!n.contains(e.relatedTarget)){n.classList.remove('open');b.setAttribute('aria-expanded','false')}});
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=document.querySelector('.ni.open');close();if(o)o.querySelector('.nb').focus();dr(false)}});
+  document.addEventListener('click',function(e){if(!e.target.closest('.ni'))close()});
+  var D=document.querySelector('.drawer'),S=document.querySelector('.scrim'),B=document.querySelector('.burger');
+  function dr(o){D.classList.toggle('open',o);S.classList.toggle('open',o);B.setAttribute('aria-expanded',o);if(o)D.querySelector('summary').focus()}
+  B.addEventListener('click',function(){dr(!D.classList.contains('open'))});S.addEventListener('click',function(){dr(false)});
+  document.querySelector('.dclose').addEventListener('click',function(){dr(false);B.focus()});
+})();
+</script>
+<script>{const D=[{"c": "M1S", "n": "黑貓", "k": "savage", "l": [["m1s.html", "空白筆記"]]}, {"c": "M2S", "n": "蜂蜂小甜心", "k": "savage", "l": [["m2s.html", "空白筆記"]]}, {"c": "M3S", "n": "野蠻炸彈", "k": "savage", "l": [["m3s.html", "空白筆記"]]}, {"c": "M4S", "n": "狡雷", "k": "savage", "l": [["m4s.html", "空白筆記"]]}, {"c": "M5S", "n": "青蛙舞者", "k": "savage", "l": [["m5s.html", "空白筆記"]]}, {"c": "M6S", "n": "糖彩狂潮", "k": "savage", "l": [["m6s.html", "空白筆記"]]}, {"c": "M7S", "n": "野蠻憎惡", "k": "savage", "l": [["m7s.html", "空白筆記"]]}, {"c": "M8S", "n": "呼嘯之劍", "k": "savage", "l": [["m8s.html", "版主筆記"], ["m8s-blank.html", "空白筆記"]]}, {"c": "M9S", "n": "致命美人", "k": "savage", "l": [["m9s.html", "空白筆記"]]}, {"c": "M10S", "n": "極限兄弟", "k": "savage", "l": [["m10s.html", "空白筆記"]]}, {"c": "M11S", "n": "霸王", "k": "savage", "l": [["m11s.html", "空白筆記"]]}, {"c": "M12S", "n": "林德布魯姆", "k": "savage", "l": [["m12s.html", "空白筆記"]]}, {"c": "EX", "n": "極永恆黑暗", "k": "ex", "l": [["necronx.html", "時間軸小抄"], ["necronx-guide.html", "攻略整合"]]}, {"c": "UCOB", "n": "絕巴哈", "k": "ult", "l": [["ucob.html", "空白筆記"]]}, {"c": "UWU", "n": "絕神兵", "k": "ult", "l": [["uwu.html", "空白筆記"]]}, {"c": "TEA", "n": "絕亞歷山大", "k": "ult", "l": [["tea.html", "版主筆記"], ["tea-blank.html", "空白筆記"], ["tea-guide.html", "攻略整合"]]}, {"c": "DSR", "n": "絕龍詩", "k": "ult", "l": [["dsr.html", "空白筆記"]]}, {"c": "TOP", "n": "絕歐米茄", "k": "ult", "l": [["top.html", "空白筆記"]]}, {"c": "FRU", "n": "絕伊甸", "k": "ult", "l": [["fru.html", "空白筆記"]]}, {"c": "DMU", "n": "Dancing Mad", "k": "ult", "l": [["dmu.html", "空白筆記"]]}];
+const K="raid-notes-role",ok=r=>/^(team|mt|st|h[12]|d[1-4])$/.test(r);
+let role="team";try{const s=localStorage.getItem(K);if(ok(s))role=s}catch(e){}
+const sheet=h=>/^[a-z0-9-]+\.html$/.test(h)&&!/^index/.test(h)&&!/-guide\.html$/.test(h);
+const withRole=h=>{const b=h.split("#")[0];return sheet(b)&&role!=="team"?b+"#"+role:b};
+function apply(){
+  document.querySelectorAll(".roles button").forEach(b=>{const on=b.dataset.r===role;b.setAttribute("aria-checked",on);b.tabIndex=on?0:-1});
+  document.querySelectorAll("a[href]").forEach(a=>{const h=a.getAttribute("href");if(sheet(h.split("#")[0]))a.setAttribute("href",withRole(h))});
+}
+document.querySelectorAll(".roles button").forEach((b,i,all)=>{
+  b.addEventListener("click",()=>{role=b.dataset.r;try{localStorage.setItem(K,role)}catch(e){}apply();render()});
+  b.addEventListener("keydown",e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();const n=all[(i+d+all.length)%all.length];n.focus();n.click()});
+});
+const q=document.getElementById("q"),res=document.getElementById("res");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let hits=[];
+function render(){
+  const v=q.value.trim().toLowerCase();
+  hits=v?D.filter(x=>(x.c+" "+x.n).toLowerCase().includes(v)).slice(0,6):[];
+  res.innerHTML=v&&!hits.length?'<li class="none">找不到這個副本</li>':hits.map(x=>'<li class="'+x.k+'"><span class="rc">'+esc(x.c)+'</span><span class="rn">'+esc(x.n)+'</span><span class="rl">'+x.l.map(l=>'<a href="'+esc(withRole(l[0]))+'">'+esc(l[1])+'</a>').join("")+'</span></li>').join("");
+}
+q.addEventListener("input",render);
+q.addEventListener("keydown",e=>{if(e.key==="Enter"&&hits[0]){location.href=withRole(hits[0].l[0][0])}else if(e.key==="Escape"){q.value="";render()}});
+const pad=n=>String(n).padStart(2,"0");
+function next(dow){const n=new Date(),t=new Date(n);if(dow==null){t.setUTCHours(15,0,0,0);if(t<=n)t.setUTCDate(t.getUTCDate()+1)}else{t.setUTCHours(8,0,0,0);let a=(dow-t.getUTCDay()+7)%7;t.setUTCDate(t.getUTCDate()+a);if(t<=n)t.setUTCDate(t.getUTCDate()+7)}return t-n}
+const cd=document.querySelectorAll("[data-cd]");
+function tick(){cd.forEach(el=>{const ms=next(el.dataset.cd==="w"?2:null),s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);
+  el.textContent=el.dataset.cd==="w"?(d?d+" 天 ":"")+pad(h)+":"+pad(m):pad(h)+":"+pad(m)+":"+pad(s%60)})}
+tick();setInterval(tick,1000);apply();
+}</script>
 <style>
 .rn-thm{position:fixed;top:12px;right:12px;z-index:60;font:13px/1.4 "Noto Sans TC",system-ui,sans-serif}
 .rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit}
@@ -275,9 +301,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 .rn-thm small{display:block;padding:6px 8px 2px;opacity:.7;font-size:11px}
 </style>
 <div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu">🎨 <span id="rn-thm-name">跟系統</span></button>
-<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li><button type="button" role="menuitemradio" data-thm="sakura" aria-checked="false"><span class="sw" style="background:#fbf1f3;box-shadow:inset -9px 0 0 #c0567f"></span>櫻花</button></li><li><button type="button" role="menuitemradio" data-thm="matcha" aria-checked="false"><span class="sw" style="background:#f1f4ea;box-shadow:inset -9px 0 0 #4f8a2a"></span>抹茶</button></li><li><button type="button" role="menuitemradio" data-thm="deepsea" aria-checked="false"><span class="sw" style="background:#0b1726;box-shadow:inset -9px 0 0 #5cc8ff"></span>深海</button></li><li><button type="button" role="menuitemradio" data-thm="fluffy" aria-checked="false"><span class="sw" style="background:linear-gradient(#cfe6ff,#fdeef6);box-shadow:inset -9px 0 0 #ff7fa3"></span>睡覺數羊</button></li><li><button type="button" role="menuitemradio" data-thm="journal" aria-checked="false"><span class="sw" style="background:#f6f1e6;box-shadow:inset -9px 0 0 #b8642f"></span>手帳</button></li><li><button type="button" role="menuitemradio" data-thm="island" aria-checked="false"><span class="sw" style="background:linear-gradient(#bfe6f7,#c9efe9 60%,#f6ecd6);box-shadow:inset -9px 0 0 #d9622c"></span>海島</button></li><li><button type="button" role="menuitemradio" data-thm="rgb" aria-checked="false"><span class="sw" style="background:linear-gradient(90deg,#ff0040,#ffe600,#00ff6a,#00c8ff,#ff00c8)"></span>電競 RGB</button></li><li><button type="button" role="menuitemradio" data-thm="ink" aria-checked="false"><span class="sw" style="background:#f3efe4;box-shadow:inset -9px 0 0 #1e1e1e"></span>水墨</button></li><li><button type="button" role="menuitemradio" data-thm="bushido" aria-checked="false"><span class="sw" style="background:#0b1224;box-shadow:inset -9px 0 0 #e2bb5e"></span>武士道</button></li><li><button type="button" role="menuitemradio" data-thm="cyber" aria-checked="false"><span class="sw" style="background:#07060d;box-shadow:inset -9px 0 0 #ff2bd6"></span>CyberPunk</button></li><li><button type="button" role="menuitemradio" data-thm="contrast" aria-checked="false"><span class="sw" style="background:#000000;box-shadow:inset -9px 0 0 #ffd400"></span>高對比</button></li><li role="presentation"><small>全站共用；特別版的完整配色在時間軸小抄頁</small></li></ul></div>
+<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li role="presentation"><small>全站共用</small></li></ul></div>
 <script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},R=document.documentElement,btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),items=[].slice.call(menu.querySelectorAll("[data-thm]"));
-function set(t,save){if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
+function set(t,save){if(B[t])t=B[t];if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
 if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}
 items.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});nm.textContent=menu.querySelector('[data-thm="'+t+'"]').textContent;
 if(save)try{localStorage.setItem("raid-notes-theme",t)}catch(e){}}
