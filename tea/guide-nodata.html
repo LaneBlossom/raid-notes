@@ -1,0 +1,648 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sitenav{display:flex;flex-wrap:wrap;gap:6px}
+.sitenav a{font-size:12px;font-weight:700;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.sitenav a[aria-current="page"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+</style></head><body>
+<title>絕亞 ST 騎士攻略</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: sticky phase tabs, one reading column per phase, arena diagrams beside step text */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --fg:#1b2230; --muted:#5b6475; --line:#d6dbe4;
+  --water:#3d8fd1; --waterfill:rgba(61,143,209,.18); --st:#2f6bd8; --mt:#c2533a; --hand:#7a56c7;
+  --safe:rgba(214,70,60,.28); --accent:#2f6bd8; --orb:#25a5e8; --arena:#efe6d6; --arenaLine:#c6b79b;
+  --gold:#c99a1e; --goldfill:rgba(201,154,30,.25);
+  --f-display:"Noto Serif TC",serif; --f-body:"Noto Sans TC",system-ui,sans-serif; --f-mono:ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161f; --surface:#1a2030; --fg:#e6eaf2; --muted:#9aa4b8; --line:#2c3446;
+  --water:#6db4ec; --waterfill:rgba(109,180,236,.18); --st:#7aa6ff; --mt:#f08a6e; --hand:#b597f2;
+  --safe:rgba(240,100,90,.32); --accent:#7aa6ff; --orb:#5fc6ff; --arena:#2a2620; --arenaLine:#5a5040;
+  --gold:#e8bf4a; --goldfill:rgba(232,191,74,.22); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161f; --surface:#1a2030; --fg:#e6eaf2; --muted:#9aa4b8; --line:#2c3446;
+  --water:#6db4ec; --waterfill:rgba(109,180,236,.18); --st:#7aa6ff; --mt:#f08a6e; --hand:#b597f2;
+  --safe:rgba(240,100,90,.32); --accent:#7aa6ff; --orb:#5fc6ff; --arena:#2a2620; --arenaLine:#5a5040;
+  --gold:#e8bf4a; --goldfill:rgba(232,191,74,.22); color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.75}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:880px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1{font-family:var(--f-display);font-size:1.8rem;line-height:1.3;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:1.25rem;margin:0 0 6px;text-wrap:balance}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;color:var(--muted)}
+p{margin:0}
+.lede{color:var(--muted);max-width:65ch}
+a{color:var(--accent)}
+.src{font-size:.85rem;color:var(--muted)}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line)}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);padding:6px 14px;border-radius:999px;border:1px solid var(--line);font-weight:700;font-size:.92rem;background:var(--surface)}
+nav.tabs a[aria-current="page"]{background:var(--st);border-color:var(--st);color:var(--surface)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{display:flex;flex-direction:column;gap:24px}
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+.tl b{font-family:var(--f-mono);color:var(--accent);font-size:.92rem;display:block}
+.tl span{font-size:.88rem}
+.tl.me{border-color:var(--st);box-shadow:inset 0 0 0 1px var(--st)}
+.step{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start;padding-top:20px;border-top:1px solid var(--line)}
+.step.nofig{grid-template-columns:minmax(0,1fr)}
+@media (max-width:700px){.step{grid-template-columns:minmax(0,1fr)}}
+.step ul{margin:6px 0 0;padding-left:1.2em}
+.step li{margin:4px 0}
+.when{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:.82rem;color:var(--muted);margin-top:6px}
+.key{display:inline-block;padding:0 6px;border-radius:4px;font-weight:700;font-size:.85rem}
+.k-st{background:var(--st);color:var(--surface)} .k-mt{background:var(--mt);color:var(--surface)}
+.warn{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--mt);border-radius:6px;padding:10px 14px}
+.skill{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--st);border-radius:6px;padding:10px 14px}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+.tbl{overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+td:first-child{font-family:var(--f-mono);white-space:nowrap}
+svg text{font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:6px}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;padding:0 7px;border-radius:999px;margin:0 4px 2px 0;color:var(--surface);white-space:nowrap}
+.t-move{background:#3f8f6b}.t-prov{background:#b0702a}.t-mit{background:var(--st)}.t-inv{background:#8a3fb5}.t-burst{background:#c2533a}.t-pot{background:#c99a1e}
+table.tline{min-width:760px}
+table.tline td{font-size:.86rem;line-height:1.6}
+table.tline td:first-child{font-weight:700;color:var(--accent)}
+.col-st{background:color-mix(in srgb,var(--st) 9%,transparent)}
+.slides{display:flex;flex-direction:column;gap:18px;margin-top:12px}
+.slide{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;align-items:start}
+@media (max-width:700px){.slide{grid-template-columns:minmax(0,1fr)}}
+.slide img{width:100%;height:auto;border-radius:6px;display:block}
+.slide h3{font-family:var(--f-display);font-size:1.05rem;margin:2px 0 6px}
+.tr{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tr p{font-size:.92rem}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=swap">
+
+<div class="wrap">
+  <nav class="sitenav" aria-label="切換頁面"><a href="index.html">M8S 小抄</a><a href="tea.html">絕亞 小抄</a><a href="tea-guide.html" aria-current="page">絕亞 攻略</a></nav>
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div class="eyebrow">絕亞歷山大討滅戰 · 繁中服野團打法 · ST 騎士視角</div>
+    <h1>絕亞 ST 騎士攻略</h1>
+    <p class="lede">每個階段只整理 ST 的跑位、要注意的細節，以及減傷和團減的時機。內容整理自各階段的參考影片；技能名稱是我依騎士技能自行對應的，原始素材有些用的是槍刃或戰士的圖示。</p>
+  </header>
+
+  <nav class="tabs" aria-label="階段">
+    <a href="#p1">P1 液體</a>
+    <a href="#p15">P1.5 骰子</a>
+    <a href="#p2">P2 SEP改</a>
+    <a href="#p3">P3</a>
+    <a href="#p4">P4</a>
+  </nav>
+
+  <!-- ================= P1 ================= -->
+  <section class="panel" id="panel-p1" data-tab="p1">
+    <div>
+      <div class="eyebrow">P1 生命液體 · 無視獵犬人偶</div>
+      <p class="lede" style="margin-top:6px">完全不管獵犬人偶，也不打平本體和手的血量，只打本體，約 1:09 轉場。傷害很高，要靠減傷、盾和爆發時機撐過去。</p>
+      <p class="skill" style="margin-top:8px"><b>方向：</b>照攻略，以<b>沒有水柱的一側為南（下）</b>，王拉到南邊。水柱在西（左）、北（上）、東（右）。</p>
+      <p class="src" style="margin-top:6px">來源：<a href="https://www.youtube.com/watch?v=mxy_ZYEYwlE&t=124s">ふうcだよ（處理法解說 2:04、ST 視點 7:50）</a></p>
+    </div>
+
+    <section class="step nofig">
+      <div>
+        <h2>P1 全機制時間軸</h2>
+        <div class="legend">
+          <span class="tag t-move">走位</span><span class="tag t-prov">挑釁</span><span class="tag t-mit">減傷</span><span class="tag t-inv">無敵</span><span class="tag t-burst">爆發</span><span class="tag t-pot">吃藥</span>
+        </div>
+        <p class="src" style="margin-top:6px">爆發分兩種方案，開打前先問團隊用哪一種：<b>A 落地就爆發</b>（ST 開場自己爆），或 <b>B 落地後 25 秒爆發</b>（ST 跟大家一起爆）。</p>
+        <div class="tbl" style="margin-top:10px"><table class="tline">
+          <thead><tr><th>時間</th><th>機制</th><th class="col-st">ST（騎士）</th><th>MT</th><th>其他人</th></tr></thead>
+          <tbody>
+            <tr><td>開打</td><td>開怪</td>
+              <td class="col-st"><span class="tag t-pot">吃藥</span><span class="tag t-burst">爆發</span>方案 A：開場直接吃藥＋爆發（之後要拉手，對不上團隊的爆發）</td>
+              <td><span class="tag t-move">走位</span>把王拉到<b>南（下）外圈</b>、3 號標點附近</td>
+              <td>到王後面打</td></tr>
+            <tr><td>0:00～0:18</td><td>打本體，瀑布詠唱</td>
+              <td class="col-st">一起打本體，準備去拉手</td>
+              <td>穩住王</td>
+              <td><span class="tag t-pot">吃藥</span>方案 A：瀑布詠唱時吃藥</td></tr>
+            <tr><td>0:18</td><td><b>瀑布落地</b>：本體 HP 減半、手出現；水柱放扇形</td>
+              <td class="col-st"><span class="tag t-prov">挑釁</span>拿手的仇恨<br><span class="tag t-move">走位</span>把手拉到<b>中央稍微偏西北（左上）</b>，A 與 D 之間靠內側；手要離本體夠遠才能猜拳</td>
+              <td>王維持在南（下）</td>
+              <td><span class="tag t-burst">爆發</span>方案 A：看到落地特效開爆發<br><span class="tag t-move">走位</span>D4 西水柱、D3 北水柱、H1 東水柱引導扇形；D1、D2、H2 到王後面</td></tr>
+            <tr><td>落地後 2～4 GCD</td><td>—</td>
+              <td class="col-st"><span class="tag t-pot">吃藥</span><span class="tag t-burst">爆發</span>方案 B：落地後 2～3 GCD 吃藥、3～4 GCD 爆發（ST 也跟）</td>
+              <td>同左（方案 B）</td>
+              <td>同左（方案 B）</td></tr>
+            <tr><td>手亮藍光</td><td>手出<b>布</b>（猜拳）</td>
+              <td class="col-st"><span class="tag t-move">走位</span>回<b>南（下）</b>，站在王旁邊、<b>MT 的西側（左）</b></td>
+              <td><span class="tag t-prov">挑釁</span>挑手（MT 同時拿本體和手）</td>
+              <td>D3 引導完有預兆扇形，經場中走到王後面引導無預兆扇形；H1、D4 離開水柱往南引導</td></tr>
+            <tr><td>0:35</td><td>分離之手（第 1 次砸地）</td>
+              <td class="col-st">待在王旁邊</td>
+              <td><span class="tag t-inv">無敵</span>砸地後開無敵</td>
+              <td>—</td></tr>
+            <tr><td>0:37</td><td>坦克強攻擊（本體＋手）</td>
+              <td class="col-st"><span class="tag t-mit">減傷</span><b>雪仇給手</b>＋<b>聖光幕簾</b>；不夠時才補武裝戍衛</td>
+              <td>無敵吃兩邊的死刑</td>
+              <td><span class="tag t-mit">減傷</span>牽制、昏亂、武器破壞給手；遠程 2 種減傷；武僧真言、鐮刀神秘紋；補師全團減傷</td></tr>
+            <tr><td>0:38</td><td>普羅蒂恩波（無預兆扇形）</td>
+              <td class="col-st">躲扇形</td>
+              <td>—</td>
+              <td><span class="tag t-mit">盾</span>補師在這之後上盾</td></tr>
+            <tr><td>0:42</td><td><b>痛苦之手</b>（第 2 次砸地）</td>
+              <td class="col-st">不打平 HP，靠減傷硬吃</td>
+              <td>—</td>
+              <td>補師抬血</td></tr>
+            <tr><td>痛苦之手後</td><td>2 個水柱冒<b>藍球</b>往王移動（碰到人偶以外的東西就團滅）</td>
+              <td class="col-st"><span class="tag t-move">走位</span>跟著 MT 往西<br><span class="tag t-prov">挑釁</span>拉完後<b>拿回手的仇恨</b>，和 MT 錯開站</td>
+              <td><span class="tag t-move">走位</span>等藍球開始動，沿外圈把王拉到<b>西水柱前（左下）</b></td>
+              <td>在王後面打；避開死刑、人偶 2 個範圍和藍球。<b>不用範圍技</b></td></tr>
+            <tr><td>～1:09</td><td>轉場</td>
+              <td class="col-st"><span class="tag t-mit">減傷</span>留一個減傷給 P2</td>
+              <td>—</td>
+              <td>—</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div>
+        <h2>站位 1：瀑布落地 ～ 手亮藍光</h2>
+        <ul>
+          <li>ST 把手拉到中央偏西北（左上），等手出布亮藍光。</li>
+          <li>之後沿虛線回到南（下），站在王旁邊、MT 的西側（左）。</li>
+        </ul>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="沒水柱為南：ST 把手拉到中央偏西北，再走回南邊王的左側">
+          <defs><marker id="ar1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--st)"/></marker></defs>
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <circle cx="150" cy="150" r="70" fill="none" stroke="var(--arenaLine)" stroke-width="1.5"/>
+          <circle cx="150" cy="40" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <circle cx="40" cy="150" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <circle cx="260" cy="150" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <g font-size="10" text-anchor="middle" fill="var(--water)"><text x="150" y="30">北（D3）</text><text x="40" y="140">西（D4）</text><text x="260" y="140">東（H1）</text></g>
+          <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--muted)">
+            <text x="150" y="104">A</text><text x="196" y="154">B</text><text x="150" y="204">C</text><text x="104" y="154">D</text>
+          </g>
+          <circle cx="126" cy="122" r="13" fill="var(--hand)" opacity=".85"/>
+          <text x="126" y="126" text-anchor="middle" font-size="10" fill="var(--surface)">手</text>
+          <line x1="140" y1="150" x2="140" y2="238" stroke="var(--st)" stroke-width="2.5" marker-end="url(#ar1)" stroke-dasharray="5 3"/>
+          <circle cx="160" cy="258" r="15" fill="var(--fg)" opacity=".75"/><text x="160" y="262" text-anchor="middle" font-size="9" fill="var(--bg)">本體</text>
+          <rect x="178" y="250" width="22" height="15" rx="3" fill="var(--mt)"/><text x="189" y="261" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">MT</text>
+          <rect x="119" y="250" width="22" height="15" rx="3" fill="var(--st)"/><text x="130" y="261" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">ST</text>
+          <rect x="129" y="142" width="22" height="15" rx="3" fill="var(--st)"/><text x="140" y="153" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">ST</text>
+          <text x="150" y="292" text-anchor="middle" font-size="10" fill="var(--muted)">南（下，沒有水柱）</text>
+        </svg>
+        <figcaption>照攻略的方向：沒有水柱的一側是南（下）。</figcaption>
+      </figure>
+    </section>
+
+    <section class="step">
+      <div>
+        <h2>站位 2：痛苦之手後</h2>
+        <ul>
+          <li>藍球從水柱往王的方向移動，MT 等藍球動了才沿外圈把王拉到西水柱前（左下）。</li>
+          <li>ST 跟過去拿回手的仇恨，和 MT 錯開站，分別吃本體和手的死刑。</li>
+          <li>紅色區域不會被人偶的範圍攻擊打到。</li>
+        </ul>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="痛苦之手後 MT 沿外圈把王拉到西水柱前，ST 在旁邊拿手">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--mt)"/></marker>
+            <marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--orb)"/></marker>
+          </defs>
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <path d="M 52 249 A 140 140 0 0 0 218 272 L 202 244 A 108 108 0 0 1 74 226 Z" fill="var(--safe)"/>
+          <circle cx="150" cy="150" r="70" fill="none" stroke="var(--arenaLine)" stroke-width="1.5"/>
+          <circle cx="150" cy="40" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <circle cx="40" cy="150" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <circle cx="260" cy="150" r="48" fill="var(--waterfill)" stroke="var(--water)"/>
+          <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--muted)">
+            <text x="150" y="104">A</text><text x="196" y="154">B</text><text x="150" y="204">C</text><text x="104" y="154">D</text>
+          </g>
+          <circle cx="150" cy="60" r="7" fill="var(--orb)"/><circle cx="55" cy="150" r="7" fill="var(--orb)"/>
+          <line x1="150" y1="70" x2="152" y2="232" stroke="var(--orb)" stroke-width="2" marker-end="url(#ar3)"/>
+          <line x1="62" y1="157" x2="140" y2="232" stroke="var(--orb)" stroke-width="2" marker-end="url(#ar3)"/>
+          <path d="M 150 270 A 120 120 0 0 1 58 228" fill="none" stroke="var(--mt)" stroke-width="3" marker-end="url(#ar2)"/>
+          <circle cx="46" cy="210" r="15" fill="var(--fg)" opacity=".75"/><text x="46" y="214" text-anchor="middle" font-size="9" fill="var(--bg)">本體</text>
+          <rect x="14" y="184" width="22" height="15" rx="3" fill="var(--st)"/><text x="25" y="195" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">ST</text>
+          <rect x="62" y="184" width="22" height="15" rx="3" fill="var(--mt)"/><text x="73" y="195" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">MT</text>
+          <text x="150" y="298" text-anchor="middle" font-size="10" fill="var(--muted)">紅色區：不會被人偶範圍打到</text>
+        </svg>
+        <figcaption>藍球往南（下）移動，MT 沿外圈把王拉到西（左）；ST 拿手後和 MT 錯開站。</figcaption>
+      </figure>
+    </section>
+
+  <section class="step nofig">
+    <div>
+      <h2>影片簡報翻譯（處理法解說 2:04～6:44）</h2>
+      <div class="warn" style="margin-top:6px">截圖方向和本頁一致：沒有水柱的一側是南（下），王拉到南邊。</div>
+      <div class="slides">
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布（0:18）" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">01 / 10</div><h3>瀑布（0:18）</h3><p>瀑布落地後本體 HP 會減半、手會出現，所以在<b>落地到開戰 25 秒之間</b>開爆發。</p><p><b>落地就爆發：</b>瀑布詠唱時吃藥，看到落地特效就開爆發。ST（負責拿手的仇恨時）配合不上這個爆發，所以<b>開場就先爆發</b>。</p><p><b>25 秒爆發：</b>瀑布落地後 2～3 個 GCD 吃藥，3～4 個 GCD 開爆發。這種情況 ST 也一起爆發。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布落地後（MT）" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">02 / 10</div><h3>瀑布落地後（MT）</h3><p>拉好位置後，等手<b>出布、亮藍光</b>再挑釁。</p><p>手會第 1 次砸地，砸地後 MT 開無敵，接本體和手打過來的坦克強攻擊（死刑）。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布落地後（ST）" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">03 / 10</div><h3>瀑布落地後（ST）</h3><p>以沒有水柱的地方為南。</p><p>要做猜拳，手必須離本體一定距離以上，所以把手拉到<b>中央稍微偏西北</b>（圖的左上）。</p><p>手出布、亮藍光之後，走到本體那邊。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布落地後（引導水柱）1" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">04 / 10</div><h3>瀑布落地後（引導水柱）1</h3><p>以沒有水柱的地方為南。水柱分配：<b>西 D4、北 D3、東 H1</b>（圖的左、上、右）。</p><p>引導水柱放出的<b>有預兆</b>扇形範圍：</p><p>D4：在水柱南側，往外圈（西）引導。</p><p>D3：在水柱西南側（東南側也可以），在內圈的線上引導。</p><p>H1：在水柱南側，往外圈（東）引導。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布落地後（引導水柱）2" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">05 / 10</div><h3>瀑布落地後（引導水柱）2</h3><p>引導水柱放出的<b>無預兆</b>扇形範圍：</p><p>H1、D4：在水柱南側，離開水柱往南引導。</p><p>D3：引導完有預兆的扇形後，經過場地中央走到本體後面，在那裡引導扇形。</p><p>※ H1、D4 一定要離開水柱往南引導，靠太近的話會變成引導到北邊的水柱。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：瀑布落地後（其他人）" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">06 / 10</div><h3>瀑布落地後（其他人）</h3><p>以沒有水柱的地方為南。</p><p>D1、D2、H2 沒有要引導的東西，走到本體後面就好。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：痛苦之手（0:42）" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">07 / 10</div><h3>痛苦之手（0:42）</h3><p>痛苦之手原本要把本體和手的 HP 打平再吃，這個打法<b>不打平，改用減傷硬吃</b>。</p><p>減傷時機：<br>0:35 分離之手（第 1 次砸地）<br>0:37 坦克強攻擊<br>0:38 普羅蒂恩波（無預兆扇形）<br>0:42 痛苦之手（第 2 次砸地）</p><p><b>減傷在坦克強攻擊前後開，盾在普羅蒂恩波之後上。</b></p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：痛苦之手 減傷範例" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">08 / 10</div><h3>痛苦之手 減傷範例</h3><p><b>坦克：</b>雪仇＋各職業的全團減傷或盾。武裝戍衛不夠時才用。</p><p><b>DPS：</b>牽制、昏亂給手，遠程的 2 種減傷都放；武器破壞給手；有武僧放真言，有鐮刀放神秘紋。</p><p><b>補師：</b>白魔 節制；占星 命運之輪、中間學派、陽星相位；學者 野戰治療陣、異想的幻光、秘策、鼓舞激勵之策、展開戰術、熾天的幕簾；賢者 泛輸血、坎譜色、整體論、活化、均衡預後。</p><p>※ <b>降低敵人傷害的減傷一定要給手</b>：雪仇、牽制、昏亂、武器破壞。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：痛苦之手後 1" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">09 / 10</div><h3>痛苦之手後 1</h3><p>3 個水柱中有 2 個會出現<b>藍球</b>，往本體方向移動。藍球碰到人偶以外的東西就會滅團，所以要引導到不會碰到本體和手。</p><p>痛苦之手後，MT 把 boss <b>盡量沿外圈拉到西邊水柱前</b>（圖的左邊）。等藍球開始移動後再拉比較安全。</p><p>為了不讓引導路線上的人偶被打動，<b>不要用範圍攻擊</b>。</p></div></article>
+        <article class="slide"><img src="DATA" alt="原影片簡報：痛苦之手後 2" loading="lazy" width="868" height="476"><div class="tr"><div class="eyebrow">10 / 10</div><h3>痛苦之手後 2</h3><p>引導完 <b>ST 拿手的仇恨</b>。本體和手都會打坦克強攻擊，MT 和 ST 要站在不會重疊的位置分別吃。</p><p>DPS 和補師在本體後面打，只要不被坦克強攻擊、人偶的 2 個範圍、藍球打到，站哪裡都可以。</p><p>圖中<b>紅色區域</b>不會被人偶的範圍攻擊打到。</p></div></article>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- ================= P1.5 ================= -->
+  <section class="panel" id="panel-p15" data-tab="p15" hidden>
+    <div>
+      <div class="eyebrow">P1.5 骰子（麻將）· 1211 式</div>
+      <p class="lede" style="margin-top:6px">這段沒有坦克專屬的工作，ST 跟大家一樣依骰子號碼處理。重點是看懂三種機制，然後照 1211 的規則跟著照準移動。</p>
+      <p class="src" style="margin-top:6px">來源：<a href="https://www.youtube.com/watch?v=AMdtMyvbPNs&t=1037s">ぬけまる（基礎解說 17:17、1211 式 24:13）</a></p>
+    </div>
+    <section class="step nofig">
+      <div>
+        <h2>機制講解</h2>
+        <p>這階段只有三種機制：</p>
+        <ul>
+          <li><b>阿爾法之劍</b>（前方扇形）：追擊者從<b>奇數號</b>背後出現，對著奇數號往前劈一刀。</li>
+          <li><b>超級衝擊</b>（直線突進）：<b>偶數號</b>挨追擊者的直線衝撞，會被擊退。</li>
+          <li><b>照準</b>（圓形 AOE 連發 10 次）：一對圓圈順時針轉 4 次，接著中間 1 次，再順時針轉 4 次，最後中間 1 次。</li>
+        </ul>
+        <p style="margin-top:8px">追擊者從 1 號開始依序出現，兩人一組（1&amp;2、3&amp;4、5&amp;6、7&amp;8），在照準的空檔處理。</p>
+        <div class="warn" style="margin-top:10px">扇形要用<b>正面</b>吃、突進要用<b>背面</b>吃，不然擊退距離會變長，兩個人都會被打到場外死掉。</div>
+      </div>
+    </section>
+    <section class="step">
+      <div>
+        <h2>1211 式跑法</h2>
+        <p>特點是不用判斷上下方向，全員跟著照準跑，到自己號碼對應的位置停下來處理追擊者。</p>
+        <ul>
+          <li><b>1、2 號</b>：從第 1 發照準順時針往旁邊走 <b>1</b> 格，在第 2 發照準的線上處理。</li>
+          <li><b>3、4 號</b>：從 1、2 號的位置再走 <b>2</b> 格，在第 4 發的線上處理。</li>
+          <li><b>5、6 號</b>：從 3、4 號的位置再走 <b>1</b> 格，在第 6 發的線上處理。</li>
+          <li><b>7、8 號</b>：從 5、6 號的位置再走 <b>1</b> 格，在第 7 發的線上處理。</li>
+          <li>名字 1-2-1-1 就是這樣來的。其他人跟著照準一路跑過去，不要停在正在處理的人旁邊。</li>
+        </ul>
+        <div class="skill" style="margin-top:10px">
+          <b>站法細節：</b>奇數號站外圈，<b>一定要面向場外</b>，偶數號站在奇數號內側一點。<br>
+          3、4 號處理時，其他人注意不要被 4 號的突進捲進去。
+        </div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="1211 式：從第一發照準順時針依序 1、2、1、1 格的四個處理點">
+          <defs><marker id="arg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker></defs>
+          <circle cx="150" cy="150" r="138" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <circle cx="150" cy="150" r="80" fill="none" stroke="var(--arenaLine)" stroke-width="1.2"/>
+          <circle cx="150" cy="58" r="40" fill="var(--goldfill)" stroke="var(--gold)"/>
+          <text x="150" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">第 1 發</text>
+          <path d="M 190 30 A 125 125 0 0 1 270 110" fill="none" stroke="var(--gold)" stroke-width="2" marker-end="url(#arg)"/>
+          <path d="M 275 140 A 125 125 0 0 1 225 250" fill="none" stroke="var(--gold)" stroke-width="2" marker-end="url(#arg)"/>
+          <path d="M 205 262 A 125 125 0 0 1 165 274" fill="none" stroke="var(--gold)" stroke-width="2" marker-end="url(#arg)"/>
+          <path d="M 135 276 A 125 125 0 0 1 95 262" fill="none" stroke="var(--gold)" stroke-width="2" marker-end="url(#arg)"/>
+          <g font-size="11" font-weight="700" text-anchor="middle">
+            <circle cx="236" cy="66" r="13" fill="var(--st)"/><text x="236" y="70" fill="var(--surface)">1·2</text>
+            <circle cx="245" cy="228" r="13" fill="var(--st)"/><text x="245" y="232" fill="var(--surface)">3·4</text>
+            <circle cx="150" cy="276" r="13" fill="var(--st)"/><text x="150" y="280" fill="var(--surface)">5·6</text>
+            <circle cx="62" cy="240" r="13" fill="var(--st)"/><text x="62" y="244" fill="var(--surface)">7·8</text>
+          </g>
+          <g font-size="10" fill="var(--muted)" text-anchor="middle">
+            <text x="262" y="96">+1</text><text x="282" y="198">+2</text><text x="190" y="290">+1</text><text x="108" y="292">+1</text>
+          </g>
+        </svg>
+        <figcaption>以第 1 發照準為起點順時針移動，每組在自己的線上停下處理（示意圖，實際方向隨照準起點變化）。</figcaption>
+      </figure>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>ST 減傷</h2>
+        <p>團減表上骰子前（麻將前）只有 H2 和 D3 要給，ST 不用開。抽到偶數號、被擊退的時候，記得用背面吃突進。</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= P2 ================= -->
+  <section class="panel" id="panel-p2" data-tab="p2" hidden>
+    <div>
+      <div class="eyebrow">P2 巡航驅逐者 + 殘暴正義號 · SEP 改（三傳 D 找 TH）</div>
+      <p class="lede" style="margin-top:6px">P2 是全本最複雜的一段，ST 從頭到尾負責<b>巡航驅逐者（飛機）</b>，還要參與傳毒。第三次傳毒用「D 找 TH」：坦克和補師原地不動，等 DPS 來找自己。</p>
+      <p class="src" style="margin-top:6px">來源：<a href="https://www.bilibili.com/video/BV1Hd4y1S7yg/">魚子醬 P2 SEP 改詳解</a> · <a href="https://www.bilibili.com/video/BV1gX4y117G5/">團減參考</a></p>
+    </div>
+    <section class="step nofig">
+      <div>
+        <h2>機制重點（ST 要懂的部分）</h2>
+        <ul>
+          <li><b>毒（最終判決）</b>：4 種顏色，一開始給 4 DPS 或 2T2H。帶毒的人碰到<b>不同顏色</b>毒的人會直接死；碰到沒毒的人會把毒傳過去。除了傳毒時間，帶毒的人不要亂碰其他人。</li>
+          <li><b>疫苗</b>：終審開庭後 8 人都會拿到一種顏色的疫苗（4 DPS 一組、4 TH 一組）。最後終審閉庭時，<b>每個人都要有疫苗＋同色的毒</b>，否則團滅。疫苗出現後死人就過不了 P2。</li>
+          <li><b>水雷分攤</b>：雷 2 人分攤、水 3～4 人分攤，攤完原地留下水龍捲。帶易傷的人不能吃下一次同屬性分攤。</li>
+          <li><b>飛輪</b>：場外出現，鎖定玩家位置衝刺擊退。開場八方站位正確的話，兩個飛輪之間的 90 度扇形是安全區。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step">
+      <div>
+        <h2>開場 ～ 第一次傳毒</h2>
+        <ul>
+          <li>Boss 落地可選中後，<span class="key k-mt">MT</span> 挑正義號、<span class="key k-st">ST</span> 挑<b>飛機</b>，都拉到場中。任一隻死掉另一隻會狂暴，全程注意兩隻的血量。</li>
+          <li>系統連結特效出現後往場邊散開、看飛輪位置，看到飛輪特效再原路回場中。</li>
+          <li>光子砲判定後，ST 把飛機<b>拉成面向場外</b>，其他三組先做第一次傳毒。</li>
+          <li>看到飛機讀<b>迴旋碎踢</b>（擊退正面扇形），ST 立刻走到<b>飛機背後找 D2 傳毒</b>，傳完回到飛機側面。</li>
+          <li>傳完注意避開水雷分攤，也不要靠近水龍捲。</li>
+        </ul>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="光子砲後 ST 把飛機拉成面向場外，迴旋碎踢時到飛機背後找 D2 傳毒">
+          <defs><marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--st)"/></marker></defs>
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--muted)">
+            <text x="150" y="26">A</text><text x="280" y="154">B</text><text x="150" y="286">C</text><text x="20" y="154">D</text>
+          </g>
+          <path d="M 200 150 L 280 110 A 90 90 0 0 1 280 190 Z" fill="var(--safe)"/>
+          <text x="262" y="154" text-anchor="middle" font-size="9" fill="var(--fg)">碎踢</text>
+          <circle cx="190" cy="150" r="16" fill="var(--fg)" opacity=".75"/><text x="190" y="154" text-anchor="middle" font-size="9" fill="var(--bg)">飛機</text>
+          <rect x="140" y="142" width="22" height="15" rx="3" fill="var(--st)"/><text x="151" y="153" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">ST</text>
+          <rect x="140" y="162" width="22" height="15" rx="3" fill="var(--muted)"/><text x="151" y="173" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">D2</text>
+          <text x="150" y="200" text-anchor="middle" font-size="10" fill="var(--muted)">飛機背後傳毒</text>
+        </svg>
+        <figcaption>飛機面向場外，迴旋碎踢的扇形朝外；ST 和 D2 在飛機背後碰一下傳毒。</figcaption>
+      </figure>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>導彈齊發 ～ 第二次傳毒</h2>
+        <ul>
+          <li>正義號讀<b>導彈齊發</b>時，會隨機點一個 T 冰導彈。被點到的 T 把<b>冰圈放在水龍捲旁邊</b>，盡量遠離場中。</li>
+          <li>同時有兩個地雷要踩：<b>ST 開全減傷＋衝刺</b>，把兩個地雷踩掉，接著<b>找 D2 傳毒</b>（第二次傳毒）。</li>
+          <li>第二次水雷分攤時，ST 可以把飛機稍微往左拉一點，讓出分攤空間。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>打盾 ～ 第三次傳毒（D 找 TH）</h2>
+        <ul>
+          <li>第二次水雷後，ST 盡量靠近飛機，<b>立刻把飛機拉到面向 D 點方向</b>，準備打盾。</li>
+          <li>飛機無敵、正面出現電漿護盾，<b>大約 3 個 GCD 內要打破</b>，否則狂暴。D2、D4 主打，ST 和 D3 有條件就一起打。</li>
+          <li>第三次傳毒用 <b>D 找 TH</b>：ST 打完盾<b>原地不動</b>，看狀態列自己的疫苗顏色，等同色毒的 DPS 來找你。不要亂動，不然會兩個人互相追著跑。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>最後水雷 ～ 終審閉庭</h2>
+        <ul>
+          <li>最後一次水雷分攤：ST <b>貼邊把飛機拉到冰塊下方</b>，注意不要撞到人。</li>
+          <li>終審排隊：帶毒的 4 人在冰塊上方依<b>藍、橙、綠、紫</b>排隊，沒毒的人依疫苗顏色去找同色毒的人貼貼。</li>
+          <li>ST 要等飛機開始讀<b>螺旋槳強風</b>才依藍橙綠紫去自己的位置。如果 ST 自己帶毒，接毒的人會在對應位置等你。</li>
+          <li>螺旋槳強風打到的人會混亂、秒殺身邊隊友，<b>躲在冰塊後面</b>就能擋住。判定前所有人一定要貼緊。</li>
+          <li>終審後：雙 T 到 C 點附近吃光子砲，接著是<b>雙 T 分攤死刑（雙重火箭飛拳）</b>，開減傷吃。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>ST 減傷（P2）</h2>
+        <div class="tbl"><table>
+          <thead><tr><th>時機</th><th>ST 要開的</th></tr></thead>
+          <tbody>
+            <tr><td>開場飛踢</td><td>團減一個（騎士：聖光幕簾）</td></tr>
+            <tr><td>龍捲風 1</td><td>雪仇＋團減＋自身減傷</td></tr>
+            <tr><td>踩地雷</td><td>全減傷＋衝刺</td></tr>
+            <tr><td>龍捲風 2</td><td>雪仇＋團減（武裝戍衛或聖光幕簾）＋自身減傷</td></tr>
+            <tr><td>雙重火箭飛拳</td><td>和 MT 一起分攤，開自身減傷</td></tr>
+          </tbody>
+        </table></div>
+        <p class="src" style="margin-top:8px">團減表的作者提醒：P2 壓力主要在雙 T 身上，補師要特別關注雙 T 的血量。</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= P3 ================= -->
+  <section class="panel" id="panel-p3" data-tab="p3" hidden>
+    <div>
+      <div class="eyebrow">P3 至尊亞歷山大 · 時停＋一運（魚子醬） · 次元斷絕 34 固定</div>
+      <p class="lede" style="margin-top:6px">前半段（時停、一運）照魚子醬的打法；後半段的次元斷絕用 34 固定法。騎士 ST 最需要注意的是兩次死刑的換 T 與無敵安排。</p>
+      <p class="src" style="margin-top:6px">來源：<a href="https://www.bilibili.com/video/BV1hT411R7RF/">魚子醬 P3（除二運）</a> · <a href="https://www.youtube.com/watch?v=3wtfeXognIY&t=665s">ぬけまる 次元斷絕 34 固定</a></p>
+    </div>
+    <section class="step nofig">
+      <div>
+        <h2>時停（依身上的 debuff 站位，T 奶組）</h2>
+        <ul>
+          <li><b>近線</b>：到飛機和正義號中間，站在<b>右邊 boss 正上方</b>，和同組 DPS 隔大約一個標點的距離。</li>
+          <li><b>沒點名</b>：到<b>左邊 boss 上方</b>。</li>
+          <li><b>遠線</b>：到場地正左（9 點方向）。左邊 boss 是飛機就站紅點內側引導飛機的劈刀；左邊是正義號就直接貼邊。</li>
+          <li><b>電（加重罪）</b>：直接到正義號那一側貼邊。</li>
+          <li>時停結束後飛機劈最近的 3 人、正義號噴最近的 2 人，傷害不能重疊。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>第一次死刑（時停後）</h2>
+        <ul>
+          <li>時停結束，<span class="key k-mt">MT</span> 到 A 點方向挑亞歷山大。死刑是對一仇一次懲戒射線（附魔法易傷），接著對下一個一仇三次扇形。</li>
+          <li><b>MT 是戰士</b>：死鬥單吃，第 4 下判定後退避給 ST，<b>ST 挑釁</b>。</li>
+          <li><b>MT 是暗黑</b>：行屍走肉單吃，三次順劈後退避給 ST，<b>ST 挑釁</b>。</li>
+          <li><b>需要換 T 的情況</b>：ST 要吃後面三刀，補師要顧好 ST 的血；前兩刀如果把 ST 劈死，第三刀會劈到人群，可能直接團滅。</li>
+        </ul>
+        <div class="skill" style="margin-top:10px">
+          <b>騎士的第二次死刑：</b>看時停的時候<b>神聖領域</b>的 CD 還剩多久。<b>104 秒以內</b>，第二次死刑可以開無敵單吃；超過就要換 T。以現在野團的打速，<b>一般默認騎士需要換 T</b>。
+        </div>
+      </div>
+    </section>
+    <section class="step">
+      <div>
+        <h2>一運（時空潛行）</h2>
+        <ul>
+          <li>開場先看 A 或 C 點，確認亞歷山大出現在哪一邊。</li>
+          <li>被點<b>綠球連線</b>：到亞歷山大那半場，走到自己綠球的對側交叉拉線，<b>原地等綠球撞到自己再走</b>。</li>
+          <li>被點<b>黃圈</b>：照位置放結晶，先到先得，判定後立刻開衝刺往亞歷山大方向跑。</li>
+          <li>真心變成金色後，雙 T 引導<b>正義號的噴火</b>：<span class="key k-mt">MT</span> 站正義號面前的紅點，<span class="key k-st">ST</span> 站在<b>正義號和它靠真心那一側的紅點之間</b>。雙 T 要對穿時，走離場邊約 1/4 直徑的弧線。</li>
+          <li>噴火後以真心飛走的位置為 12 點：<b>雙 T 無腦去左邊貼邊</b>，和集團罪的 DPS 三人分攤。</li>
+          <li>飛機三刀後正義號超級跳最遠的人：<b>ST 到 B 點方向貼邊</b>，開減傷引導超級跳。之後處理第二次死刑，一運結束。</li>
+        </ul>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="一運後半：雙 T 左邊分攤，ST 到 B 點貼邊引導超級跳">
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--muted)">
+            <text x="150" y="26">A</text><text x="280" y="154">B</text><text x="150" y="286">C</text><text x="20" y="154">D</text>
+          </g>
+          <circle cx="150" cy="150" r="16" fill="var(--fg)" opacity=".75"/><text x="150" y="154" text-anchor="middle" font-size="9" fill="var(--bg)">飛機</text>
+          <circle cx="262" cy="150" r="30" fill="var(--safe)"/>
+          <rect x="252" y="143" width="22" height="15" rx="3" fill="var(--st)"/><text x="263" y="154" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">ST</text>
+          <text x="250" y="196" text-anchor="middle" font-size="10" fill="var(--muted)">超級跳</text>
+          <text x="150" y="232" text-anchor="middle" font-size="10" fill="var(--muted)">以 A 點為 12 點</text>
+        </svg>
+        <figcaption>飛機三刀後，ST 貼 B 點邊、開減傷吃超級跳；其他人在飛機與 B 點之間待機，三刀後立刻遠離 B 點。</figcaption>
+      </figure>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>次元斷絕（34 固定法）機制講解</h2>
+        <ul>
+          <li>以亞歷山大的位置為<b>下</b>（它固定出現在這一側），正義號和追擊者隨機出現在右上或左上。一開始大家先在中央集合、面向上方。</li>
+          <li>追擊者消失後發骰子號碼，同時正義號左右出現<b>輪鋸</b>。輪鋸的軌道要在場中央交叉成十字。</li>
+          <li><b>懺悔之間</b>：東西各一個，爆 3 次，爆的時候一定要有人踩。踩的人會吃到易傷，不能連踩、也不能同時處理追擊者，所以由 6 個人輪流踩。</li>
+          <li>正義號超級跳最遠的人（固定是 3 或 4 號），接著對遠的人放<b>天啟射線</b>（大扇形）。</li>
+          <li>最後是<b>淨化熱線</b>（分攤）：上方是雙 T＋讀秒 DPS，下方是雙補＋讀秒 DPS，沒讀秒的 DPS 不要進。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step">
+      <div>
+        <h2>次元斷絕：照號碼走位</h2>
+        <div class="tbl"><table>
+          <thead><tr><th>號碼</th><th>位置與工作</th><th>親疏自行</th></tr></thead>
+          <tbody>
+            <tr><td>1、2</td><td>1 號左上紅點、2 號右上紅點，面向外圈；處理第一輪骰子，之後踩第 3 次懺悔</td><td>到紅點時</td></tr>
+            <tr><td>3、4</td><td>3 號左下紅點、4 號右下紅點（<b>不管正義號在哪都固定</b>）；吃超級跳，不要急著躲，骰子處理完再往左右兩側（3 點或 9 點）附近移動</td><td>正義號跳時</td></tr>
+            <tr><td>5、7</td><td>左上，比 1 號稍微下面一點；輪鋸飛出後到正左邊（9 點）。5 號踩第 1 次懺悔，踩完到左上紅點處理骰子</td><td>第 1 次懺悔後</td></tr>
+            <tr><td>6、8</td><td>右上，比 2 號稍微下面一點；輪鋸飛出後到正右邊（3 點）。6 號踩第 1 次懺悔，踩完到右上紅點處理骰子</td><td>—</td></tr>
+            <tr><td>7、8</td><td>踩第 2 次懺悔，踩完 7 號到左下紅點、8 號到右下紅點處理骰子</td><td>第 2 次懺悔後</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin-top:8px">號碼的分法：<b>奇數在左、偶數在右</b>。全部處理完回中央，<b>ST 到上方</b>和 MT、讀秒 DPS 一起分攤淨化熱線。</p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="次元斷絕號碼初始站位：奇數左、偶數右，3 和 4 固定在下方">
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <circle cx="90" cy="110" r="42" fill="var(--waterfill)" stroke="var(--water)"/>
+          <circle cx="210" cy="190" r="42" fill="var(--waterfill)" stroke="var(--water)"/>
+          <text x="150" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="var(--muted)">上</text>
+          <text x="150" y="292" text-anchor="middle" font-size="10" fill="var(--muted)">亞歷山大（下）</text>
+          <g font-size="11" font-weight="700" text-anchor="middle">
+            <circle cx="62" cy="52" r="11" fill="var(--st)"/><text x="62" y="56" fill="var(--surface)">1</text>
+            <circle cx="40" cy="80" r="11" fill="var(--st)"/><text x="40" y="84" fill="var(--surface)">5</text>
+            <circle cx="30" cy="104" r="11" fill="var(--st)"/><text x="30" y="108" fill="var(--surface)">7</text>
+            <circle cx="62" cy="248" r="11" fill="var(--st)"/><text x="62" y="252" fill="var(--surface)">3</text>
+            <circle cx="238" cy="52" r="11" fill="var(--mt)"/><text x="238" y="56" fill="var(--surface)">2</text>
+            <circle cx="260" cy="80" r="11" fill="var(--mt)"/><text x="260" y="84" fill="var(--surface)">6</text>
+            <circle cx="270" cy="104" r="11" fill="var(--mt)"/><text x="270" y="108" fill="var(--surface)">8</text>
+            <circle cx="238" cy="248" r="11" fill="var(--mt)"/><text x="238" y="252" fill="var(--surface)">4</text>
+          </g>
+          <text x="90" y="114" text-anchor="middle" font-size="9" fill="var(--water)">懺悔</text>
+          <text x="210" y="194" text-anchor="middle" font-size="9" fill="var(--water)">懺悔</text>
+        </svg>
+        <figcaption>輪鋸出現後依號碼散開：奇數（藍）在左、偶數（紅）在右，3、4 號固定在下方。</figcaption>
+      </figure>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>ST 減傷（P3）</h2>
+        <div class="tbl"><table>
+          <thead><tr><th>時機</th><th>ST 要開的</th></tr></thead>
+          <tbody>
+            <tr><td>結晶＋撞球</td><td>團減一個（聖光幕簾）</td></tr>
+            <tr><td>結晶破碎</td><td>團減一個（武裝戍衛或雪仇）</td></tr>
+            <tr><td>二運後分攤</td><td>團減一個</td></tr>
+            <tr><td>超級跳</td><td>引導超級跳時開自身減傷</td></tr>
+            <tr><td>火龍捲</td><td>先殺飛機，再在正義號疊到 13 層前殺掉。10 秒類的減傷在飛機死後給，15 秒以上的大約 3 層時給</td></tr>
+            <tr><td>神聖審判</td><td>距神聖審判剩約 4 秒時，雙 T 開自身盾和減傷吃 P3→P4 轉場大傷害</td></tr>
+          </tbody>
+        </table></div>
+        <p class="src" style="margin-top:8px">次元斷絕之後的 3 體 DPS 檢測：從正義號大約疊到 7 層開始，就要加強減傷、多用能力技。</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= P4 ================= -->
+  <section class="panel" id="panel-p4" data-tab="p4" hidden>
+    <div>
+      <div class="eyebrow">P4 完美亞歷山大 · 魚子醬</div>
+      <p class="lede" style="margin-top:6px">P4 的 DPS 檢測不嚴，難點在開場動靜、二測和地火減傷。ST 的工作主要是三次死刑和團減。</p>
+      <p class="src" style="margin-top:6px">來源：<a href="https://www.bilibili.com/video/BV1DD4y1t7LZ/">魚子醬 P4 詳解</a> · <a href="https://www.bilibili.com/video/BV1gX4y117G5/">團減參考</a></p>
+    </div>
+    <section class="step">
+      <div>
+        <h2>開場：終審判決＋動靜</h2>
+        <ul>
+          <li><span class="key k-mt">MT</span> 保持一仇，把 boss 拉向 A 點。</li>
+          <li><b>大光</b>：到 A 點方向盡量貼邊。<b>大暗</b>：站 C 點正中。<b>其他 6 人</b>（小光、小暗）：到 C 點上方集合，小暗盡量靠近大暗。</li>
+          <li><b>禁止命令</b>（靜）：讀條過半前按 ESC 取消選中，然後完全不動，連在小隊頻道打字都算違令。<b>行動命令</b>（動）：要一直移動，或原地一直跳。</li>
+          <li><b>先處理動靜，再去 debuff 位置</b>，動靜判定後還有約 3 秒可以就位。大光或大暗如果死於動靜，會連帶小光或小暗一起死，直接團滅。</li>
+          <li>接著連續兩次制導，分散或兩人分攤，順序隨機。分散時 DPS 往下、T 和補師往上。</li>
+        </ul>
+      </div>
+      <figure>
+        <svg viewBox="0 0 300 300" role="img" aria-label="P4 開場：大光在 A 點貼邊，大暗在 C 點中心，其他人在 C 點上方">
+          <circle cx="150" cy="150" r="140" fill="var(--arena)" stroke="var(--arenaLine)" stroke-width="2"/>
+          <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--muted)">
+            <text x="150" y="44">A</text><text x="262" y="154">B</text><text x="150" y="262">C</text><text x="38" y="154">D</text>
+          </g>
+          <circle cx="150" cy="20" r="13" fill="var(--gold)"/><text x="150" y="24" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">大光</text>
+          <circle cx="150" cy="246" r="13" fill="var(--hand)"/><text x="150" y="250" text-anchor="middle" font-size="9" font-weight="700" fill="var(--surface)">大暗</text>
+          <ellipse cx="150" cy="212" rx="42" ry="14" fill="var(--waterfill)" stroke="var(--water)"/>
+          <text x="150" y="216" text-anchor="middle" font-size="9" fill="var(--fg)">其餘 6 人</text>
+        </svg>
+        <figcaption>開荒時只要記這三個位置；熟了之後小光可以站更靠 C 點下方，拉開和大光的距離。</figcaption>
+      </figure>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>三次死刑</h2>
+        <ul>
+          <li><b>第一次（一測後）</b>：boss 讀<b>加重誅罰</b>，對一仇打 3 次可雙人分攤的圓形死刑；接著讀<b>誅罰</b>，對一仇打 1 次並附 30 秒物理易傷。誅罰讀條時換 T，讓 MT 滿血吃。這次<b>雙 T 都要開全減傷</b>。</li>
+          <li><b>第二次（二測後）</b>：<span class="key k-st">ST</span> 到 <b>A 點方向準備單吃</b>，看到 boss 發光振翅時開<b>神聖領域</b>，誅罰讀條時完成開關盾、挑釁、退避，把仇恨換回去。</li>
+          <li><b>第三次（第一次地火後）</b>：<span class="key k-mt">MT</span> 開無敵單吃。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>一測、二測（觀測自己的影子）</h2>
+        <ul>
+          <li>Boss 讀未來觀測時，找一塊沒人的地方看自己的影子，影子身上的特效就是你等一下會被點的機制。</li>
+          <li><b>一測</b>：大圈點名到 A 點附近放；電和集團罪分左右兩邊。看哪一邊沒被雷射蓋到，那邊就是安全區。</li>
+          <li><b>二測</b>：大光到 A 點方向貼邊，大暗到 B 點；小光都站大暗左上，小暗依近線、遠線、無點名分到大暗旁邊。強制移動後先處理 5 人分攤和超級跳，再處理分攤或分散（光上暗下四四分攤），最後去月環分身的腳下。</li>
+          <li>二測結束後 ST 直接去 A 點方向，準備第二次死刑。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>地火（神聖大審判）與最後的籠子</h2>
+        <ul>
+          <li>看圖中三個位置的地火順序，<b>三穿一</b>：第一火在左、第二火在右，第三火一定在中間，從中間穿到左邊。123 或 321 的情況，右上的地火一定會和左邊同時刷。</li>
+          <li>地火期間 boss 讀<b>株連</b>：隨機點一人的巨大傷害，8 人分攤，要做足減傷。</li>
+          <li>最後從 A、B 之間的籠子開始順時針落下，依 DPS 由低到高踩 1～8 號籠子。籠子落下時裡面沒人會直接團滅。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="step nofig">
+      <div>
+        <h2>ST 減傷（P4）</h2>
+        <div class="tbl"><table>
+          <thead><tr><th>時機</th><th>ST 要開的</th></tr></thead>
+          <tbody>
+            <tr><td>開場制導</td><td>可以交出所有團減：雪仇＋聖光幕簾＋武裝戍衛</td></tr>
+            <tr><td>一測後死刑</td><td>加重誅罰雙 T 分攤，開全減傷</td></tr>
+            <tr><td>地火 1</td><td>交給 MT 和補師，ST 不用開</td></tr>
+            <tr><td>二測後死刑</td><td>神聖領域單吃</td></tr>
+            <tr><td>地火 2</td><td>雪仇＋聖光幕簾＋武裝戍衛（ST 主要負責這一波）</td></tr>
+          </tbody>
+        </table></div>
+        <p class="src" style="margin-top:8px">兩次地火的減傷，野團時最好和隊友喊一下分配，避免撞在一起。</p>
+      </div>
+    </section>
+  </section>
+
+  <p class="src">參考影片：<a href="https://www.youtube.com/watch?v=mxy_ZYEYwlE">P1 ふうcだよ</a> · <a href="https://www.youtube.com/watch?v=AMdtMyvbPNs">P1.5 ぬけまる</a> · <a href="https://www.bilibili.com/video/BV1Hd4y1S7yg/">P2 魚子醬</a> · <a href="https://www.bilibili.com/video/BV1hT411R7RF/">P3 魚子醬</a> · <a href="https://www.youtube.com/watch?v=3wtfeXognIY">P3 ぬけまる</a> · <a href="https://www.bilibili.com/video/BV1DD4y1t7LZ/">P4 魚子醬</a></p>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('nav.tabs a'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  function show(){
+    var id=(location.hash||'#p1').slice(1);
+    if(!panels.some(function(p){return p.dataset.tab===id})) id='p1';
+    panels.forEach(function(p){p.hidden=p.dataset.tab!==id});
+    tabs.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  }
+  window.addEventListener('hashchange',function(){show();window.scrollTo(0,0)});
+  show();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,27 @@
+<style>
+.rn-thm{position:fixed;top:12px;right:12px;z-index:60;font:13px/1.4 "Noto Sans TC",system-ui,sans-serif}
+.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit}
+.rn-thm>button:hover,.rn-thm>button:focus-visible{border-color:currentColor;outline:none}
+.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:150px;max-height:70vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.rn-thm ul[hidden]{display:none}
+.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.rn-thm li button:hover,.rn-thm li button:focus-visible{background:rgba(127,127,127,.15);outline:none}
+.rn-thm li button[aria-checked="true"]{font-weight:700}
+.rn-thm li button[aria-checked="true"]::after{content:"✓";margin-left:auto}
+.rn-thm .sw{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid rgba(128,128,128,.4)}
+.rn-thm small{display:block;padding:6px 8px 2px;opacity:.7;font-size:11px}
+</style>
+<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu">🎨 <span id="rn-thm-name">跟系統</span></button>
+<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li role="presentation"><small>全站共用</small></li></ul></div>
+<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},R=document.documentElement,btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),items=[].slice.call(menu.querySelectorAll("[data-thm]"));
+function set(t,save){if(B[t])t=B[t];if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
+if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}
+items.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});nm.textContent=menu.querySelector('[data-thm="'+t+'"]').textContent;
+if(save)try{localStorage.setItem("raid-notes-theme",t)}catch(e){}}
+function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o)}
+btn.onclick=function(e){e.stopPropagation();open(menu.hidden)};
+items.forEach(function(b){b.onclick=function(){set(b.dataset.thm,true);open(false);btn.focus()}});
+document.addEventListener("click",function(e){if(!menu.hidden&&!menu.contains(e.target))open(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!menu.hidden){open(false);btn.focus()}});
+window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")set(e.newValue||"auto",false)});
+var t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}set(t,false)})();</script>
