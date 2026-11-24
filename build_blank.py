@@ -209,6 +209,13 @@ for lab, nm, eb in AUTO2:
          data=data_block(W + lab + '/data.js', 'keep'), cur=lab + '.html', spans=ph if len(ph) > 1 else [],
          hints=json.load(open(W + lab + '/hints.json', encoding='utf8')) if os.path.exists(W + lab + '/hints.json') else [], keep_figs=False,
          hint_t=json.load(open(W + lab + '/hint_t.json', encoding='utf8')))
+    if lab == 'necronx':  # 已填本站建議減傷軸（necronx/add_mit.py），不再是空白筆記
+        p = W + lab + '.html'; t = open(p, encoding='utf8').read()
+        t = t.replace(nm + ' 空白筆記', nm + ' 時間軸小抄').replace(eb + ' · 空白筆記', eb + ' · 時間軸小抄')
+        old = '空白筆記</b>：只有 Boss 技能時間軸和機制標籤，減傷、站位都是空的。'
+        assert old in t
+        t = t.replace(old, '本站建議減傷軸</b>：照預設隊伍（MT 絕槍、ST 騎士、H1 占星、H2 學者、D1 武僧、D2 武士、D3 舞者、D4 召喚）排好全隊減傷和雙 T 個人減傷，野團可以直接參考；職業不同的話按「隊伍職業」換掉再調。')
+        open(p, 'w', encoding='utf8').write(t)
 
 # author pages accept codes/files from their blank versions
 for f, a in [('m8s.html', 'M8SB1:'), ('tea.html', 'TEAB1:')]:
