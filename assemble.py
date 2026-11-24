@@ -1,5 +1,5 @@
 import shutil, os
-W='/home/claude/work/'; R='/home/claude/m8s/'
+W='/home/claude/work/'; R='/home/claude/raid-notes/'
 head=open('/tmp/head.txt',encoding='utf8').read() if os.path.exists('/tmp/head.txt') else None
 head=open(W+'page_head.txt',encoding='utf8').read()
 
@@ -46,9 +46,12 @@ for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea
         s=s[:j]+'\n  '+credit(f)+s[j:]
     open(R+f+'.html','w',encoding='utf8').write(head+s)
 TH=open(W+'theme_head.html',encoding='utf8').read(); TB=open(W+'theme_body.html',encoding='utf8').read()
-h=open(W+'home.html',encoding='utf8').read()
-h=h.replace('<head>','<head>\n'+TH,1).replace('</body>',TB+'</body>',1)
-open(R+'index.html','w',encoding='utf8').write(h)
+for src_,dst in [('home.html','index.html'),('home_b.html','index-b.html'),('home_c.html','index-c.html')]:
+    h=open(W+src_,encoding='utf8').read()
+    h=h.replace('<head>','<head>\n'+TH,1).replace('</body>',TB+'</body>',1)
+    open(R+dst,'w',encoding='utf8').write(h)
+if os.path.exists(R+'img/home'): shutil.rmtree(R+'img/home')
+shutil.copytree(W+'img/home',R+'img/home')
 os.makedirs(R+'LICENSES',exist_ok=True)
 shutil.copy(W+'cb/LICENSE',R+'LICENSES/cactbot-LICENSE.txt')
 print('assembled')

@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Raid Notes · FFXIV 高難筆記</title>
+<script>(function(){var p={"a": "index.html", "b": "index-b.html", "c": "index-c.html"},s;try{s=localStorage.getItem("raid-notes-home")}catch(e){}if(s&&s!=="a"&&p[s]&&!/[?&]keep/.test(location.search))location.replace(p[s]+location.hash)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+
 <style>
 :root{--bg:#05070d;--bg2:#0a0f1c;--panel:rgba(12,20,38,.72);--line:rgba(110,231,255,.16);--fg:#e8f3ff;--muted:#8aa0bf;
   --cy:#5ee7ff;--mg:#ff4fd8;--sv:#ff6b8b;--ex:#3ee8c0;--ul:#b58cff;--glow:0 0 18px rgba(94,231,255,.35);color-scheme:dark}
@@ -116,6 +118,81 @@ h2.sec small{font-family:Orbitron,sans-serif;font-size:.62rem;letter-spacing:.3e
 footer{position:relative;z-index:1;text-align:center;font-size:.72rem;color:var(--muted);padding:20px 0 40px;font-family:Orbitron,"Noto Sans TC",sans-serif;letter-spacing:.06em}
 .rn-thm{top:14px!important;right:16px!important;z-index:80!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.sty{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:4px;padding:5px;font:12px/1.2 "Noto Sans TC",system-ui,sans-serif}
+.sty span{padding:0 8px;opacity:.75}
+.sty a{display:flex;gap:5px;align-items:center;text-decoration:none;padding:6px 10px;color:inherit;white-space:nowrap}
+.sty a b{font-weight:800}
+@media (max-width:520px){.sty span{display:none}.sty a{padding:6px 8px}}
+main{padding-bottom:90px!important}
+main{overflow-x:clip}
+.party{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+.pm{position:relative;display:grid;grid-template-columns:38px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:10px 12px}
+.pm img{grid-row:span 2;width:38px;height:38px}
+.pm .sl{font-size:.7rem;letter-spacing:.12em;opacity:.75}
+.pm .jb{font-weight:700}
+.pm em{position:absolute;top:-9px;right:8px;font-style:normal;font-size:.68rem;font-weight:700;padding:1px 7px}
+.stk{position:absolute;pointer-events:none;user-select:none}
+
+.cp{position:relative;display:grid;gap:10px;padding:18px}
+.cph{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
+.cph b{font-size:1.05rem}.cph small{font-size:.62rem;letter-spacing:.2em;opacity:.7}
+.cpl{font-size:.82rem;font-weight:700;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.cpn{font-size:.72rem;font-weight:400;opacity:.7}
+.roles{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px}
+.roles button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:9px 0;min-height:40px;font-size:.78rem;font-weight:700;display:grid;place-items:center}
+.roles button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+@media (max-width:520px){.roles{grid-template-columns:repeat(5,minmax(0,1fr))}.roles button:first-child{grid-column:span 1}}
+.srch{display:grid;gap:4px}
+.srch input{font:inherit;font-size:16px;width:100%;padding:10px 12px;min-height:44px;color:inherit;background:transparent}
+.srch input:focus{outline:none}
+.res{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.res:empty{display:none}
+.res li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:2px 10px;align-items:center;padding:7px 10px}
+.res .rc{grid-row:span 2;font-size:.74rem;font-weight:800}
+.res .rn{font-weight:700}
+.res .rl{display:flex;gap:6px;flex-wrap:wrap}
+.res .rl a{font-size:.74rem;text-decoration:none;padding:2px 9px}
+.res .none{display:block;font-size:.82rem;opacity:.75}
+.rst{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.rst div{display:flex;flex-direction:column;gap:2px;padding:10px 12px}
+.rst span{font-size:.74rem;display:flex;gap:6px;align-items:baseline}.rst small{opacity:.65;font-size:.66rem}
+.rst b{font-variant-numeric:tabular-nums;font-size:1.25rem;white-space:nowrap}
+
+:root{--tank:#5aa8ff;--heal:#3ee89a;--dps:#ff5e7a}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(20px,4vw,60px);align-items:center}
+@media (max-width:860px){.hero{grid-template-columns:1fr}}
+.pfw{position:relative;justify-self:end;width:min(100%,460px)}
+.cp{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));box-shadow:inset 0 0 40px rgba(94,231,255,.08)}
+.cp::before{content:"";position:absolute;left:0;top:0;width:44px;height:2px;background:var(--cy);box-shadow:0 0 10px var(--cy)}
+.cph b{font-family:Orbitron,"Noto Sans TC",sans-serif;letter-spacing:.08em}.cph small{font-family:Orbitron,sans-serif;color:var(--cy)}
+.roles button{border:1px solid var(--line);color:var(--fg);font-family:Orbitron,"Noto Sans TC",sans-serif;transition:all .2s}
+.roles .tank{--r:var(--tank)}.roles .heal{--r:var(--heal)}.roles .dps{--r:var(--dps)}.roles button:first-child{--r:var(--cy)}
+.roles button:hover{border-color:var(--r);color:var(--r)}
+.roles button[aria-checked=true]{background:var(--r);border-color:var(--r);color:#05070d;box-shadow:0 0 14px color-mix(in srgb,var(--r) 60%,transparent)}
+.srch input{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.srch input:focus{border-color:var(--cy);box-shadow:0 0 0 3px color-mix(in srgb,var(--cy) 25%,transparent)}
+.res li{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 50%,transparent)}
+.res .savage{--c:var(--sv)}.res .ex{--c:var(--ex)}.res .ult{--c:var(--ul)}
+.res .rc{font-family:Orbitron,sans-serif;color:var(--c)}
+.res .rl a{border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--fg)}
+.res .rl a:hover,.res .rl a:focus-visible{background:var(--c);color:#05070d;outline:none}
+.rst div{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 50%,transparent)}
+.rst b{font-family:Orbitron,sans-serif;color:var(--cy);text-shadow:0 0 12px color-mix(in srgb,var(--cy) 50%,transparent)}
+@media (max-width:860px){.pfw{justify-self:stretch;width:100%;margin-top:10px}.stk.neon{display:none}}
+.stk.neon{filter:drop-shadow(0 0 10px rgba(255,79,216,.6));animation:float 6s ease-in-out infinite}
+.sec .ico{width:22px;height:auto;filter:drop-shadow(0 0 6px var(--cy))}
+.party .pm{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);transition:transform .25s,border-color .25s}
+.party .pm::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--r);box-shadow:0 0 10px var(--r)}
+.party .tank{--r:var(--tank)}.party .heal{--r:var(--heal)}.party .dps{--r:var(--dps)}
+.party .pm:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--r) 60%,transparent)}
+.party .sl{font-family:Orbitron,sans-serif;color:var(--r)}
+.party .me{border-color:color-mix(in srgb,var(--cy) 70%,transparent);box-shadow:inset 0 0 22px rgba(94,231,255,.15);clip-path:none}
+.party .me em{background:var(--cy);color:#05070d;box-shadow:0 0 10px var(--cy)}
+.sty{border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 85%,transparent);backdrop-filter:blur(12px);border-radius:999px;color:var(--fg)}
+.sty a{border-radius:999px}.sty a b{font-family:Orbitron,sans-serif;color:var(--cy)}
+.sty a:hover{background:color-mix(in srgb,var(--cy) 14%,transparent)}
+.sty a[aria-current]{background:var(--cy);color:#05070d}.sty a[aria-current] b{color:#05070d}
 </style>
 </head>
 <body>
@@ -127,17 +204,28 @@ footer{position:relative;z-index:1;text-align:center;font-size:.72rem;color:var(
 <div class="scrim" aria-hidden="true"></div>
 <nav class="drawer" id="drawer" aria-label="副本選單"><button type="button" class="dclose burger" style="display:grid;position:absolute;top:14px;right:14px" aria-label="關閉選單">✕</button><details class="dc savage"><summary><span class="nzh">零式</span><span class="nen">SAVAGE</span></summary><div class="dg"><div class="dgh">輕重量級<small>LIGHT-HEAVYWEIGHT</small></div><div class="dr"><span class="code">M1S</span><span class="nm">黑貓</span><span class="lk"><a href="m1s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M2S</span><span class="nm">蜂蜂小甜心</span><span class="lk"><a href="m2s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M3S</span><span class="nm">野蠻炸彈</span><span class="lk"><a href="m3s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M4S</span><span class="nm">狡雷</span><span class="lk"><a href="m4s.html" class="">空白筆記</a></span></div></div><div class="dg"><div class="dgh">中重量級<small>CRUISERWEIGHT</small></div><div class="dr"><span class="code">M5S</span><span class="nm">青蛙舞者</span><span class="lk"><a href="m5s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M6S</span><span class="nm">糖彩狂潮</span><span class="lk"><a href="m6s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M7S</span><span class="nm">野蠻憎惡</span><span class="lk"><a href="m7s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M8S</span><span class="nm">呼嘯之劍</span><span class="lk"><a href="m8s.html" class="own">版主筆記</a><a href="m8s-blank.html" class="">空白筆記</a></span></div></div><div class="dg"><div class="dgh">重量級<small>HEAVYWEIGHT</small></div><div class="dr"><span class="code">M9S</span><span class="nm">致命美人</span><span class="lk"><a href="m9s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M10S</span><span class="nm">極限兄弟</span><span class="lk"><a href="m10s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M11S</span><span class="nm">霸王</span><span class="lk"><a href="m11s.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">M12S</span><span class="nm">林德布魯姆</span><span class="lk"><a href="m12s.html" class="">空白筆記</a></span></div></div></details><details class="dc ex"><summary><span class="nzh">極神</span><span class="nen">EXTREME</span></summary><div class="dg"><div class="dgh">7.3<small>DAWNTRAIL</small></div><div class="dr"><span class="code">EX</span><span class="nm">極永恆黑暗</span><span class="lk"><a href="necronx.html" class="">時間軸小抄</a><a href="necronx-guide.html" class="own">攻略整合</a></span></div></div></details><details class="dc ult"><summary><span class="nzh">絕境戰</span><span class="nen">ULTIMATE</span></summary><div class="dg"><div class="dgh">紅蓮・漆黑<small>SB / ShB</small></div><div class="dr"><span class="code">UCOB</span><span class="nm">絕巴哈</span><span class="lk"><a href="ucob.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">UWU</span><span class="nm">絕神兵</span><span class="lk"><a href="uwu.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">TEA</span><span class="nm">絕亞歷山大</span><span class="lk"><a href="tea.html" class="own">版主筆記</a><a href="tea-blank.html" class="">空白筆記</a><a href="tea-guide.html" class="own">攻略整合</a></span></div></div><div class="dg"><div class="dgh">曉月・金曦<small>EW / DT</small></div><div class="dr"><span class="code">DSR</span><span class="nm">絕龍詩</span><span class="lk"><a href="dsr.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">TOP</span><span class="nm">絕歐米茄</span><span class="lk"><a href="top.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">FRU</span><span class="nm">絕伊甸</span><span class="lk"><a href="fru.html" class="">空白筆記</a></span></div><div class="dr"><span class="code">DMU</span><span class="nm">Dancing Mad</span><span class="lk"><a href="dmu.html" class="">空白筆記</a></span></div></div></details></nav>
 <main>
-  <div class="tag">FINAL FANTASY XIV · HIGH-END DUTY NOTES</div>
-  <h1>RAID NOTES</h1>
-  <p class="lede">繁中服豆芽玩家第一次挑戰高難本，邊打邊做的筆記，整理起來方便記憶。時間軸小抄可以切換職位看減傷和站位；有些副本另外附攻略整理。從上方選單挑副本。</p>
-  <div class="stats">
-    <div class="stat sv"><b>12</b><span>零式</span></div>
-    <div class="stat ex"><b>1</b><span>極神</span></div>
-    <div class="stat ul"><b>7</b><span>絕境戰</span></div>
-    <div class="stat"><b>20</b><span>副本總數</span></div>
+  <div class="hero">
+    <div>
+      <div class="tag">FINAL FANTASY XIV · HIGH-END DUTY NOTES</div>
+      <h1>RAID NOTES</h1>
+      <p class="lede">繁中服豆芽玩家第一次挑戰高難本，邊打邊做的筆記，整理起來方便記憶。時間軸小抄可以切換職位看減傷和站位；有些副本另外附攻略整理。從上方選單挑副本。</p>
+      <div class="stats"><div class="stat sv"><b>12</b><span>零式</span></div><div class="stat ex"><b>1</b><span>極神</span></div><div class="stat ul"><b>7</b><span>絕境戰</span></div><div class="stat "><b>20</b><span>副本總數</span></div></div>
+    </div>
+    <div class="pfw"><img class="stk neon" src="img/home/neon1.webp" alt="" aria-hidden="true" style="left:-46px;top:-40px;width:92px;animation-delay:-2s"><img class="stk neon" src="img/home/neon3.webp" alt="" aria-hidden="true" style="right:-34px;top:38%;width:72px;animation-delay:-4s"><img class="stk neon" src="img/home/neon2.webp" alt="" aria-hidden="true" style="left:-30px;bottom:-30px;width:64px"><section class="cp" aria-label="快速入口">
+  <div class="cph"><b>快速入口</b><small>QUICK START</small></div>
+  <div class="cpl">我的位置<span class="cpn">選好後，點進小抄會直接切到你的位置</span></div>
+  <div class="roles" role="radiogroup" aria-label="我的位置"><button type="button" role="radio" aria-checked="false" data-r="team" class="">全隊</button><button type="button" role="radio" aria-checked="false" data-r="mt" class="tank">MT</button><button type="button" role="radio" aria-checked="false" data-r="st" class="tank">ST</button><button type="button" role="radio" aria-checked="false" data-r="h1" class="heal">H1</button><button type="button" role="radio" aria-checked="false" data-r="h2" class="heal">H2</button><button type="button" role="radio" aria-checked="false" data-r="d1" class="dps">D1</button><button type="button" role="radio" aria-checked="false" data-r="d2" class="dps">D2</button><button type="button" role="radio" aria-checked="false" data-r="d3" class="dps">D3</button><button type="button" role="radio" aria-checked="false" data-r="d4" class="dps">D4</button></div>
+  <div class="cpl"><label for="q">找副本</label></div>
+  <div class="srch"><input id="q" type="search" autocomplete="off" placeholder="M8S、絕亞、TEA…" aria-controls="res" aria-describedby="qh"><span id="qh" class="cpn">按 Enter 開第一個結果</span></div>
+  <ul class="res" id="res" aria-live="polite"></ul>
+  <div class="rst">
+    <div><span>每日重置<small>每天 23:00</small></span><b data-cd="d">--:--:--</b></div>
+    <div><span>每週重置<small>週二 16:00</small></span><b data-cd="w">--</b></div>
+  </div>
+</section></div>
   </div>
   <h2 class="sec">版主整理<small>FEATURED</small></h2>
-  <div class="feat"><a class="ft ult" href="tea-guide.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">攻略整合</span><p>每 P 的 ST 一圖流、機制卡、示意圖與時間軸</p><span class="go" aria-hidden="true">→</span></a><a class="ft savage" href="m8s.html"><span class="fk">SAVAGE</span><span class="fc">M8S</span><b>呼嘯之劍</b><span class="fv">版主筆記</span><p>版主隊伍的減傷軸、站位與打法（MMW、蘇帕）</p><span class="go" aria-hidden="true">→</span></a><a class="ft ex" href="necronx-guide.html"><span class="fk">EXTREME</span><span class="fc">EX</span><b>極永恆黑暗</b><span class="fv">攻略整合</span><p>7.3 極神：日服 L 團式，ST 一圖流＋全隊站位圖</p><span class="go" aria-hidden="true">→</span></a><a class="ft ult" href="tea.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">版主筆記</span><p>版主隊伍的時間軸、傳毒標記與減傷</p><span class="go" aria-hidden="true">→</span></a></div>
+  <div class="feat"><a class="ft ult" href="tea-guide.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">攻略整合</span><p>每 P 的 ST 一圖流、機制卡、示意圖與時間軸</p><span class="go" aria-hidden="true">→</span></a><a class="ft savage" href="m8s.html"><span class="fk">SAVAGE</span><span class="fc">M8S</span><b>呼嘯之劍</b><span class="fv">版主筆記</span><p>隊伍的減傷軸、站位與打法（MMW、蘇帕）</p><span class="go" aria-hidden="true">→</span></a><a class="ft ex" href="necronx-guide.html"><span class="fk">EXTREME</span><span class="fc">EX</span><b>極永恆黑暗</b><span class="fv">攻略整合</span><p>7.3 極神：日服 L 團式，ST 一圖流＋全隊站位圖</p><span class="go" aria-hidden="true">→</span></a><a class="ft ult" href="tea.html"><span class="fk">ULTIMATE</span><span class="fc">TEA</span><b>絕亞歷山大</b><span class="fv">版主筆記</span><p>隊伍的時間軸、傳毒標記與減傷</p><span class="go" aria-hidden="true">→</span></a></div>
   <h2 class="sec">使用說明<small>HOW TO USE</small></h2>
   <ul class="notes">
     <li><b>版主筆記</b>是作者自己隊伍的減傷軸、站位和打法；<b>空白筆記</b>只有 Boss 技能時間軸和機制標籤，減傷、站位留給你自己填。</li>
@@ -146,7 +234,8 @@ footer{position:relative;z-index:1;text-align:center;font-size:.72rem;color:var(
   </ul>
   <p class="credits" id="credits">時間軸來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Apache License 2.0，<a href="LICENSES/cactbot-LICENSE.txt">授權全文</a>），本站有轉換格式與重新整理。各頁的技能名稱、打法和圖片來源，寫在該頁最下面的「資料來源與授權」。本站不收費、沒有廣告，你編輯的內容只存在自己的瀏覽器。</p>
 </main>
-<footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。</footer>
+<footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。角色插圖為版主原創素材。</footer>
+<nav class="sty" aria-label="首頁風格"><span>首頁風格</span><a href="index.html?keep" data-k="a" aria-current="page"><b>A</b>未來科技</a><a href="index-b.html?keep" data-k="b"><b>B</b>像素 Y2K</a><a href="index-c.html?keep" data-k="c"><b>C</b>冰藍羽翼</a></nav><script>document.querySelectorAll(".sty a").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("raid-notes-home",a.dataset.k)}catch(e){}})})</script>
 <script>
 (function(){
   var items=[].slice.call(document.querySelectorAll('.ni')),hover=matchMedia('(hover:hover)').matches,t=null;
@@ -165,5 +254,35 @@ footer{position:relative;z-index:1;text-align:center;font-size:.72rem;color:var(
   document.querySelector('.dclose').addEventListener('click',function(){dr(false);B.focus()});
 })();
 </script>
+<script>{const D=[{"c": "M1S", "n": "黑貓", "k": "savage", "l": [["m1s.html", "空白筆記"]]}, {"c": "M2S", "n": "蜂蜂小甜心", "k": "savage", "l": [["m2s.html", "空白筆記"]]}, {"c": "M3S", "n": "野蠻炸彈", "k": "savage", "l": [["m3s.html", "空白筆記"]]}, {"c": "M4S", "n": "狡雷", "k": "savage", "l": [["m4s.html", "空白筆記"]]}, {"c": "M5S", "n": "青蛙舞者", "k": "savage", "l": [["m5s.html", "空白筆記"]]}, {"c": "M6S", "n": "糖彩狂潮", "k": "savage", "l": [["m6s.html", "空白筆記"]]}, {"c": "M7S", "n": "野蠻憎惡", "k": "savage", "l": [["m7s.html", "空白筆記"]]}, {"c": "M8S", "n": "呼嘯之劍", "k": "savage", "l": [["m8s.html", "版主筆記"], ["m8s-blank.html", "空白筆記"]]}, {"c": "M9S", "n": "致命美人", "k": "savage", "l": [["m9s.html", "空白筆記"]]}, {"c": "M10S", "n": "極限兄弟", "k": "savage", "l": [["m10s.html", "空白筆記"]]}, {"c": "M11S", "n": "霸王", "k": "savage", "l": [["m11s.html", "空白筆記"]]}, {"c": "M12S", "n": "林德布魯姆", "k": "savage", "l": [["m12s.html", "空白筆記"]]}, {"c": "EX", "n": "極永恆黑暗", "k": "ex", "l": [["necronx.html", "時間軸小抄"], ["necronx-guide.html", "攻略整合"]]}, {"c": "UCOB", "n": "絕巴哈", "k": "ult", "l": [["ucob.html", "空白筆記"]]}, {"c": "UWU", "n": "絕神兵", "k": "ult", "l": [["uwu.html", "空白筆記"]]}, {"c": "TEA", "n": "絕亞歷山大", "k": "ult", "l": [["tea.html", "版主筆記"], ["tea-blank.html", "空白筆記"], ["tea-guide.html", "攻略整合"]]}, {"c": "DSR", "n": "絕龍詩", "k": "ult", "l": [["dsr.html", "空白筆記"]]}, {"c": "TOP", "n": "絕歐米茄", "k": "ult", "l": [["top.html", "空白筆記"]]}, {"c": "FRU", "n": "絕伊甸", "k": "ult", "l": [["fru.html", "空白筆記"]]}, {"c": "DMU", "n": "Dancing Mad", "k": "ult", "l": [["dmu.html", "空白筆記"]]}];
+const K="raid-notes-role",ok=r=>/^(team|mt|st|h[12]|d[1-4])$/.test(r);
+let role="team";try{const s=localStorage.getItem(K);if(ok(s))role=s}catch(e){}
+const sheet=h=>/^[a-z0-9-]+\.html$/.test(h)&&!/^index/.test(h)&&!/-guide\.html$/.test(h);
+const withRole=h=>{const b=h.split("#")[0];return sheet(b)&&role!=="team"?b+"#"+role:b};
+function apply(){
+  document.querySelectorAll(".roles button").forEach(b=>{const on=b.dataset.r===role;b.setAttribute("aria-checked",on);b.tabIndex=on?0:-1});
+  document.querySelectorAll("a[href]").forEach(a=>{const h=a.getAttribute("href");if(sheet(h.split("#")[0]))a.setAttribute("href",withRole(h))});
+}
+document.querySelectorAll(".roles button").forEach((b,i,all)=>{
+  b.addEventListener("click",()=>{role=b.dataset.r;try{localStorage.setItem(K,role)}catch(e){}apply();render()});
+  b.addEventListener("keydown",e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();const n=all[(i+d+all.length)%all.length];n.focus();n.click()});
+});
+const q=document.getElementById("q"),res=document.getElementById("res");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let hits=[];
+function render(){
+  const v=q.value.trim().toLowerCase();
+  hits=v?D.filter(x=>(x.c+" "+x.n).toLowerCase().includes(v)).slice(0,6):[];
+  res.innerHTML=v&&!hits.length?'<li class="none">找不到這個副本</li>':hits.map(x=>'<li class="'+x.k+'"><span class="rc">'+esc(x.c)+'</span><span class="rn">'+esc(x.n)+'</span><span class="rl">'+x.l.map(l=>'<a href="'+esc(withRole(l[0]))+'">'+esc(l[1])+'</a>').join("")+'</span></li>').join("");
+}
+q.addEventListener("input",render);
+q.addEventListener("keydown",e=>{if(e.key==="Enter"&&hits[0]){location.href=withRole(hits[0].l[0][0])}else if(e.key==="Escape"){q.value="";render()}});
+const pad=n=>String(n).padStart(2,"0");
+function next(dow){const n=new Date(),t=new Date(n);if(dow==null){t.setUTCHours(15,0,0,0);if(t<=n)t.setUTCDate(t.getUTCDate()+1)}else{t.setUTCHours(8,0,0,0);let a=(dow-t.getUTCDay()+7)%7;t.setUTCDate(t.getUTCDate()+a);if(t<=n)t.setUTCDate(t.getUTCDate()+7)}return t-n}
+const cd=document.querySelectorAll("[data-cd]");
+function tick(){cd.forEach(el=>{const ms=next(el.dataset.cd==="w"?2:null),s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);
+  el.textContent=el.dataset.cd==="w"?(d?d+" 天 ":"")+pad(h)+":"+pad(m):pad(h)+":"+pad(m)+":"+pad(s%60)})}
+tick();setInterval(tick,1000);apply();
+}</script>
 </body>
 </html>
