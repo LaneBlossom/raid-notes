@@ -1,13 +1,38 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-home="c">
 <head>
-<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}var R=document.documentElement;
-if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t])}})();</script>
+<script>(function(){var R=document.documentElement,t="auto",k="std";try{t=localStorage.getItem("raid-notes-theme")||"auto";k=localStorage.getItem("raid-notes-skin")||"";if(!k){var h=localStorage.getItem("raid-notes-home");k={a:"future",b:"pixel",c:"crystal"}[h]||"std"}}catch(e){}
+if(t!=="light"&&t!=="dark")t="auto";if(!/^(std|future|pixel|crystal)$/.test(k))k="std";
+if(t!=="auto")R.setAttribute("data-theme",t);
+if(k!=="std"&&!R.hasAttribute("data-home")){R.setAttribute("data-skin",k);var F={future:"Orbitron:wght@500;700;800",pixel:"DotGothic16&family=Press+Start+2P",crystal:"Cinzel:wght@500;700&family=Noto+Serif+TC:wght@600;700"}[k];document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family='+F+'&display=swap">')}})();</script>
+<style>
+/* ===== 全站風格（首頁三版以外的頁面）：future 未來科技／pixel 像素 Y2K／crystal 冰藍羽翼，各有淺色與深色 ===== */
+html:root[data-skin="future"]:not([data-home]){--bg:#eef3fa;--panel:#fff;--surface:#fff;--fg:#0b1626;--muted:#4b5d78;--line:#c9d8ea;--chip:#e3ebf6;--accent:#0891b2;--st:#0891b2;--st-bg:#d7f3fa;--st-fg:#064a5c;--st-ring:#22b8d8;--self:#c026d3;--self-bg:#f8dcfb;--self-fg:#5c0a66;--mt:#2563eb;--dps:#7c3aed;--warn:#e11d48;--warn-bg:#fde2e8;--on-badge:#fff;--p1:#f97316;--p2:#0891b2;--p3:#c026d3;--p4:#16a34a;--hl-ok:#bff3e9;--hl-ok-line:#0d9488;--hl-red:#ffd0da;--f-disp:"Orbitron","Noto Sans TC",sans-serif;--glow:rgba(8,145,178,.18);color-scheme:light}
+html:root[data-skin="future"]:not([data-home])[data-theme="dark"]{--bg:#05070d;--panel:#0c1426;--surface:#0c1426;--fg:#e8f3ff;--muted:#8aa0bf;--line:#1a2a44;--chip:#101c33;--accent:#5ee7ff;--st:#5ee7ff;--st-bg:#06303a;--st-fg:#c9f7ff;--st-ring:#5ee7ff;--self:#ff4fd8;--self-bg:#3a0b33;--self-fg:#ffd1f5;--mt:#6aa8ff;--dps:#b58cff;--warn:#ff6b8b;--warn-bg:#3a0a16;--on-badge:#05070d;--p1:#ff9a3c;--p2:#5ee7ff;--p3:#ff4fd8;--p4:#3ee8c0;--hl-ok:#0d3b33;--hl-ok-line:#3ee8c0;--hl-red:#4a0d1c;--glow:rgba(94,231,255,.22);color-scheme:dark}
+html:root[data-skin="pixel"]:not([data-home]){--bg:#f4f4f0;--panel:#fff;--surface:#fff;--fg:#0a0a0a;--muted:#5c5c5c;--line:#bdbdb6;--chip:#e6e6e1;--accent:#0a0a0a;--st:#0a0a0a;--st-bg:#0a0a0a;--st-fg:#f4f4f0;--st-ring:#0a0a0a;--self:#4a4a4a;--self-bg:#d9d9d4;--self-fg:#0a0a0a;--mt:#0a0a0a;--dps:#3a3a3a;--warn:#c40000;--warn-bg:#ffe3e3;--on-badge:#f4f4f0;--p1:#0a0a0a;--p2:#3a3a3a;--p3:#0a0a0a;--p4:#3a3a3a;--hl-ok:#e6e6e1;--hl-ok-line:#0a0a0a;--hl-red:#d9d9d4;--f-disp:"DotGothic16","Noto Sans TC",monospace;--shadow:#0a0a0a;color-scheme:light}
+html:root[data-skin="pixel"]:not([data-home])[data-theme="dark"]{--bg:#0a0a0a;--panel:#111;--surface:#111;--fg:#f2f2f2;--muted:#9a9a9a;--line:#3a3a3a;--chip:#1c1c1c;--accent:#f2f2f2;--st:#f2f2f2;--st-bg:#f2f2f2;--st-fg:#0a0a0a;--st-ring:#f2f2f2;--self:#bdbdbd;--self-bg:#2a2a2a;--self-fg:#f2f2f2;--mt:#f2f2f2;--dps:#cfcfcf;--warn:#ff5c5c;--warn-bg:#3a0a0a;--on-badge:#0a0a0a;--p1:#f2f2f2;--p2:#bdbdbd;--p3:#f2f2f2;--p4:#bdbdbd;--hl-ok:#2a2a2a;--hl-ok-line:#f2f2f2;--hl-red:#3a1a1a;--shadow:#f2f2f2;color-scheme:dark}
+html:root[data-skin="crystal"]:not([data-home]){--bg:#f3f2ff;--panel:#fff;--surface:#fff;--fg:#25224a;--muted:#6a6796;--line:#dcdaf5;--chip:#ebe9ff;--accent:#5b7cff;--st:#7c5cf0;--st-bg:#ece6ff;--st-fg:#3b2a85;--st-ring:#a78bfa;--self:#e2559a;--self-bg:#fde3f0;--self-fg:#7a1d4e;--mt:#4f7dff;--dps:#9b7cf5;--warn:#e0527a;--warn-bg:#fde4ec;--on-badge:#fff;--p1:#5b7cff;--p2:#9b7cf5;--p3:#e2559a;--p4:#14a89a;--hl-ok:#d7f5ee;--hl-ok-line:#14a89a;--hl-red:#ffd6e4;--f-disp:"Cinzel","Noto Serif TC",serif;color-scheme:light}
+html:root[data-skin="crystal"]:not([data-home])[data-theme="dark"]{--bg:#0d0f2e;--panel:#151842;--surface:#151842;--fg:#ecebff;--muted:#a3a6d6;--line:#2a2e66;--chip:#1c2052;--accent:#8ea6ff;--st:#b9a3ff;--st-bg:#2a2160;--st-fg:#e6ddff;--st-ring:#b9a3ff;--self:#f5a8d6;--self-bg:#4a1d3d;--self-fg:#ffe1f2;--mt:#7fa3ff;--dps:#b9a3ff;--warn:#f07f9d;--warn-bg:#3d1424;--on-badge:#0d0f2e;--p1:#8ea6ff;--p2:#b9a3ff;--p3:#f5a8d6;--p4:#45d6c4;--hl-ok:#123d3a;--hl-ok-line:#45d6c4;--hl-red:#4a1530;color-scheme:dark}
+@media (prefers-color-scheme:dark){
+html:root[data-skin="future"]:not([data-home]):not([data-theme="light"]){--bg:#05070d;--panel:#0c1426;--surface:#0c1426;--fg:#e8f3ff;--muted:#8aa0bf;--line:#1a2a44;--chip:#101c33;--accent:#5ee7ff;--st:#5ee7ff;--st-bg:#06303a;--st-fg:#c9f7ff;--st-ring:#5ee7ff;--self:#ff4fd8;--self-bg:#3a0b33;--self-fg:#ffd1f5;--mt:#6aa8ff;--dps:#b58cff;--warn:#ff6b8b;--warn-bg:#3a0a16;--on-badge:#05070d;--p1:#ff9a3c;--p2:#5ee7ff;--p3:#ff4fd8;--p4:#3ee8c0;--hl-ok:#0d3b33;--hl-ok-line:#3ee8c0;--hl-red:#4a0d1c;--glow:rgba(94,231,255,.22);color-scheme:dark}
+html:root[data-skin="pixel"]:not([data-home]):not([data-theme="light"]){--bg:#0a0a0a;--panel:#111;--surface:#111;--fg:#f2f2f2;--muted:#9a9a9a;--line:#3a3a3a;--chip:#1c1c1c;--accent:#f2f2f2;--st:#f2f2f2;--st-bg:#f2f2f2;--st-fg:#0a0a0a;--st-ring:#f2f2f2;--self:#bdbdbd;--self-bg:#2a2a2a;--self-fg:#f2f2f2;--mt:#f2f2f2;--dps:#cfcfcf;--warn:#ff5c5c;--warn-bg:#3a0a0a;--on-badge:#0a0a0a;--p1:#f2f2f2;--p2:#bdbdbd;--p3:#f2f2f2;--p4:#bdbdbd;--hl-ok:#2a2a2a;--hl-ok-line:#f2f2f2;--hl-red:#3a1a1a;--shadow:#f2f2f2;color-scheme:dark}
+html:root[data-skin="crystal"]:not([data-home]):not([data-theme="light"]){--bg:#0d0f2e;--panel:#151842;--surface:#151842;--fg:#ecebff;--muted:#a3a6d6;--line:#2a2e66;--chip:#1c2052;--accent:#8ea6ff;--st:#b9a3ff;--st-bg:#2a2160;--st-fg:#e6ddff;--st-ring:#b9a3ff;--self:#f5a8d6;--self-bg:#4a1d3d;--self-fg:#ffe1f2;--mt:#7fa3ff;--dps:#b9a3ff;--warn:#f07f9d;--warn-bg:#3d1424;--on-badge:#0d0f2e;--p1:#8ea6ff;--p2:#b9a3ff;--p3:#f5a8d6;--p4:#45d6c4;--hl-ok:#123d3a;--hl-ok-line:#45d6c4;--hl-red:#4a1530;color-scheme:dark}}
+/* 背景與質感 */
+html[data-skin]:not([data-home]) body{background-color:var(--bg);color:var(--fg)}
+html[data-skin="future"]:not([data-home]) body{background-image:radial-gradient(900px 500px at 85% -10%,var(--glow),transparent 60%),linear-gradient(color-mix(in srgb,var(--accent) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--accent) 7%,transparent) 1px,transparent 1px);background-size:auto,32px 32px,32px 32px;background-attachment:fixed}
+html[data-skin="pixel"]:not([data-home]) body{background-image:radial-gradient(color-mix(in srgb,var(--fg) 14%,transparent) 1px,transparent 1.2px);background-size:8px 8px}
+html[data-skin="pixel"]:not([data-home]) body *{border-radius:0!important}
+html[data-skin="pixel"]:not([data-home]) h1,html[data-skin="pixel"]:not([data-home]) h2{font-family:"DotGothic16","Noto Sans TC",monospace;font-weight:400;letter-spacing:.02em}
+html[data-skin="crystal"]:not([data-home]) body{background-image:radial-gradient(900px 600px at 95% 0%,color-mix(in srgb,var(--dps) 16%,transparent),transparent 60%),radial-gradient(800px 600px at 0% 80%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%);background-attachment:fixed}
+html[data-skin="crystal"]:not([data-home]) h1,html[data-skin="crystal"]:not([data-home]) h2{font-family:"Noto Serif TC",serif}
+html[data-skin="future"]:not([data-home]) h1{letter-spacing:.04em}
+html[data-skin]:not([data-home]) body:not(:has(#tl)) .st{color:var(--on-badge)}
+</style>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Raid Notes · FFXIV 高難筆記</title>
-<script>(function(){var p={"a": "index.html", "b": "index-b.html", "c": "index-c.html"},s;try{s=localStorage.getItem("raid-notes-home")}catch(e){}if(s&&s!=="c"&&p[s]&&!/[?&]keep/.test(location.search))location.replace(p[s]+location.hash)})()</script>
+<script>(function(){var P={std:"a",future:"a",pixel:"b",crystal:"c"},F={a:"index.html",b:"index-b.html",c:"index-c.html"},k;try{k=localStorage.getItem("raid-notes-skin");if(!k)k={a:"future",b:"pixel",c:"crystal"}[localStorage.getItem("raid-notes-home")]}catch(e){}var w=P[k];if(w&&w!=="c"&&!/[?&]keep/.test(location.search))location.replace(F[w]+location.hash)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700;800&display=swap">
 <link rel="preload" as="image" href="img/home/banner.webp">
@@ -244,7 +269,6 @@ footer{text-align:center;font-size:.72rem;color:var(--muted);padding:20px 14px 4
   <p class="credits" id="credits">時間軸來自 <a href="https://github.com/OverlayPlugin/cactbot">cactbot</a>（Apache License 2.0，<a href="LICENSES/cactbot-LICENSE.txt">授權全文</a>），本站有轉換格式與重新整理。各頁的技能名稱、打法和圖片來源，寫在該頁最下面的「資料來源與授權」。本站不收費、沒有廣告，你編輯的內容只存在自己的瀏覽器。</p>
 </main>
 <footer>FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. 個人非商業筆記。角色插圖為版主原創素材。</footer>
-<nav class="sty" aria-label="首頁風格"><span>首頁風格</span><a href="index.html?keep" data-k="a"><b>A</b>未來科技</a><a href="index-b.html?keep" data-k="b"><b>B</b>像素 Y2K</a><a href="index-c.html?keep" data-k="c" aria-current="page"><b>C</b>冰藍羽翼</a></nav><script>document.querySelectorAll(".sty a").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("raid-notes-home",a.dataset.k)}catch(e){}})})</script>
 <script>
 (function(){
   var items=[].slice.call(document.querySelectorAll('.ni')),hover=matchMedia('(hover:hover)').matches,t=null;
@@ -295,30 +319,54 @@ tick();setInterval(tick,1000);apply();
 }</script>
 <style>
 .rn-thm{position:fixed;top:12px;right:12px;z-index:60;font:13px/1.4 "Noto Sans TC",system-ui,sans-serif}
-.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit}
+.rn-thm>button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);font:inherit;min-height:32px}
 .rn-thm>button:hover,.rn-thm>button:focus-visible{border-color:currentColor;outline:none}
-.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:150px;max-height:70vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.rn-thm ul{position:absolute;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;min-width:190px;max-height:75vh;overflow:auto;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:Canvas;color:CanvasText;box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .rn-thm ul[hidden]{display:none}
-.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:6px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.rn-thm li button{display:flex;align-items:center;gap:8px;width:100%;padding:7px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left}
 .rn-thm li button:hover,.rn-thm li button:focus-visible{background:rgba(127,127,127,.15);outline:none}
 .rn-thm li button[aria-checked="true"]{font-weight:700}
 .rn-thm li button[aria-checked="true"]::after{content:"✓";margin-left:auto}
 .rn-thm .sw{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid rgba(128,128,128,.4)}
-.rn-thm small{display:block;padding:6px 8px 2px;opacity:.7;font-size:11px}
+.rn-thm small{display:block;padding:8px 8px 2px;opacity:.7;font-size:11px}
+.rn-thm li.sep{height:1px;margin:6px 4px;background:rgba(128,128,128,.25)}
+@media (max-width:520px){.rn-thm #rn-thm-name{display:none}}
 </style>
-<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu">🎨 <span id="rn-thm-name">跟系統</span></button>
-<ul id="rn-thm-menu" role="menu" aria-label="主題顏色" hidden><li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:#e9ebf2;box-shadow:inset -9px 0 0 #1b1e29"></span>跟系統</button></li><li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>淺色</button></li><li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#12141c;box-shadow:inset -9px 0 0 #f2c14e"></span>深色</button></li><li role="presentation"><small>全站共用</small></li></ul></div>
-<script>(function(){var B={"sakura": "light", "matcha": "light", "deepsea": "dark", "contrast": "dark", "journal": "light", "cyber": "dark", "rgb": "dark", "island": "light", "ink": "light", "bushido": "dark", "fluffy": "light"},R=document.documentElement,btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),items=[].slice.call(menu.querySelectorAll("[data-thm]"));
-function set(t,save){if(B[t])t=B[t];if(!menu.querySelector('[data-thm="'+t+'"]'))t="auto";R.removeAttribute("data-skin");R.removeAttribute("data-theme");
-if(t==="light"||t==="dark")R.setAttribute("data-theme",t);else if(B[t]){R.setAttribute("data-theme",B[t]);R.setAttribute("data-skin",t)}
-items.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});nm.textContent=menu.querySelector('[data-thm="'+t+'"]').textContent;
-if(save)try{localStorage.setItem("raid-notes-theme",t)}catch(e){}}
-function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o)}
+<div class="rn-thm"><button type="button" id="rn-thm-btn" aria-haspopup="true" aria-expanded="false" aria-controls="rn-thm-menu" aria-label="風格與明暗">🎨 <span id="rn-thm-name">標準</span></button>
+<ul id="rn-thm-menu" role="menu" aria-label="風格與明暗" hidden>
+<li role="presentation"><small>風格（全站）</small></li>
+<li><button type="button" role="menuitemradio" data-skin="std" aria-checked="false"><span class="sw" style="background:#f3f4f8;box-shadow:inset -9px 0 0 #b8860b"></span>標準</button></li>
+<li><button type="button" role="menuitemradio" data-skin="future" aria-checked="false"><span class="sw" style="background:#05070d;box-shadow:inset -9px 0 0 #5ee7ff,inset -12px 0 0 #ff4fd8"></span>未來科技</button></li>
+<li><button type="button" role="menuitemradio" data-skin="pixel" aria-checked="false"><span class="sw" style="background:repeating-conic-gradient(#0a0a0a 0 25%,#f4f4f0 0 50%) 0 0/8px 8px"></span>像素 Y2K</button></li>
+<li><button type="button" role="menuitemradio" data-skin="crystal" aria-checked="false"><span class="sw" style="background:linear-gradient(135deg,#8ea6ff,#b9a3ff 55%,#f5a8d6)"></span>冰藍羽翼</button></li>
+<li class="sep" role="separator"></li>
+<li role="presentation"><small>明暗</small></li>
+<li><button type="button" role="menuitemradio" data-thm="auto" aria-checked="false"><span class="sw" style="background:linear-gradient(90deg,#f3f4f8 50%,#1b1e29 50%)"></span>跟系統</button></li>
+<li><button type="button" role="menuitemradio" data-thm="light" aria-checked="false"><span class="sw" style="background:#f6f7fb"></span>淺色</button></li>
+<li><button type="button" role="menuitemradio" data-thm="dark" aria-checked="false"><span class="sw" style="background:#15171f"></span>深色</button></li>
+</ul></div>
+<script>(function(){var R=document.documentElement,home=R.hasAttribute("data-home"),btn=document.getElementById("rn-thm-btn"),menu=document.getElementById("rn-thm-menu"),nm=document.getElementById("rn-thm-name"),
+ts=[].slice.call(menu.querySelectorAll("[data-thm]")),ss=[].slice.call(menu.querySelectorAll("[data-skin]")),
+F={future:"Orbitron:wght@500;700;800",pixel:"DotGothic16&family=Press+Start+2P",crystal:"Cinzel:wght@500;700&family=Noto+Serif+TC:wght@600;700"},
+HP={std:"index.html",future:"index.html",pixel:"index-b.html",crystal:"index-c.html"},cur={t:"auto",k:"std"};
+function get(n,d){try{return localStorage.getItem(n)||d}catch(e){return d}}
+function put(n,v){try{localStorage.setItem(n,v)}catch(e){}}
+function label(){var a=menu.querySelector('[data-skin="'+cur.k+'"]').textContent,b=menu.querySelector('[data-thm="'+cur.t+'"]').textContent;nm.textContent=cur.t==="auto"?a:a+"・"+b}
+function setT(t,save){if(t!=="light"&&t!=="dark")t="auto";cur.t=t;if(t==="auto")R.removeAttribute("data-theme");else R.setAttribute("data-theme",t);
+ts.forEach(function(b){b.setAttribute("aria-checked",b.dataset.thm===t)});label();if(save)put("raid-notes-theme",t)}
+function setK(k,save){if(!HP[k])k="std";cur.k=k;ss.forEach(function(b){b.setAttribute("aria-checked",b.dataset.skin===k)});label();
+if(save)put("raid-notes-skin",k);
+if(home){var want=HP[k],here=(location.pathname.split("/").pop()||"index.html");if(save&&want!==here)location.href=want;return}
+if(k==="std")R.removeAttribute("data-skin");else{R.setAttribute("data-skin",k);if(!document.getElementById("rn-f-"+k)){var l=document.createElement("link");l.id="rn-f-"+k;l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family="+F[k]+"&display=swap";document.head.appendChild(l)}}}
+function open(o){menu.hidden=!o;btn.setAttribute("aria-expanded",o);if(o){var c=menu.querySelector('[aria-checked="true"]');if(c)c.focus()}}
 btn.onclick=function(e){e.stopPropagation();open(menu.hidden)};
-items.forEach(function(b){b.onclick=function(){set(b.dataset.thm,true);open(false);btn.focus()}});
+ts.forEach(function(b){b.onclick=function(){setT(b.dataset.thm,true);open(false);btn.focus()}});
+ss.forEach(function(b){b.onclick=function(){setK(b.dataset.skin,true);open(false);btn.focus()}});
+menu.addEventListener("keydown",function(e){var all=ts.length?ss.concat(ts):ss,i=all.indexOf(document.activeElement);if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();all[(i+(e.key==="ArrowDown"?1:-1)+all.length)%all.length].focus()}});
 document.addEventListener("click",function(e){if(!menu.hidden&&!menu.contains(e.target))open(false)});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!menu.hidden){open(false);btn.focus()}});
-window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")set(e.newValue||"auto",false)});
-var t="auto";try{t=localStorage.getItem("raid-notes-theme")||"auto"}catch(e){}set(t,false)})();</script>
+window.addEventListener("storage",function(e){if(e.key==="raid-notes-theme")setT(e.newValue,false);if(e.key==="raid-notes-skin"&&!home)setK(e.newValue,false)});
+var k=get("raid-notes-skin","");if(!k)k={a:"future",b:"pixel",c:"crystal"}[get("raid-notes-home","")]||"std";
+setT(get("raid-notes-theme","auto"),false);setK(k,false)})();</script>
 </body>
 </html>
