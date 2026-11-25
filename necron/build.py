@@ -72,14 +72,14 @@ body = f'''<div class="wrap">
 {nav('necronx-guide.html')}
 <div class="eyebrow">THE MINSTREL'S BALLAD: NECRON'S EMBRACE · 7.3 極神 · ST 騎士視角</div>
 <h1>極永恆黑暗 攻略整合</h1>
-<p class="lede">日服野隊流行的 <b>L 團式</b>打法。依序是 <b>ST 一圖流</b>（騎士要跑哪、看哪個方向）、<b>機制與解法</b>（每個機制一張卡，點開看說明和示意圖）、<b>時間軸</b>。整體難度不高，難點在後半的青藍連魂和群體恐慌。</p>
-<p class="src">來源：<a href="https://www.bilibili.com/video/BV1xWatzpEdU/">子言姐姐「7.3攻略 永远之暗悲惶歼灭战」</a>。技能名稱用繁中服（cactbot 繁中翻譯），影片裡的國服名稱如「槍之衝擊」＝青藍衝擊、「暗之死腕」＝暗黑死腕、「群體恐慌」相同。</p>
-<div class="team"><b>固定分組</b>：MT＋D1、ST＋D2、H1＋D3、H2＋D4 兩兩一組；分左右時 MT、H1、D1、D3 在左，ST、H2、D2、D4 在右。<b>標點</b>：字母點 A、B 在左右外側，數字點 1、2 在內側上方。</div>
+<p class="lede">子言姐姐／XIVStrat 的打法，站位和標點照他們的「機制速覽」小抄，不用看分組換位、觀察成本最低。依序是 <b>ST 一圖流</b>（騎士要跑哪、看哪個方向）、<b>機制與解法</b>（每個機制一張卡，點開看說明和示意圖）、<b>時間軸</b>。整體難度不高，難點在後半的青藍連魂和群體恐慌。</p>
+<p class="src">來源：<a href="https://www.bilibili.com/video/BV1xWatzpEdU/">子言姐姐「7.3攻略 永远之暗悲惶歼灭战」</a>、<a href="https://xivstrat.cn/07/necron">XIVStrat 永远之暗悲惶歼灭战（機制速覽小抄、場地標點）</a>。技能名稱用繁中服（cactbot 繁中翻譯），影片裡的國服名稱如「槍之衝擊」＝青藍衝擊、「暗之死腕」＝暗黑死腕、「群體恐慌」相同。</p>
+<div class="team"><b>固定分組</b>：MT＋D1、ST＋D2、H1＋D3、H2＋D4 兩兩一組；分左右時 MT、H1、D1、D3 在左，ST、H2、D2、D4 在右。<b>標點</b>（同 XIVStrat 場地標點）：A、B 在左右兩側，C、D 在 A、B 內側偏下；1、2 在北邊內側，3、4 在 1、2 下方。</div>
 <div class="jump" role="group" aria-label="跳到"><button type="button" data-go="b1">ST 一圖流</button><button type="button" data-go="b2">機制與解法</button><button type="button" data-go="b3">時間軸</button><span class="jsp"></span><button type="button" data-all="open">全部展開</button><button type="button" data-all="close">全部收合</button></div>
 {blk(1, 'ST 一圖流', '<p class="src">照時間順序列出 ST 要去哪、開什麼。藍色是 ST；示意圖上方為 Boss（北）。</p><div class="spgrid">' + st + '</div>')}
 {blk(2, '機制與解法', '<div class="mtools"><button type="button" data-cards="open">展開全部機制</button><button type="button" data-cards="close">全部收起</button></div><div class="mlist">' + cards + '</div>')}
 {blk(3, '時間軸', '<p>完整時間軸（含 P1、小怪、單人坦克分支、P2）和 # 機制標籤，在時間軸小抄頁；那頁也可以自己排減傷、寫筆記。</p><a class="tlcta" href="necronx.html">打開時間軸小抄 →</a>')}
-<p class="endnote">示意圖由本站依子言姐姐的攻略影片重新繪製，位置為示意。</p>
+<p class="endnote">示意圖由本站依子言姐姐的攻略影片與 XIVStrat 機制速覽小抄重新繪製，位置為示意。</p>
 </div>'''
 
 JS = '''<script>
