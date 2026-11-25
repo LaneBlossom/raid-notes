@@ -80,7 +80,7 @@ def panel(title='快速入口', sub='QUICK START'):
 PANEL_JS = '<script>{const D=' + json.dumps(SEARCH, ensure_ascii=False) + r''';
 const K="raid-notes-role",ok=r=>/^(team|mt|st|h[12]|d[1-4])$/.test(r);
 let role="team";try{const s=localStorage.getItem(K);if(ok(s))role=s}catch(e){}
-const sheet=h=>/^[a-z0-9-]+\.html$/.test(h)&&!/^index/.test(h)&&!/-guide\.html$/.test(h);
+const sheet=h=>/^[a-z0-9-]+\.html$/.test(h)&&!/^index/.test(h);
 const withRole=h=>{const b=h.split("#")[0];return sheet(b)&&role!=="team"?b+"#"+role:b};
 function apply(){
   document.querySelectorAll(".roles button").forEach(b=>{const on=b.dataset.r===role;b.setAttribute("aria-checked",on);b.tabIndex=on?0:-1});

@@ -51,6 +51,20 @@ details.mcard:not([open]) .mchev{transform:rotate(-45deg);margin-bottom:0}
 .dfig{margin:0;border:1px solid var(--line);border-radius:10px;padding:8px}
 .tlcta{display:inline-flex;gap:8px;align-items:center;margin-top:10px;padding:9px 16px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
 .endnote{font-size:.8rem;color:var(--muted);margin-top:28px}
+.tool{font-weight:800;color:var(--accent)}
+.rpick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 4px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);position:sticky;top:calc(var(--gn-off,0px) + 6px);z-index:5;transition:top .28s}
+.rpl{font-size:.85rem;font-weight:800;margin-right:4px}
+@media (max-width:620px){.rpick{padding-right:58px}}
+.rpick button{font:inherit;font-size:.85rem;font-weight:700;min-width:44px;min-height:36px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.rpick button.tk{--rc:#3b82f6}.rpick button.hl{--rc:#16a34a}.rpick button.dp{--rc:#b45309}.rpick button{--rc:var(--accent)}
+.rpick button[aria-checked="true"]{background:var(--rc);border-color:var(--rc);color:#fff}
+.rpick button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li.me{list-style:none;margin-left:-1.15em;margin-top:6px;padding:6px 8px;border-radius:8px;background:color-mix(in srgb,var(--accent) 12%,transparent);border-left:3px solid var(--accent)}
+li.me .who{display:inline-block;font-size:.72rem;font-weight:800;padding:0 6px;margin-right:6px;border-radius:5px;background:var(--accent);color:#fff}
+.wrap:not([data-me]) li.me{display:none}
+.pp{transition:opacity .2s,transform .2s}
+'''+''.join(f'.wrap[data-me="{r}"] li.me:not([data-for~="{r}"]){{display:none}}.wrap[data-me="{r}"] .pp:not([data-r="{r}"]){{opacity:.38}}.wrap[data-me="{r}"] .pp[data-r="{r}"]{{transform:scale(1.35)}}.wrap[data-me="{r}"] .pp[data-r="{r}"] circle{{stroke-width:2.6}}' for r in ['MT','ST','H1','H2','D1','D2','D3','D4'])+'''
+@media (prefers-reduced-motion:reduce){.pp,.rpick{transition:none}}
 '''
 
 
@@ -58,9 +72,20 @@ def blk(n, title, inner, open_=True):
     return (f'<details class="blk" id="b{n}"{" open" if open_ else ""}><summary><span class="bn">{n}</span>{title}<span class="chev" aria-hidden="true"></span></summary>{inner}</details>')
 
 
-st = ''.join(
-    f'<article class="sp"><h4><span class="st">{t}</span>{title}</h4>{svg or ""}<ul>{"".join(f"<li>{x}</li>" for x in lines)}</ul></article>'
-    for t, title, svg, lines in N.ST_PANELS)
+ROLES = ['MT', 'ST', 'H1', 'H2', 'D1', 'D2', 'D3', 'D4']
+
+
+def panel(t, title, svg, common, per):
+    li = ''.join(f'<li>{x}</li>' for x in common)
+    li += ''.join(f'<li class="me" data-for="{k}"><span class="who">{k.replace(" ", "・")}</span>{v}</li>' for k, v in per.items())
+    return f'<article class="sp"><h4><span class="st">{t}</span>{title}</h4>{svg or ""}<ul>{li}</ul></article>'
+
+
+st = ''.join(panel(*p) for p in N.PANELS)
+picker = ('<div class="rpick" role="radiogroup" aria-label="我的職位"><span class="rpl">我的職位</span>'
+          + ''.join(f'<button type="button" role="radio" aria-checked="false" data-r="{r}" class="{c}">{l}</button>'
+                    for r, l, c in [('team', '全隊', '')] + [(x.lower(), x, 'tk' if x in ('MT', 'ST') else 'hl' if x[0] == 'H' else 'dp') for x in ROLES])
+          + '</div>')
 cards = ''
 for i, (title, desc, how, figs) in enumerate(N.MECH, 1):
     badge = '<span class="mbadge">圖解</span>' if figs else ''
@@ -70,19 +95,27 @@ for i, (title, desc, how, figs) in enumerate(N.MECH, 1):
 
 body = f'''<div class="wrap">
 {nav('necronx-guide.html')}
-<div class="eyebrow">THE MINSTREL'S BALLAD: NECRON'S EMBRACE · 7.3 極神 · ST 騎士視角</div>
+<div class="eyebrow">THE MINSTREL'S BALLAD: NECRON'S EMBRACE · 7.3 極神 · 全隊（可切換職位）</div>
 <h1>極永恆黑暗 攻略整合</h1>
-<p class="lede">子言姐姐／XIVStrat 的打法，站位和標點照他們的「機制速覽」小抄，不用看分組換位、觀察成本最低。依序是 <b>ST 一圖流</b>（騎士要跑哪、看哪個方向）、<b>機制與解法</b>（每個機制一張卡，點開看說明和示意圖）、<b>時間軸</b>。整體難度不高，難點在後半的青藍連魂和群體恐慌。</p>
+<p class="lede">子言姐姐／XIVStrat 的打法，站位和標點照他們的「機制速覽」小抄，不用看分組換位、觀察成本最低。依序是 <b>一圖流</b>（全隊站位，選職位後會標出你自己的位置和要做的事）、<b>機制與解法</b>（每個機制一張卡，點開看說明和示意圖）、<b>時間軸</b>。整體難度不高，難點在後半的青藍連魂和群體恐慌。</p>
 <p class="src">來源：<a href="https://www.bilibili.com/video/BV1xWatzpEdU/">子言姐姐「7.3攻略 永远之暗悲惶歼灭战」</a>、<a href="https://xivstrat.cn/07/necron">XIVStrat 永远之暗悲惶歼灭战（機制速覽小抄、場地標點）</a>。技能名稱用繁中服（cactbot 繁中翻譯），影片裡的國服名稱如「槍之衝擊」＝青藍衝擊、「暗之死腕」＝暗黑死腕、「群體恐慌」相同。</p>
 <div class="team"><b>固定分組</b>：MT＋D1、ST＋D2、H1＋D3、H2＋D4 兩兩一組；分左右時 MT、H1、D1、D3 在左，ST、H2、D2、D4 在右。<b>標點</b>（同 XIVStrat 場地標點）：A、B 在左右兩側，C、D 在 A、B 內側偏下；1、2 在北邊內側，3、4 在 1、2 下方。</div>
-<div class="jump" role="group" aria-label="跳到"><button type="button" data-go="b1">ST 一圖流</button><button type="button" data-go="b2">機制與解法</button><button type="button" data-go="b3">時間軸</button><span class="jsp"></span><button type="button" data-all="open">全部展開</button><button type="button" data-all="close">全部收合</button></div>
-{blk(1, 'ST 一圖流', '<p class="src">照時間順序列出 ST 要去哪、開什麼。藍色是 ST；示意圖上方為 Boss（北）。</p><div class="spgrid">' + st + '</div>')}
+{picker}
+<div class="jump" role="group" aria-label="跳到"><button type="button" data-go="b1">一圖流</button><button type="button" data-go="b2">機制與解法</button><button type="button" data-go="b3">時間軸</button><span class="jsp"></span><button type="button" data-all="open">全部展開</button><button type="button" data-all="close">全部收合</button></div>
+{blk(1, '一圖流', '<p class="src">照時間順序列出全隊站位。選了職位，圖上會放大你的位置，下面多一行你要做的事；機制卡的圖也會一起標。示意圖上方為 Boss（北）。</p><div class="spgrid">' + st + '</div>')}
 {blk(2, '機制與解法', '<div class="mtools"><button type="button" data-cards="open">展開全部機制</button><button type="button" data-cards="close">全部收起</button></div><div class="mlist">' + cards + '</div>')}
 {blk(3, '時間軸', '<p>完整時間軸（含 P1、小怪、單人坦克分支、P2）和 # 機制標籤，在時間軸小抄頁；那頁也可以自己排減傷、寫筆記。</p><a class="tlcta" href="necronx.html">打開時間軸小抄 →</a>')}
 <p class="endnote">示意圖由本站依子言姐姐的攻略影片與 XIVStrat 機制速覽小抄重新繪製，位置為示意。</p>
 </div>'''
 
 JS = '''<script>
+(function(){var W=document.querySelector('.wrap'),K='raid-notes-role',B=[].slice.call(document.querySelectorAll('.rpick button')),ok=function(r){return /^(team|mt|st|h[12]|d[1-4])$/.test(r)};
+function set(r,save){if(!ok(r))r='team';if(r==='team')W.removeAttribute('data-me');else W.setAttribute('data-me',r.toUpperCase());
+ B.forEach(function(b){var on=b.dataset.r===r;b.setAttribute('aria-checked',on);b.tabIndex=on?0:-1});
+ if(save){try{localStorage.setItem(K,r)}catch(e){}history.replaceState(null,'',r==='team'?location.pathname+location.search:'#'+r)}}
+B.forEach(function(b,i){b.addEventListener('click',function(){set(b.dataset.r,true)});
+ b.addEventListener('keydown',function(e){var d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();var n=B[(i+d+B.length)%B.length];n.focus();n.click()})});
+var h=location.hash.slice(1).toLowerCase(),r='team';if(ok(h))r=h;else{try{var s=localStorage.getItem(K);if(ok(s))r=s}catch(e){}}set(r,false)})();
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-go]');if(b){var el=document.getElementById(b.dataset.go);if(el){el.open=true;el.scrollIntoView({behavior:'smooth',block:'start'})}return}
   var a=e.target.closest('[data-all]');if(a){document.querySelectorAll('details.blk,details.mcard').forEach(function(d){d.open=a.dataset.all==='open'});return}

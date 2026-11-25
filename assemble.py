@@ -45,6 +45,16 @@ def reskin(s):
     s=s[:a]+'/* theme switch（風格＋明暗，見 theme_body.html） */\n'+_JS+'\n\n'+s[b:]
     return open(W+'theme_head.html',encoding='utf8').read()+_CSS+s
 
+# ===== 極永恆黑暗：分頁列加「連魂小工具」按鈕（電腦開小視窗、手機開新分頁，都用精簡模式） =====
+REAP_CSS='<style>.vers a.reap{border-style:dashed}</style>'
+REAP_JS=("<script>document.addEventListener('click',function(e){var a=e.target.closest('a[data-reap]');if(!a)return;e.preventDefault();"
+         "var u='necronx-reap.html?mini=1';if(matchMedia('(min-width:700px)').matches){var w=window.open(u,'rnreap','width=360,height=340');if(w){w.focus();return}}"
+         "window.open(u,'_blank')||(location.href=u)})</script>")
+def reap_btn(s):
+    i=s.index('<div class="vers">'); j=s.index('</div>',i)
+    s=s[:j]+'<a class="reap" href="necronx-reap.html?mini=1" data-reap>🧩 連魂小工具</a>'+s[j:]
+    return REAP_CSS+s+REAP_JS
+
 SE=' FINAL FANTASY XIV © SQUARE ENIX CO., LTD. All Rights Reserved. <a href="index.html#credits">資料來源與授權</a>'
 for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea-blank','tea-guide','m9s','m10s','m11s','m12s','ucob','uwu','dsr','top','fru','dmu','necronx','necronx-guide']:
     s=open(W+f+'.html',encoding='utf8').read()
@@ -61,12 +71,14 @@ for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea
         s=s[:j]+'\n  '+credit(f)+s[j:]
         if f!='necronx-guide': s=reskin(s)
     s=gnav.bar(s,f+'.html',guide=f.endswith('-guide'))
+    if f in ('necronx','necronx-guide'): s=reap_btn(s)
     open(R+f+'.html','w',encoding='utf8').write(head+s)
 TH=open(W+'theme_head.html',encoding='utf8').read(); TB=open(W+'theme_body.html',encoding='utf8').read()
 for src_,dst in [('home.html','index.html'),('home_b.html','index-b.html'),('home_c.html','index-c.html')]:
     h=open(W+src_,encoding='utf8').read()
     h=h.replace('<head>','<head>\n'+TH,1).replace('</body>',TB+'</body>',1)
     open(R+dst,'w',encoding='utf8').write(h)
+shutil.copy(W+'necronx-reap.html',R+'necronx-reap.html')  # 青藍連魂記錄器（小工具）
 if os.path.exists(R+'img/home'): shutil.rmtree(R+'img/home')
 shutil.copytree(W+'img/home',R+'img/home')
 os.makedirs(R+'LICENSES',exist_ok=True)
