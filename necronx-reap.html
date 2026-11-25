@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>青藍連魂記錄器 · 極永恆黑暗</title>
+<style>
+/* 小工具：記下青藍連魂存的 4 個範圍＋靈魂輪轉停在最下方的號碼，產生並複製 /p 巨集。可開成小視窗，或之後放進 ReFlo 的 Overlay（加 ?overlay=1 背景半透明） */
+:root{--bg:#141826;--panel:#1d2335;--line:#2e3650;--fg:#e8ecf6;--muted:#9aa4bd;--ac:#7aa6ff;--ok:#34d399;--warn:#fbbf24;color-scheme:dark}
+:root[data-theme="light"]{--bg:#f4f5fa;--panel:#fff;--line:#d9ddea;--fg:#1d2232;--muted:#5d6680;--ac:#3b6fd8;--ok:#059669;--warn:#b45309;color-scheme:light}
+@media (prefers-color-scheme:light){:root:not([data-theme]){--bg:#f4f5fa;--panel:#fff;--line:#d9ddea;--fg:#1d2232;--muted:#5d6680;--ac:#3b6fd8;--ok:#059669;--warn:#b45309;color-scheme:light}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 "Noto Sans TC",system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;padding:10px;max-width:420px;margin:0 auto}
+html.ov,html.ov body{background:transparent}
+html.ov body{background:color-mix(in srgb,var(--bg) 82%,transparent);border-radius:12px}
+h1{font-size:15px;margin:0 0 2px;display:flex;align-items:center;gap:8px}
+h1 small{font-size:11px;color:var(--muted);font-weight:400}
+.step{margin-top:10px}
+.lbl{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px;display:flex;justify-content:space-between;gap:6px}
+.kb{font-weight:400;opacity:.8}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.ab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px 6px;min-height:64px;border-radius:10px;border:1px solid var(--line);background:var(--panel);font-size:12px;font-weight:700}
+.ab svg{width:30px;height:30px}
+.ab small{font-size:10px;font-weight:400;color:var(--muted)}
+.ab:hover:not(:disabled),.nb:hover:not(:disabled){border-color:var(--ac)}
+.ab:focus-visible,.nb:focus-visible,.sm:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button:disabled{opacity:.4;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sl{min-height:52px;border-radius:10px;border:1px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;color:var(--muted)}
+.sl b{font-size:11px}
+.sl.f{border-style:solid;border-color:color-mix(in srgb,var(--ac) 60%,transparent);color:var(--fg);background:color-mix(in srgb,var(--ac) 10%,transparent)}
+.sl svg{width:22px;height:22px}
+.nb{min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--panel);font-size:18px;font-weight:800}
+.nb[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:#fff}
+.seg{display:flex;gap:6px}
+.seg .sm{flex:1}
+.sm{min-height:34px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);font-size:12px;font-weight:700}
+.sm[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:#fff}
+.res{margin-top:10px;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.res[hidden]{display:none}
+.ord{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.ord li{display:grid;grid-template-columns:22px 26px 1fr;gap:6px;align-items:center;font-size:13px}
+.ord .i{font-weight:800;color:var(--ac)}
+.ord svg{width:24px;height:24px}
+.ord li.last{color:var(--warn);font-weight:700}
+.fin{margin:8px 0 0;font-size:12.5px;padding:7px 9px;border-radius:8px;background:color-mix(in srgb,var(--warn) 14%,transparent);border-left:3px solid var(--warn)}
+textarea{width:100%;margin-top:8px;font:12px/1.5 ui-monospace,Consolas,monospace;padding:7px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);resize:vertical;min-height:48px}
+.row{display:flex;gap:6px;margin-top:6px;align-items:center;flex-wrap:wrap}
+.st{font-size:12px;color:var(--ok);min-height:18px;flex:1}
+.ft{margin-top:10px;font-size:11px;color:var(--muted)}
+.ft a{color:var(--ac)}
+label.ck{display:flex;gap:5px;align-items:center;font-size:12px;color:var(--muted)}
+.big{display:none}
+/* ?mini=1 打本用精簡模式：只留兩排按鈕＋一行大字順序 */
+html.mini body{padding:6px;max-width:none}
+html.mini h1,html.mini .lbl,html.mini #slots,html.mini .ft,html.mini #ord,html.mini #fin,html.mini textarea,html.mini .row label{display:none}
+html.mini .step{margin-top:6px}
+html.mini .ab{min-height:48px;padding:4px 2px;font-size:13px}
+html.mini .ab svg{width:22px;height:22px}
+html.mini .ab.used{outline:2px solid var(--ac);opacity:.6;position:relative}
+html.mini .ab.used::after{content:attr(data-ord);position:absolute;top:2px;right:5px;font-size:15px;font-weight:800;color:var(--ac)}
+html.mini .nb{min-height:40px}
+html.mini .seg .sm{min-height:32px;font-size:13px}
+html.mini .res{margin-top:6px;padding:8px}
+html.mini .big{display:block;font-size:19px;font-weight:800;line-height:1.35;text-align:center}
+html.mini .big .last{color:var(--warn)}
+.fin2{font-size:15px;font-weight:700;margin-top:4px;color:var(--warn)}
+html.mini .row{margin-top:4px;justify-content:center}
+html.mini .bar{display:flex;gap:6px;margin-top:6px}
+html.mini .bar .sm{flex:1}
+.bar{display:none}
+</style>
+</head>
+<body>
+<h1>青藍連魂記錄器 <small>極永恆黑暗 P2</small></h1>
+
+<div class="step">
+  <div class="lbl"><span>① 依存入順序點 3 次（第 4 個自動補）</span><span class="kb">Q W E R</span></div>
+  <div class="grid4" id="abs"></div>
+</div>
+<div class="step">
+  <div class="lbl"><span>已記錄</span><span><button type="button" class="sm" id="undo">↶ 刪上一個</button> <button type="button" class="sm" id="reset">重來</button></span></div>
+  <div class="slots" id="slots" aria-live="polite"></div>
+</div>
+<div class="step">
+  <div class="lbl"><span>② 轉輪停下，最下方是幾號？（點了就複製巨集）</span><span class="kb">1–4</span></div>
+  <div class="grid4" id="nums"></div>
+</div>
+<div class="step opt">
+  <div class="lbl"><span>最後一波分攤（看到再點，可不選）</span></div>
+  <div class="seg"><button type="button" class="sm" data-stack="4" aria-pressed="false">二重＝4 人</button><button type="button" class="sm" data-stack="2" aria-pressed="false">四重＝2 人</button></div>
+</div>
+
+<section class="res" id="res" hidden aria-live="polite">
+  <div class="big" id="big"></div>
+  <ol class="ord" id="ord"></ol>
+  <p class="fin" id="fin"></p>
+  <textarea id="mac" readonly aria-label="巨集文字"></textarea>
+  <div class="row"><button type="button" class="sm" id="copy">複製巨集</button><label class="ck"><input type="checkbox" id="pfx" checked>加 /p</label><span class="st" id="st"></span></div>
+</section>
+
+<div class="bar"><button type="button" class="sm" id="undo2">↶ 刪上一個</button><button type="button" class="sm" id="reset2">重來</button></div>
+<p class="ft">釋放順序：從轉輪<b>最下方</b>的號碼開始，照 1→2→3→4 循環。最後一招同時判定分攤：安全在外站字母點（A–D），在內站數字點（1–4）；四重 2 人分攤四個點都站，直接寫英文點／數字點。依本站<a href="necronx-guide.html">極永恆黑暗攻略</a>整理，實戰前請先對照確認。</p>
+
+<script>
+{
+const A=[
+ {k:'steel',n:'鋼鐵',io:'外',key:'q',svg:'<circle cx="16" cy="16" r="11" fill="#ef4444" opacity=".85"/><circle cx="16" cy="16" r="13.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>'},
+ {k:'ring',n:'月環',io:'內',key:'w',svg:'<circle cx="16" cy="16" r="12" fill="none" stroke="#ef4444" stroke-width="7" opacity=".85"/>'},
+ {k:'mid',n:'兩側安全',io:'外',key:'e',svg:'<rect x="11" y="2" width="10" height="28" rx="2" fill="#ef4444" opacity=".85"/><rect x="2" y="2" width="7" height="28" rx="2" fill="none" stroke="currentColor" stroke-dasharray="2 2"/><rect x="23" y="2" width="7" height="28" rx="2" fill="none" stroke="currentColor" stroke-dasharray="2 2"/>'},
+ {k:'side',n:'中間安全',io:'內',key:'r',svg:'<rect x="2" y="2" width="9" height="28" rx="2" fill="#ef4444" opacity=".85"/><rect x="21" y="2" width="9" height="28" rx="2" fill="#ef4444" opacity=".85"/><rect x="12.5" y="2" width="7" height="28" rx="2" fill="none" stroke="currentColor" stroke-dasharray="2 2"/>'}];
+const ic=a=>'<svg viewBox="0 0 32 32" aria-hidden="true">'+a.svg+'</svg>';
+const C='①②③④';
+const $=id=>document.getElementById(id);
+if(/[?&]overlay=1/.test(location.search))document.documentElement.classList.add('ov');
+const MINI=/[?&]mini=1/.test(location.search);if(MINI)document.documentElement.classList.add('mini');
+const SH={steel:'鋼鐵',ring:'月環',mid:'兩側',side:'中間'};
+try{const t=localStorage.getItem('raid-notes-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}
+let seq=[],bottom=0,stack=0;
+$('abs').innerHTML=A.map((a,i)=>'<button type="button" class="ab" data-i="'+i+'">'+ic(a)+a.n+'</button>').join('');
+$('nums').innerHTML=[1,2,3,4].map(n=>'<button type="button" class="nb" data-n="'+n+'" aria-pressed="false" aria-label="最下方是 '+n+' 號">'+C[n-1]+'</button>').join('');
+function order(){return [0,1,2,3].map(j=>(bottom-1+j)%4)}
+function where(a){
+  // 二重（4 人）、四重（2 人）；四重四個點都站，只寫英文點／數字點
+  const two='二重：'+(a.io==='外'?'C、D':'3、4'),four='四重：'+(a.io==='外'?'英文點':'數字點');
+  return stack===4?two:stack===2?four:two+'　'+four;
+}
+function macro(){
+  const o=order(),p=$('pfx').checked?'/p ':'';
+  // FF14 對話一次只送一行，所以合成一行
+  const last=A[seq[o[3]]];
+  return p+'連魂：'+o.map(s=>A[seq[s]].n).join('→')+'｜安全在「'+last.io+'」'+where(last);
+}
+function render(){
+  $('slots').innerHTML=[0,1,2,3].map(i=>seq[i]==null?'<div class="sl"><b>'+C[i]+'</b>—</div>':'<div class="sl f"><b>'+C[i]+'</b>'+ic(A[seq[i]])+A[seq[i]].n+'</div>').join('');
+  document.querySelectorAll('.ab').forEach(b=>{const u=seq.includes(+b.dataset.i);b.disabled=seq.length>=4||u;b.classList.toggle('used',u);b.dataset.ord=u?C[seq.indexOf(+b.dataset.i)]:''});
+  document.querySelectorAll('.nb').forEach(b=>{b.disabled=seq.length<4;b.setAttribute('aria-pressed',+b.dataset.n===bottom)});
+  document.querySelectorAll('[data-stack]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.stack===stack));
+  $('undo').disabled=!seq.length;
+  const show=seq.length===4&&bottom>0;$('res').hidden=!show;if(!show)return;
+  const o=order();
+  $('ord').innerHTML=o.map((s,j)=>{const a=A[seq[s]];return '<li'+(j===3?' class="last"':'')+'><span class="i">'+(j+1)+'</span>'+ic(a)+'<span>'+C[s]+' <b>'+a.n+'</b>'+(j===3?'（同時分攤）':'')+'</span></li>'}).join('');
+  const last=A[seq[o[3]]];
+  $('big').innerHTML=o.map((s,j)=>j===3?'<span class="last">'+SH[A[seq[s]].k]+'</span>':SH[A[seq[s]].k]).join(' → ')
+    +'<div class="fin2">安全在「<b>'+last.io+'</b>」　'+where(last)+'</div>';
+  $('fin').innerHTML='結束時：最後一招<b>'+last.n+'</b><br>安全在「<b>'+last.io+'</b>」　'+where(last);
+  $('mac').value=macro();
+}
+async function copy(){
+  const t=$('mac').value;let ok=false;
+  try{await navigator.clipboard.writeText(t);ok=true}catch(e){try{$('mac').select();ok=document.execCommand('copy')}catch(e2){}}
+  $('st').textContent=ok?(MINI?'已複製 ✓':'已複製，到遊戲對話框貼上（Ctrl+V）'):(MINI?'複製失敗':'複製失敗，請手動選取上方文字');
+}
+// 四種各出現一次：點過的不能再點，點完三個自動補上第四個
+function add(i){if(seq.length<4&&!seq.includes(i)){seq.push(i);if(seq.length===3)seq.push([0,1,2,3].find(j=>!seq.includes(j)));bottom=0;$('st').textContent='';render()}}
+function undo(){if(seq.length===4)seq.splice(2);else seq.pop();bottom=0;render()}
+function pick(n){if(seq.length===4){bottom=n;render();copy()}}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.i!=null)add(+b.dataset.i);
+  else if(b.dataset.n)pick(+b.dataset.n);
+  else if(b.dataset.stack){stack=stack===+b.dataset.stack?0:+b.dataset.stack;render();if(bottom)copy()}
+  else if(b.id==='undo'||b.id==='undo2')undo();
+  else if(b.id==='reset'||b.id==='reset2'){seq=[];bottom=0;stack=0;$('st').textContent='';render()}
+  else if(b.id==='copy')copy();
+});
+$('pfx').addEventListener('change',()=>{render();if(bottom)copy()});
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='TEXTAREA'||e.ctrlKey||e.metaKey||e.altKey)return;
+  const k=e.key.toLowerCase(),ai=A.findIndex(a=>a.key===k);
+  if(ai>=0){add(ai);e.preventDefault()}
+  else if(/^[1-4]$/.test(k)){pick(+k);e.preventDefault()}
+  else if(k==='backspace'){undo();e.preventDefault()}
+  else if(k==='escape'){seq=[];bottom=0;stack=0;render()}
+});
+render();
+}
+</script>
+</body>
+</html>
