@@ -70,6 +70,7 @@ for f in ['m1s','m2s','m3s','m4s','m5s','m6s','m7s','m8s','m8s-blank','tea','tea
         i=s.index('<p class="endnote">'); j=s.index('</p>',i)+4
         s=s[:j]+'\n  '+credit(f)+s[j:]
         if f!='necronx-guide': s=reskin(s)
+        s=s.replace('const rn=role==="st"?r.nst:role==="mt"?r.nmt:null;','const rn=r["n"+role];')  # 每個職位都能有自己的備註
     s=gnav.bar(s,f+'.html',guide=f.endswith('-guide'))
     if f in ('necronx','necronx-guide'): s=reap_btn(s)
     open(R+f+'.html','w',encoding='utf8').write(head+s)

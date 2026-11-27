@@ -30,7 +30,8 @@ details.blk:not([open])>summary{border-bottom-color:var(--line)}
 .chev{margin-left:auto;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
 details.blk:not([open]) .chev{transform:rotate(-45deg)}
 .spgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
-.sp{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface);align-self:start}
+.sp{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface);display:flex;flex-direction:column}
+.sp h4{min-height:2.6em}
 .sp h4{margin:0 0 6px;font-size:.95rem;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .sp .st{font-variant-numeric:tabular-nums;font-size:.72rem;padding:1px 6px;border-radius:5px;background:var(--st);color:#fff;white-space:nowrap}
 .sp svg,.dfig svg{width:100%;height:auto;display:block;color:var(--muted)}
@@ -62,6 +63,8 @@ details.mcard:not([open]) .mchev{transform:rotate(-45deg);margin-bottom:0}
 li.me{list-style:none;margin-left:-1.15em;margin-top:6px;padding:6px 8px;border-radius:8px;background:color-mix(in srgb,var(--accent) 12%,transparent);border-left:3px solid var(--accent)}
 li.me .who{display:inline-block;font-size:.72rem;font-weight:800;padding:0 6px;margin-right:6px;border-radius:5px;background:var(--accent);color:#fff}
 .wrap:not([data-me]) li.me{display:none}
+li.me.mit{background:color-mix(in srgb,#16a34a 12%,transparent);border-left-color:#16a34a}
+li.me.mit .who{background:#16a34a}
 .pp{transition:opacity .2s,transform .2s}
 '''+''.join(f'.wrap[data-me="{r}"] li.me:not([data-for~="{r}"]){{display:none}}.wrap[data-me="{r}"] .pp:not([data-r="{r}"]){{opacity:.38}}.wrap[data-me="{r}"] .pp[data-r="{r}"]{{transform:scale(1.35)}}.wrap[data-me="{r}"] .pp[data-r="{r}"] circle{{stroke-width:2.6}}' for r in ['MT','ST','H1','H2','D1','D2','D3','D4'])+'''
 @media (prefers-reduced-motion:reduce){.pp,.rpick{transition:none}}
@@ -75,9 +78,37 @@ def blk(n, title, inner, open_=True):
 ROLES = ['MT', 'ST', 'H1', 'H2', 'D1', 'D2', 'D3', 'D4']
 
 
+# 減傷：從時間軸小抄的減傷軸（necronx/add_mit.py 的 PLAN）拉過來，依一圖流的格子對應
+_src = open('/home/claude/work/necronx/add_mit.py', encoding='utf8').read()
+_ns = {}
+exec(_src[:_src.index("s = open(W + 'data.before-mit.js'")], _ns)
+PLAN = _ns['PLAN']
+MITMAP = {'P1 00:14': ['青藍衝擊（×2） ①'], 'P1 00:29': ['死之恐懼 ①'], 'P1 01:43': ['死之恐懼 ②', '青藍衝擊（×2） ②'],
+          'P1 02:20': ['大十字 ①', '中子環（×2） ①'], 'P1.5': ['壓潰（直線）'], '單人': ['永世黑暗（×2）', '壓潰 ⑤', '壓潰 ⑦', '壓潰 ⑨'],
+          'P2 02:06': ['青藍衝擊（×2） ③'], 'P2 03:43': ['死之恐懼 ③'], 'P2 04:44': ['大十字 ②', '中子環（×2） ②']}
+
+
+def short(m):
+    return m.replace('（×2）', '').replace(' ', '')
+
+
+def mit_lines(t):
+    out = {}
+    for row in MITMAP.get(t, []):
+        p = PLAN.get(row, {})
+        for r in ROLES:
+            sk = [k for slot, k in p.get('c', []) if slot == r]
+            if r in ('ST', 'MT'):
+                sk = p.get(r.lower(), []) + sk
+            if sk:
+                out.setdefault(r, []).append(f'<b>{short(row)}</b> {"＋".join(sk)}')
+    return ''.join(f'<li class="me mit" data-for="{r}"><span class="who">減傷</span>{"　".join(v)}</li>' for r, v in out.items())
+
+
 def panel(t, title, svg, common, per):
     li = ''.join(f'<li>{x}</li>' for x in common)
     li += ''.join(f'<li class="me" data-for="{k}"><span class="who">{k.replace(" ", "・")}</span>{v}</li>' for k, v in per.items())
+    li += mit_lines(t)
     return f'<article class="sp"><h4><span class="st">{t}</span>{title}</h4>{svg or ""}<ul>{li}</ul></article>'
 
 
