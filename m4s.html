@@ -1064,7 +1064,7 @@ function renderTimeline(){
         if(NIMG[r._id]&&NIMG[r._id].length){const L=NIMG[r._id];L.forEach((x,i)=>{const nm=NPL(x)||(L.length>1?"筆記圖 "+(i+1):"筆記圖");const t=el("button","figbtn nimgbtn",nm);t.type="button";t.dataset.src=NPS(x);t.dataset.cap=NPL(x)||("我的筆記圖片"+(L.length>1?" "+(i+1)+"/"+L.length:""));t.dataset.alt=t.dataset.cap;mn.append(t)})}
         if(editing){mn.classList.add("ed");mn.tabIndex=0;mn.setAttribute("role","button");mn.title="點一下修改筆記";mn.onclick=()=>openNote(r,mn);mn.onkeydown=e=>{if(e.key==="Enter")openNote(r,mn)}}b.append(mn)}
       if(r.n) b.append(el("div","note",r.n));
-      const rn=role==="st"?r.nst:role==="mt"?r.nmt:null;
+      const rn=r["n"+role];
       if(rn) b.append(el("div","note role",rn));
       row.append(b); g.append(row); if(r.tp) g.append(tpDiv(r.tp));
     }
